@@ -24,3 +24,11 @@ But why “Dogamma”?
 # How to install
 
 Head to the wiki: https://github.com/Grokitach/Dragons-Dogamma/wiki/How-To-Install-Dragon's-Dogamma-for-Dragon's-Dogma-2
+
+# Donations
+
+If you like this project, you can support me by donating on PayPal: https://www.paypal.com/paypalme/GrokitachGAMMA
+
+# Other Projects
+
+I'm also the author of one of the major STALKER Anomaly modpack: STALKER GAMMA: https://discord.com/invite/stalker-gamma
