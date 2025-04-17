@@ -23,4 +23,4 @@ But why “Dogamma”?
 
 # How to install
 
-Head to the wiki !
+Head to the wiki: https://github.com/Grokitach/Dragons-Dogamma/wiki/How-To-Install-Dragon's-Dogamma-for-Dragon's-Dogma-2
