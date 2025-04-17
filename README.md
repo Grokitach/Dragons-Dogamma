@@ -25,6 +25,10 @@ But why “Dogamma”?
 
 Head to the wiki: https://github.com/Grokitach/Dragons-Dogamma/wiki/How-To-Install-Dragon's-Dogamma-for-Dragon's-Dogma-2
 
+# Discussions, Feedback and Support
+
+You can visit the Dragon's Dogamma Discord to chat about the project, get the latest news, give your feedback, and seek help and support on the installation procedure: http://discord.com/invite/TXtTh9ZhQZ
+
 # Donations
 
 If you like this project, you can support me by donating on PayPal: https://www.paypal.com/paypalme/GrokitachGAMMA
