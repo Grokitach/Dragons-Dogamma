@@ -1,0 +1,16 @@
+{
+    "Undead": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Devour",
+            "Devour2",
+            "Fast Crawl",
+            "Fast Grab",
+            "Rotten Blood",
+            "Rotten Blood2",
+            "Starving Grab",
+            "Starving Grab2",
+            "Zombie Rush"
+        ]
+    }
+}

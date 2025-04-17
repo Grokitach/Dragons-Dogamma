@@ -1,0 +1,80 @@
+{
+    "Ch220001_ReinforceTable.user": {
+        "0": {
+            "_AppearNum": [
+                1,
+                1
+            ],
+            "_AppearRate": 100,
+            "_CharaID": "Hobgoblin_weapon_weak",
+            "_GenerateDisableFlag": 255,
+            "_Group": "A",
+            "_InitSetType": "Ch220_DrawWait",
+            "_IsDestinationMove": true,
+            "_IsFinishCheck": "null",
+            "_IsForceCombat": true,
+            "_IsThinkStop": false,
+            "_IsWanderMove": true,
+            "_ManualPos": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "_ParamId": 0,
+            "_QuestID": "null",
+            "_StatusID": "None",
+            "_TimeZone": 15
+        },
+        "1": {
+            "_AppearNum": [
+                1,
+                1
+            ],
+            "_AppearRate": 100,
+            "_CharaID": "Hobgoblin_weapon_shield_weak",
+            "_GenerateDisableFlag": 255,
+            "_Group": "A",
+            "_InitSetType": "Ch220_DrawWait",
+            "_IsDestinationMove": true,
+            "_IsFinishCheck": "null",
+            "_IsForceCombat": true,
+            "_IsThinkStop": false,
+            "_IsWanderMove": true,
+            "_ManualPos": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "_ParamId": 0,
+            "_QuestID": "null",
+            "_StatusID": "None",
+            "_TimeZone": 15
+        },
+        "2": {
+            "_AppearNum": [
+                1,
+                1
+            ],
+            "_AppearRate": 100,
+            "_CharaID": "Hobgoblin_thrower_weak",
+            "_GenerateDisableFlag": 255,
+            "_Group": "A",
+            "_InitSetType": "Ch220_DrawWait",
+            "_IsDestinationMove": true,
+            "_IsFinishCheck": "null",
+            "_IsForceCombat": true,
+            "_IsThinkStop": false,
+            "_IsWanderMove": true,
+            "_ManualPos": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "_ParamId": 0,
+            "_QuestID": "null",
+            "_StatusID": "None",
+            "_TimeZone": 15
+        },
+        "A": 99
+    }
+}

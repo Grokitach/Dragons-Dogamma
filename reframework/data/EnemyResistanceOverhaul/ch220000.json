@@ -1,0 +1,40 @@
+{
+    "Normal": {
+        "0": {
+            "MagDamage": {
+                "Fire": 1.2,
+                "Ice": 1.3
+            },
+            "MagStagger": {
+                "Ice": 1.5
+            }
+        },
+        "1": {
+            "MagDamage": {
+                "Fire": 1.2,
+                "Ice": 1.3
+            },
+            "MagStagger": {
+                "Ice": 1.5
+            }
+        },
+        "2": {
+            "MagDamage": {
+                "Fire": 1.2,
+                "Ice": 1.3
+            },
+            "MagStagger": {
+                "Ice": 1.5
+            }
+        },
+        "3": {
+            "MagDamage": {
+                "Fire": 1.2,
+                "Ice": 1.3
+            },
+            "MagStagger": {
+                "Ice": 1.5
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Chopper": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Poison Shots",
+            "Goblin Silence",
+            "Rain Dance1",
+            "Goblin Flurry",
+            "Goblin Thunder",
+            "Goblin Thunder2",
+            "Goblin Thunder3",
+            "Goblin Blizzard",
+            "Goblin Blizzard2"
+        ]
+    }
+}

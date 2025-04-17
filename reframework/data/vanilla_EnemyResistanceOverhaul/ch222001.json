@@ -1,0 +1,82 @@
+{
+    "Normal": {
+        "0": {
+            "MagDamage": {
+                "Fire": 1.5,
+                "Holy": 1.0,
+                "Ice": 1.0,
+                "Neutral": 1.0,
+                "Thunder": 1.0
+            },
+            "MagStagger": {
+                "Fire": 1.0,
+                "Holy": 1.0,
+                "Ice": 1.0,
+                "Neutral": 1.0,
+                "Thunder": 1.0
+            },
+            "PhysDamage": {
+                "Blow": 1.0,
+                "Shoot": 1.0,
+                "Slash": 1.0
+            },
+            "PhysStagger": {
+                "Blow": 1.5,
+                "Shoot": 1.0,
+                "Slash": 1.5
+            }
+        },
+        "1": {
+            "MagDamage": {
+                "Fire": 1.5,
+                "Holy": 1.0,
+                "Ice": 1.0,
+                "Neutral": 1.0,
+                "Thunder": 1.0
+            },
+            "MagStagger": {
+                "Fire": 1.0,
+                "Holy": 1.0,
+                "Ice": 1.0,
+                "Neutral": 1.0,
+                "Thunder": 1.0
+            },
+            "PhysDamage": {
+                "Blow": 1.0,
+                "Shoot": 1.0,
+                "Slash": 1.0
+            },
+            "PhysStagger": {
+                "Blow": 1.5,
+                "Shoot": 1.0,
+                "Slash": 1.5
+            }
+        },
+        "2": {
+            "MagDamage": {
+                "Fire": 1.5,
+                "Holy": 1.0,
+                "Ice": 1.0,
+                "Neutral": 1.0,
+                "Thunder": 1.0
+            },
+            "MagStagger": {
+                "Fire": 1.5,
+                "Holy": 1.0,
+                "Ice": 1.0,
+                "Neutral": 1.0,
+                "Thunder": 1.0
+            },
+            "PhysDamage": {
+                "Blow": 1.0,
+                "Shoot": 1.5,
+                "Slash": 1.0
+            },
+            "PhysStagger": {
+                "Blow": 1.5,
+                "Shoot": 1.5,
+                "Slash": 1.5
+            }
+        }
+    }
+}

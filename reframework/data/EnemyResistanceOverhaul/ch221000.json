@@ -1,0 +1,55 @@
+{
+    "Injured": {
+        "0": {
+            "MagDamage": {
+                "Fire": 1.0,
+                "Thunder": 2.0
+            },
+            "MagStagger": {
+                "Fire": 1.0,
+                "Thunder": 2.0
+            }
+        },
+        "1": {
+            "MagDamage": {
+                "Fire": 1.0,
+                "Thunder": 2.0
+            },
+            "MagStagger": {
+                "Fire": 1.0,
+                "Thunder": 2.0
+            }
+        },
+        "2": {
+            "MagDamage": {
+                "Fire": 1.0,
+                "Thunder": 2.0
+            },
+            "MagStagger": {
+                "Fire": 1.0,
+                "Thunder": 2.0
+            }
+        }
+    },
+    "Normal": {
+        "0": {
+            "MagDamage": {
+                "Fire": 0.1,
+                "Thunder": 1.25
+            }
+        },
+        "1": {
+            "MagDamage": {
+                "Fire": 0.15,
+                "Ice": 1.75,
+                "Thunder": 1.6
+            }
+        },
+        "2": {
+            "MagDamage": {
+                "Fire": 0.1,
+                "Thunder": 1.25
+            }
+        }
+    }
+}

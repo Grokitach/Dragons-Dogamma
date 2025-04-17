@@ -1,0 +1,58 @@
+{
+    "Normal": {
+        "0": {
+            "MagDamage": {
+                "Fire": 3.0,
+                "Holy": 1.0,
+                "Ice": 0.1,
+                "Neutral": 1.0,
+                "Thunder": 1.5
+            },
+            "MagStagger": {
+                "Fire": 10.0,
+                "Holy": 10.0,
+                "Ice": 0.0,
+                "Neutral": 5.0,
+                "Thunder": 5.0
+            },
+            "PhysDamage": {
+                "Blow": 0.1,
+                "Shoot": 0.05,
+                "Slash": 0.1
+            },
+            "PhysStagger": {
+                "Blow": 0.5,
+                "Shoot": 0.01,
+                "Slash": 0.5
+            }
+        }
+    },
+    "Possess": {
+        "0": {
+            "MagDamage": {
+                "Fire": 3.5,
+                "Holy": 1.0,
+                "Ice": 0.0,
+                "Neutral": 1.2,
+                "Thunder": 1.7
+            },
+            "MagStagger": {
+                "Fire": 10.0,
+                "Holy": 10.0,
+                "Ice": 0.0,
+                "Neutral": 5.0,
+                "Thunder": 5.0
+            },
+            "PhysDamage": {
+                "Blow": 1.0,
+                "Shoot": 1.0,
+                "Slash": 1.0
+            },
+            "PhysStagger": {
+                "Blow": 1.0,
+                "Shoot": 1.0,
+                "Slash": 1.0
+            }
+        }
+    }
+}

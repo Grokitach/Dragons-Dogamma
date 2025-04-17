@@ -1,0 +1,63 @@
+{
+    "asBoss": false,
+    "bigHead": false,
+    "debug_human_only": false,
+    "forceClimb": false,
+    "globalSpawn": {
+        "Gimmick": {
+            "disable": false
+        },
+        "Monster": {
+            "disable": false
+        },
+        "NPC": {
+            "disable": false
+        },
+        "Other": {
+            "disable": false
+        },
+        "StrayPawn": {
+            "disable": false
+        }
+    },
+    "hotkeys": {
+        "deleteAll": 106,
+        "deleteLast": 109,
+        "enable": true,
+        "spawn": 107
+    },
+    "instLimit": 50,
+    "ovrScale": {
+        "enable": false,
+        "normalizeSpeed": false,
+        "scale": 1.0
+    },
+    "spawnCharRefID": 49,
+    "spawnEdit": {
+        "NPC": {
+            "drunk": false,
+            "kidSized": false,
+            "naked": false,
+            "sonic": false
+        },
+        "attr": {
+            "attack": 1.0,
+            "defense": 1.0
+        },
+        "ovrScale": {
+            "enable": false,
+            "normalizeSpeed": false,
+            "scale": 1.0
+        },
+        "randomBoss": false,
+        "repl": {
+            "enable": false,
+            "qty": 1
+        }
+    },
+    "spawnIdle": false,
+    "spawnMultiple": {
+        "enable": false,
+        "qty": 10
+    }
+}

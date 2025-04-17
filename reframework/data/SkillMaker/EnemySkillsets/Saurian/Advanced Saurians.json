@@ -1,0 +1,18 @@
+{
+    "Saurian": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Moreattacks",
+            "Moreattacks2",
+            "Double Stab",
+            "Double Stab2",
+            "Double Stab3",
+            "Double Stab4",
+            "Triple Stab",
+            "Triple Stab2",
+            "Triple Stab3",
+            "Spear Combo",
+            "Faster tail"
+        ]
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "Warg": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Poison Bite 1",
+            "Poison Bite 2",
+            "Poison Bite 3",
+            "Poison Bite 4",
+            "SideWalkBites",
+            "SideWalkBites2",
+            "AvoidBite",
+            "Avoidgrab",
+            "Avoidgrab2",
+            "Avoidtackle"
+        ]
+    }
+}

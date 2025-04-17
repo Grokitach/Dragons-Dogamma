@@ -1,0 +1,58 @@
+{
+    "Normal": {
+        "0": {
+            "MagDamage": {
+                "Fire": 0.5,
+                "Holy": 1.0
+            },
+            "MagStagger": {
+                "Fire": 1.0
+            }
+        },
+        "1": {
+            "MagDamage": {
+                "Fire": 0.5,
+                "Holy": 1.0
+            },
+            "MagStagger": {
+                "Fire": 1.0
+            }
+        },
+        "2": {
+            "MagDamage": {
+                "Fire": 0.5,
+                "Holy": 1.0
+            },
+            "MagStagger": {
+                "Fire": 1.0
+            }
+        },
+        "3": {
+            "MagDamage": {
+                "Fire": 0.5,
+                "Holy": 1.0
+            },
+            "MagStagger": {
+                "Fire": 1.0
+            }
+        },
+        "4": {
+            "MagDamage": {
+                "Fire": 0.75,
+                "Holy": 1.25
+            },
+            "MagStagger": {
+                "Fire": 1.0
+            }
+        },
+        "5": {
+            "MagDamage": {
+                "Fire": 0.75,
+                "Holy": 1.25
+            },
+            "MagStagger": {
+                "Fire": 1.0
+            }
+        }
+    }
+}

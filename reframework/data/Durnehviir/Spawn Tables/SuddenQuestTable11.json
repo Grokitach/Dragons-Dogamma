@@ -1,0 +1,30 @@
+{
+    "SuddenQuestTable11.user": {
+        "0": {
+            "_AppearNum": [
+                4,
+                4
+            ],
+            "_AppearRate": 100,
+            "_CharaID": "Goblin_weapon_weak",
+            "_GenerateDisableFlag": 255,
+            "_Group": "A",
+            "_InitSetType": "Wait",
+            "_IsDestinationMove": true,
+            "_IsFinishCheck": "null",
+            "_IsForceCombat": false,
+            "_IsThinkStop": false,
+            "_IsWanderMove": true,
+            "_ManualPos": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "_ParamId": 0,
+            "_QuestID": "null",
+            "_StatusID": "None",
+            "_TimeZone": 15
+        },
+        "A": 99
+    }
+}

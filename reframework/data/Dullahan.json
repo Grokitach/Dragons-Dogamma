@@ -1,0 +1,105 @@
+{
+    "archer_config": {
+        "deathly_arrow": true,
+        "exploding_shot": true,
+        "heavenly_shot": true,
+        "lyncean_sight": true,
+        "puncture_dart": true,
+        "sliding_iframes": true,
+        "special_arrows": true
+    },
+    "concussive_leap_all": true,
+    "fighter_config": {
+        "gutting_skewer": true,
+        "hindsight_slash": true,
+        "steeled_foundation": true,
+        "swordless_block": true,
+        "true_deflect": true,
+        "tusk_toss": true,
+        "twirling_cut": true
+    },
+    "mage_config": {
+        "basic_attacks": true,
+        "cast_speed": true,
+        "celestial_paean": true,
+        "empyrean": true,
+        "end_levitate": true,
+        "faster_casting": true,
+        "flagration": true,
+        "frigor": true,
+        "levin": true,
+        "paladium": true,
+        "solemnity": true,
+        "spellhold": true
+    },
+    "magic_weakspots": true,
+    "magick_archer_config": {
+        "archer_attacks": true,
+        "boltchain_stake": true,
+        "conversion": true,
+        "core_attacks": true,
+        "lifetaking_arrow": true,
+        "martyrs_bolt": true,
+        "ricochet_hunter": true,
+        "sagittate_avalanche": true
+    },
+    "mystic_spearhand_config": {
+        "forbeding_bolt": true,
+        "magike_speregonne": true,
+        "mirour_shelde": true,
+        "quick_fot": true,
+        "ravinours_hond": true,
+        "regular_attacks": true,
+        "seching_blade": true,
+        "skiedragouns_feste": true,
+        "standing_damage": true,
+        "unto_heven": true,
+        "winding_cut": true
+    },
+    "no_unsheathe": {
+        "enabled": true,
+        "only_in_combat": false
+    },
+    "sorcerer_config": {
+        "augural_flare": true,
+        "basic_attacks": true,
+        "decanter": true,
+        "hagol": true,
+        "meteoron": true,
+        "miasma": true,
+        "seism": true
+    },
+    "thief_config": {
+        "blades_of_the_pyre": true,
+        "climbing_damage": true,
+        "formless_feint": true,
+        "ignited_blades": true,
+        "implicate": true,
+        "instant_reset": true,
+        "scarlet_kisses": true,
+        "shadow_veil": true,
+        "skullsplitter": true,
+        "smoke_shroud": true
+    },
+    "trickster_config": {
+        "aromatic_resurgence": true,
+        "effigial_incense": true,
+        "faster_attacks": true,
+        "fragrant_alarum": true,
+        "vorpal_effluvium": true
+    },
+    "version": 4.13,
+    "warfarer_config": {
+        "no_rearmament_stamina_cost": true
+    },
+    "warrior_config": {
+        "arc_of_might": true,
+        "attack_speed": true,
+        "charged_attacks": true,
+        "diluvian_strike": true,
+        "faster_uncharged": true,
+        "indomitable_lash": true,
+        "inspirit": true,
+        "tidal_wrath": true
+    }
+}

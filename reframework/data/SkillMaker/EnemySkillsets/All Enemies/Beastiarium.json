@@ -1,0 +1,621 @@
+{
+    "Asp": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Fast Charge",
+            "Putrid Ritual",
+            "Putrid Ritual2",
+            "Poison Breath",
+            "Poison Breath2",
+            "Asp Combo",
+            "Asp Combo2"
+        ]
+    },
+    "Chimera": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Chimera Combo 1",
+            "Chimera Combo 2",
+            "Chimera Combo 3",
+            "Chimera Combo 4",
+            "Chimera Combo Leap",
+            "Chimera Combo Turnattack",
+            "Chimera Combo Slashes",
+            "Chimera Combo tackle",
+            "Chimera Combo from claw",
+            "Chimera Combo from stepclaw1",
+            "Chimera Combo from stepclaw2",
+            "Chimera Combo from avoid",
+            "Chimera Combo fromclaw2",
+            "Sidewalk Claw",
+            "Sidewalk Claw2",
+            "Sidewalk Claw3",
+            "Sidewalk Claw4",
+            "Biterush",
+            "Biterush2"
+        ]
+    },
+    "Chopper": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Poison Shots",
+            "Goblin Silence",
+            "Rain Dance1",
+            "Goblin Flurry",
+            "Goblin Thunder",
+            "Goblin Thunder3",
+            "Goblin Blizzard",
+            "Goblin Blizzard2"
+        ]
+    },
+    "Coral Snake": {
+        "redirect_idx": 27
+    },
+    "Cyclops": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Cyclops Rage",
+            "Cyclops Rage2",
+            "Cyclops Rage3",
+            "Cyclops Poke",
+            "Cyclops Swinging",
+            "Cyclops Walkattack",
+            "Cyclops Walkattack2",
+            "Cyclops Turnswing1",
+            "Cyclops Turnswing2",
+            "Cyclops Turnswing3",
+            "Cyclops Turnswing4",
+            "Powered Armslam",
+            "Another Combo"
+        ]
+    },
+    "Drake": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Violent Breath",
+            "Draconic Hunger",
+            "Eruption Press1",
+            "Dragondive",
+            "Continued Breath",
+            "Dragondive2",
+            "Violent Breath Activation 2",
+            "Triple Fireball",
+            "Backup Fireball1",
+            "Backup Fireball2",
+            "Flame Bite1",
+            "Flame Bite2",
+            "Flaming Draconic Hunger",
+            "Flaming Draconic Hunger2",
+            "Flying Fireball",
+            "Flying Fireball2"
+        ]
+    },
+    "Garm": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Bitecombo",
+            "Bitecombo2",
+            "Avoidbite",
+            "Avoidtackle1",
+            "Avoidtackle2",
+            "Sidecombor",
+            "Tacklecombo",
+            "Sidecombol"
+        ]
+    },
+    "Goblin": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Triple Leap",
+            "Triple Leap2",
+            "Basic Goblin Combo 1",
+            "Basic Goblin Combo 2",
+            "Basic Goblin Combo 3",
+            "Basic Goblin Combo 4",
+            "Full Goblin Combo"
+        ]
+    },
+    "Gore Harpy": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Gore Harpy Ice Shot alt",
+            "Blizzard Song1",
+            "Blizzard Song2",
+            "Ice Talons",
+            "Ice Talons2",
+            "Ice Talons3"
+        ]
+    },
+    "Gorechimera": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Ultima",
+            "Necroflame Pillars1",
+            "Necroflame Pillars2",
+            "Necroflame Pillars3",
+            "Necroflame Pillars4",
+            "Necroflame Pillars5",
+            "Necroflame Pillars6",
+            "Necroflame Pillars7",
+            "Necroflame Pillars8",
+            "Necroflame Pillars9",
+            "Necroflame Pillars10",
+            "Necroflame Pillars11",
+            "AvoidBack1",
+            "AvoidBack2",
+            "AvoidBack3",
+            "AvoidBack4",
+            "Seismslam1",
+            "Seismslam2",
+            "Seismslam3",
+            "Seismslam4",
+            "Chimerastorm1",
+            "Chimerastorm2",
+            "Chimerastorm3",
+            "Chimerastorm4",
+            "Savage Leap",
+            "Thrash",
+            "Thrash2",
+            "Thrash3",
+            "Chimera Necromancy"
+        ]
+    },
+    "Goreminotaur": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Darkflame Charge",
+            "Darkflame Charge2",
+            "Darkfrost Axe 1",
+            "Darkfrost Axe 2",
+            "Slam Eruption",
+            "Faster Charge",
+            "Execute1",
+            "Execute2",
+            "Execute3",
+            "Execute4",
+            "Turnswingcombo1",
+            "Turnswingcombo2",
+            "Dark Frost Slam",
+            "Dark Frost Slam2",
+            "Avoidright",
+            "Avoidleft",
+            "Slashing Combo1",
+            "Slashing Combo2",
+            "Headbutt Combo",
+            "Rodeo Rage"
+        ]
+    },
+    "Griffin": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Create Vortex (Land)",
+            "Attackcombo",
+            "Beakcombo",
+            "Beakcombo2",
+            "Thunderwing",
+            "Thunderwingair",
+            "Haste",
+            "Takeoffwind1",
+            "Takeoffwind2",
+            "Takeoffwind3",
+            "Takeoffwind4",
+            "Takeoffwind5",
+            "Multi Dive",
+            "Multi Dive2",
+            "Landingshocks"
+        ]
+    },
+    "Grim Ogre": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "ComboFlurry1",
+            "Laser Breath",
+            "Ogre Combo1",
+            "Punch Combo1",
+            "Punch Combo2",
+            "Turn Flurry1",
+            "Turn Flurry2",
+            "Ogre Jump 1",
+            "Ogre Jump 2",
+            "Ogre Jump 3",
+            "Ogre Combo2",
+            "Ogre Combo3",
+            "Ogre ComboDropKick",
+            "Ogre ComboDropKick2",
+            "Ogre ComboDropKick3"
+        ]
+    },
+    "Harpy": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Feather Shot",
+            "Feather Shot2",
+            "Feather Shot3"
+        ]
+    },
+    "Hobgoblin": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Goblin Frenzy Backflip",
+            "Barrel Bomb",
+            "AroundSwing",
+            "Blazing Swings",
+            "Blitz Strike",
+            "Faster Combo",
+            "ComboAfterBlinkStrike",
+            "ComboAfterJump",
+            "BlinkAfterTackle",
+            "BlinkStrafe",
+            "Goblin Fire",
+            "Goblin Fire2",
+            "Powered Upper Swing"
+        ]
+    },
+    "Knacker": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Goblin Aero",
+            "Goblin Stone",
+            "Goblin Stone2",
+            "Backup",
+            "After Jump Flurry",
+            "After Jump Flurry2",
+            "Jump During Combo",
+            "Jump During Stone",
+            "Sidestep Flurry1",
+            "Sidestep Flurry2",
+            "JumpCombo1",
+            "JumpCombo2"
+        ]
+    },
+    "Lich": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Abyssal Storm1.3",
+            "Abyssal Storm2.3",
+            "Cast Abyssal Storm",
+            "Dark Shock",
+            "Void Meteors",
+            "Ultima",
+            "Void Glacier",
+            "Void Glacier2",
+            "Void Glacier3",
+            "Void Glacier4",
+            "Corpse Burst1",
+            "Corpse Burst2"
+        ]
+    },
+    "Lost Mercenary": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Imbued Aero",
+            "Imbued Blizzard",
+            "Imbued Blizzard2",
+            "Imbued Earth",
+            "Imbued Earth2",
+            "Imbued Earth3",
+            "Imbued Fire",
+            "Imbued Fire Altstart",
+            "Imbued Holy",
+            "Imbued Dark",
+            "Imbued Dark2",
+            "Imbued Dark3",
+            "Imbued Dark4",
+            "Imbued Dark5",
+            "Imbued Thunder",
+            "Imbued Thunder2",
+            "Magick Slice",
+            "Stab",
+            "Berserk",
+            "Berserk2",
+            "Berserk3",
+            "Brutal Combo",
+            "Brutal Combo2",
+            "Brutal Combo3",
+            "Spinning Rush1",
+            "Spinning Rush2",
+            "Storm Slash.1",
+            "Storm Slash.2",
+            "Ultra Slash",
+            "Ultra Slash2",
+            "Mega Slash",
+            "Mega Slash2",
+            "Lions Claw",
+            "Lions Claw2",
+            "Lions Claw3",
+            "Lions Claw4",
+            "Lions Claw5",
+            "Rend Earth",
+            "Rend Earth2",
+            "Rend Earth3",
+            "Rend Earth4",
+            "Cureself",
+            "Great Blink Strike",
+            "Great Blink Strike2",
+            "Crescent Blade",
+            "Void Turret",
+            "Void Turret2",
+            "Void Turret3",
+            "Tsunami1",
+            "Tsunami2",
+            "Tsunami3",
+            "Cleansing Beam"
+        ]
+    },
+    "Magma Scale": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Magma Breath",
+            "Eruption Roll",
+            "Flame Mines",
+            "Flame Mine Activation 1"
+        ]
+    },
+    "Minotaur": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Minotaur Combo 1",
+            "Minotaur Combo 2",
+            "Turnswingcombo1",
+            "Turnswingcombo2",
+            "Supercombo",
+            "Afterchargeswing",
+            "Slamcombo1"
+        ]
+    },
+    "Ogre": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "strafegrab",
+            "Ogre Tantrum",
+            "Ogre Jumps",
+            "Ogre UppercutcomboL",
+            "Ogre UppercutcomboR",
+            "Uppercuts",
+            "Uppercuts2",
+            "Uppercuts3",
+            "Dropkickmore"
+        ]
+    },
+    "Ooze": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Toxic Consumption",
+            "Toxic Fumes"
+        ]
+    },
+    "Phantasm": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Discharge",
+            "Discharge2",
+            "Discharge3",
+            "Discharge4",
+            "Discharge5",
+            "Phantasm Bullets",
+            "Phantasm Bullets2"
+        ]
+    },
+    "Phantom": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Phantom Bullets",
+            "Stray Bullet1",
+            "Stray Bullet2",
+            "Stray Bullet3"
+        ]
+    },
+    "Rattler": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Rumbling Roll",
+            "Stone Jump 1",
+            "Stone Jump 2"
+        ]
+    },
+    "Saurian": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Moreattacks",
+            "Moreattacks2",
+            "Double Stab",
+            "Double Stab2",
+            "Double Stab3",
+            "Double Stab4",
+            "Triple Stab",
+            "Triple Stab2",
+            "Triple Stab3",
+            "Spear Combo",
+            "Faster tail"
+        ]
+    },
+    "Serpent": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Levin Leap2",
+            "Levin Leap3",
+            "Levin Leap4",
+            "Levin Leap5",
+            "Lightning Dash",
+            "Lightning Dash2",
+            "Storming Blast",
+            "Electric Flurry",
+            "Electric Flurry2",
+            "Electric Flurry3",
+            "Lightning Wave",
+            "Pulse"
+        ]
+    },
+    "Skeleton": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Exsanguination",
+            "Dark Slash1",
+            "Dark Slash2",
+            "Dark Slash3",
+            "Combo1",
+            "Combo2",
+            "Combo2alt",
+            "Combo3",
+            "Combo3alt",
+            "Ghostblade Rush",
+            "Ghostblade Rush2",
+            "Bone Leap",
+            "Bone Leap2",
+            "Bone Leap3",
+            "Bone Leap4",
+            "Dark Bullets1",
+            "Dark Bullets2",
+            "Phantom Slice1",
+            "Specter Scythe",
+            "Specter Scythe2",
+            "Green Flame Blade1",
+            "Green Flame Blade2",
+            "Green Flame Blade3",
+            "Green Flame Blade4",
+            "Green Flame Blade5",
+            "Death Cyclone1",
+            "Death Cyclone2",
+            "Cursefire Slash1",
+            "Cursefire Slash2",
+            "Cursefire Slash3",
+            "Cursefire Slash Follow Up",
+            "Cursefire Slash Follow Up2",
+            "Charge",
+            "Side Slashes",
+            "Poison Flame Slash",
+            "Poison Flame Slash Followup"
+        ]
+    },
+    "Skeleton Lord": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Blade of Darkness",
+            "Blade of Darkness2",
+            "Blood Spiller1",
+            "Dark Crescent",
+            "Darkness",
+            "Soul Sacrifice",
+            "Soul Sacrifice2",
+            "Spectral Reap",
+            "Spectral Reap2",
+            "Living Shadow",
+            "Living Shadow2",
+            "Living ShadowCombo1",
+            "Living ShadowCombo2",
+            "Living ShadowCombo3",
+            "Living ShadowCombo4",
+            "Living ShadowCombo5",
+            "Living ShadowCombo6",
+            "Abyssal Rage",
+            "Abyssal Rage2",
+            "Abyssal Rage3"
+        ]
+    },
+    "Slime": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Extended Digestion"
+        ]
+    },
+    "Sludge": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Eruption",
+            "Embers",
+            "Tracking Eruption"
+        ]
+    },
+    "Specter": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Dark Discharge",
+            "Dark Discharge2",
+            "Dark Discharge3",
+            "Dark Discharge4",
+            "Summon Phantom 1",
+            "Summon Phantom 2",
+            "Summon Phantasm 1",
+            "Summon Phantasm 2",
+            "Silence"
+        ]
+    },
+    "Stout Undead": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Blighted Blood",
+            "Boiling Blood",
+            "Poison Touch"
+        ]
+    },
+    "Succubus": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Darkness",
+            "SilenceL",
+            "SilenceR",
+            "Dark Shock",
+            "Catchagain",
+            "CatchaftersongR",
+            "CatchaftersongL",
+            "CatchafteravoidR",
+            "CatchafteravoidL"
+        ]
+    },
+    "Undead": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Devour",
+            "Devour2",
+            "Fast Crawl",
+            "Fast Grab",
+            "Rotten Blood",
+            "Rotten Blood2",
+            "Starving Grab",
+            "Starving Grab2",
+            "Zombie Rush"
+        ]
+    },
+    "Warg": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Poison Bite 1",
+            "Poison Bite 2",
+            "Poison Bite 3",
+            "Poison Bite 4",
+            "SideWalkBites",
+            "SideWalkBites2",
+            "AvoidBite",
+            "Avoidgrab",
+            "Avoidgrab2",
+            "Avoidtackle"
+        ]
+    },
+    "Wight": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Void Fire",
+            "Void Blizzard",
+            "Void Blizzard2",
+            "Dark Mines",
+            "Void Thunder",
+            "Void Miasma",
+            "Void Miasma2",
+            "Void Silence",
+            "Void Slumber",
+            "Void Slumber2",
+            "Phantom Bullets"
+        ]
+    },
+    "Wolf": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Strafeattack",
+            "BiteR",
+            "BiteL",
+            "Backcounter",
+            "CounterL",
+            "CounterR"
+        ]
+    }
+}

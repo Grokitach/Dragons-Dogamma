@@ -1,0 +1,10 @@
+{
+    "Stout Undead": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Blighted Blood",
+            "Boiling Blood",
+            "Poison Touch"
+        ]
+    }
+}

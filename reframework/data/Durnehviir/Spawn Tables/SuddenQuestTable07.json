@@ -1,0 +1,80 @@
+{
+    "SuddenQuestTable07.user": {
+        "0": {
+            "_AppearNum": [
+                1,
+                1
+            ],
+            "_AppearRate": 25,
+            "_CharaID": "GrimOgre",
+            "_GenerateDisableFlag": 255,
+            "_Group": "A",
+            "_InitSetType": "Wait",
+            "_IsDestinationMove": true,
+            "_IsFinishCheck": "null",
+            "_IsForceCombat": false,
+            "_IsThinkStop": false,
+            "_IsWanderMove": true,
+            "_ManualPos": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "_ParamId": 0,
+            "_QuestID": "null",
+            "_StatusID": "None",
+            "_TimeZone": 15
+        },
+        "1": {
+            "_AppearNum": [
+                1,
+                1
+            ],
+            "_AppearRate": 25,
+            "_CharaID": "Golem_weak",
+            "_GenerateDisableFlag": 255,
+            "_Group": "A",
+            "_InitSetType": "Wait",
+            "_IsDestinationMove": true,
+            "_IsFinishCheck": "null",
+            "_IsForceCombat": false,
+            "_IsThinkStop": false,
+            "_IsWanderMove": true,
+            "_ManualPos": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "_ParamId": 0,
+            "_QuestID": "null",
+            "_StatusID": "None",
+            "_TimeZone": 15
+        },
+        "2": {
+            "_AppearNum": [
+                1,
+                1
+            ],
+            "_AppearRate": 100,
+            "_CharaID": "Chimera",
+            "_GenerateDisableFlag": 255,
+            "_Group": "A",
+            "_InitSetType": "Wait",
+            "_IsDestinationMove": true,
+            "_IsFinishCheck": "null",
+            "_IsForceCombat": false,
+            "_IsThinkStop": false,
+            "_IsWanderMove": true,
+            "_ManualPos": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "_ParamId": 0,
+            "_QuestID": "null",
+            "_StatusID": "None",
+            "_TimeZone": 15
+        },
+        "A": 1
+    }
+}

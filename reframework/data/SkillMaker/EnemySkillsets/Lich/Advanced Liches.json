@@ -1,0 +1,19 @@
+{
+    "Lich": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Abyssal Storm1.3",
+            "Abyssal Storm2.3",
+            "Cast Abyssal Storm",
+            "Dark Shock",
+            "Void Meteors",
+            "Ultima",
+            "Void Glacier",
+            "Void Glacier2",
+            "Void Glacier3",
+            "Void Glacier4",
+            "Corpse Burst1",
+            "Corpse Burst2"
+        ]
+    }
+}

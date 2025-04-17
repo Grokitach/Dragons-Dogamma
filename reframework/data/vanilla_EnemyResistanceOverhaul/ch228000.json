@@ -1,0 +1,56 @@
+{
+    "Normal": {
+        "0": {
+            "MagDamage": {
+                "Fire": 2.0,
+                "Holy": 1.0,
+                "Ice": 0.6,
+                "Neutral": 0.6,
+                "Thunder": 0.6
+            },
+            "MagStagger": {
+                "Fire": 1.5,
+                "Holy": 0.5,
+                "Ice": 0.5,
+                "Neutral": 0.25,
+                "Thunder": 0.35
+            },
+            "PhysDamage": {
+                "Blow": 0.4,
+                "Shoot": 0.3,
+                "Slash": 0.4
+            },
+            "PhysStagger": {
+                "Blow": 1.0,
+                "Shoot": 1.0,
+                "Slash": 1.0
+            }
+        },
+        "1": {
+            "MagDamage": {
+                "Fire": 2.0,
+                "Holy": 1.0,
+                "Ice": 0.6,
+                "Neutral": 0.6,
+                "Thunder": 0.6
+            },
+            "MagStagger": {
+                "Fire": 1.5,
+                "Holy": 0.5,
+                "Ice": 0.5,
+                "Neutral": 0.25,
+                "Thunder": 0.35
+            },
+            "PhysDamage": {
+                "Blow": 0.4,
+                "Shoot": 0.6,
+                "Slash": 0.4
+            },
+            "PhysStagger": {
+                "Blow": 1.0,
+                "Shoot": 1.5,
+                "Slash": 1.0
+            }
+        }
+    }
+}

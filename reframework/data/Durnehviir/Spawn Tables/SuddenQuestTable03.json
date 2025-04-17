@@ -1,0 +1,132 @@
+{
+    "SuddenQuestTable03.user": {
+        "0": {
+            "_AppearNum": [
+                2,
+                2
+            ],
+            "_AppearRate": 100,
+            "_CharaID": "Cyclops_legs_face_armor",
+            "_GenerateDisableFlag": 255,
+            "_Group": "A",
+            "_InitSetType": "Wait",
+            "_IsDestinationMove": true,
+            "_IsFinishCheck": "null",
+            "_IsForceCombat": true,
+            "_IsThinkStop": false,
+            "_IsWanderMove": true,
+            "_ManualPos": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "_ParamId": 0,
+            "_QuestID": "null",
+            "_StatusID": "None",
+            "_TimeZone": 15
+        },
+        "1": {
+            "_AppearNum": [
+                2,
+                2
+            ],
+            "_AppearRate": 50,
+            "_CharaID": "Ogre",
+            "_GenerateDisableFlag": 255,
+            "_Group": "B",
+            "_InitSetType": "Wait",
+            "_IsDestinationMove": true,
+            "_IsFinishCheck": "null",
+            "_IsForceCombat": true,
+            "_IsThinkStop": false,
+            "_IsWanderMove": true,
+            "_ManualPos": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "_ParamId": 0,
+            "_QuestID": "null",
+            "_StatusID": "None",
+            "_TimeZone": 15
+        },
+        "2": {
+            "_AppearNum": [
+                1,
+                1
+            ],
+            "_AppearRate": 100,
+            "_CharaID": "Goreminotaur",
+            "_GenerateDisableFlag": 255,
+            "_Group": "B",
+            "_InitSetType": "Wait",
+            "_IsDestinationMove": true,
+            "_IsFinishCheck": "null",
+            "_IsForceCombat": true,
+            "_IsThinkStop": false,
+            "_IsWanderMove": true,
+            "_ManualPos": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "_ParamId": 0,
+            "_QuestID": "null",
+            "_StatusID": "None",
+            "_TimeZone": 15
+        },
+        "3": {
+            "_AppearNum": [
+                1,
+                1
+            ],
+            "_AppearRate": 100,
+            "_CharaID": "Chimera",
+            "_GenerateDisableFlag": 255,
+            "_Group": "C",
+            "_InitSetType": "Wait",
+            "_IsDestinationMove": true,
+            "_IsFinishCheck": "null",
+            "_IsForceCombat": true,
+            "_IsThinkStop": false,
+            "_IsWanderMove": true,
+            "_ManualPos": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "_ParamId": 0,
+            "_QuestID": "null",
+            "_StatusID": "None",
+            "_TimeZone": 15
+        },
+        "4": {
+            "_AppearNum": [
+                4,
+                6
+            ],
+            "_AppearRate": 100,
+            "_CharaID": "Knacker_basic",
+            "_GenerateDisableFlag": 255,
+            "_Group": "C",
+            "_InitSetType": "Wait",
+            "_IsDestinationMove": true,
+            "_IsFinishCheck": "null",
+            "_IsForceCombat": true,
+            "_IsThinkStop": false,
+            "_IsWanderMove": true,
+            "_ManualPos": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "_ParamId": 0,
+            "_QuestID": "null",
+            "_StatusID": "None",
+            "_TimeZone": 15
+        },
+        "A": 99,
+        "B": 2,
+        "C": 99
+    }
+}

@@ -1,0 +1,327 @@
+{
+    "_meta": {
+        "name": "English",
+        "code": "en",
+        "font": null,
+        "contributors": [
+            "n/a"
+        ],
+        "updateDate": "2024-04-22",
+        "updateVersion": "1.8.0",
+        "langTooltip": "To contribute translations, file a bug report at:\nhttps://www.nexusmods.com/dragonsdogma2/mods/195",
+        "note": "Comments here are for translators and will not be displayed in-game."
+    },
+    "config": {
+        "header": "Custom Difficulty Tweaks",
+        "modEnabled": "Mod Enabled",
+        "debugMode": "Debug Mode",
+        "debugModeActiveWarning": "Game performance will be reduced while Debug Mode is active.\nScript reload is required after changing this setting.",
+        "language": {
+            "label": "Language",
+            "contributorInfo": "Contributors: %s"
+        },
+        "presetHint": "Start with a built-in preset, then customize it further.",
+        "presetNames": {
+            "vanilla": "Easy (Capcom Default)",
+            "normal": "Normal",
+            "hard": "Hard",
+            "veryHard": "Very Hard",
+            "nightmare": "Nightmare",
+            "ngPlusHard": "New Game+ Hard",
+            "custom": "Custom"
+        },
+        "damageTaken": {
+            "header": "Damage Taken",
+            "description": "Multipliers for damage received by a character.",
+            "player": "Player",
+            "partyPawn": "Player's pawns",
+            "enemySmall": {
+                "header": "Normal enemies",
+                "solo": "(when solo)",
+                "withOnePawn": "(when with 1 pawn)",
+                "withTwoPawns": "(when with 2 pawns)",
+                "withThreePawns": "(when with 3 pawns)"
+            },
+            "enemyBoss": {
+                "header": "Boss enemies",
+                "solo": "(when solo)",
+                "withOnePawn": "(when with 1 pawn)",
+                "withTwoPawns": "(when with 2 pawns)",
+                "withThreePawns": "(when with 3 pawns)"
+            },
+            "other": "Other NPCs"
+        },
+        "damageDealtByNPCs": {
+            "header": "NPC Damage Dealt",
+            "description": "Multipliers for damage dealt by pawn NPCs.\nUse this to adjust pawn damage separately from your own.",
+            "mainPawn": "Main pawn",
+            "hiredPawn": "Hired pawns",
+            "strayPawn": "Wandering pawns"
+        },
+        "criticalDamage": {
+            "header": "Critical Damage",
+            "description": "Sets the damage bonus for your critical hits and finishing blows (normally 1.5x).\nThis may also affect some non-critical hits that have high bonus damage.",
+            "player": "Player bonus",
+            "partyPawn": "Player's pawns bonus"
+        },
+        "debilitations": {
+            "header": "Debilitations",
+            "description": "Multipliers for accumulation of debilitative effects on a character.\nLower values make it take longer to apply debilitations.",
+            "player": "Player",
+            "partyPawn": "Player's pawns",
+            "enemySmall": "Normal enemies",
+            "enemyBoss": "Boss enemies",
+            "other": "Other NPCs",
+            "byType": {
+                "header": "Debilitation Types",
+                "description": "Adjust the rate at which a specific debilitation is applied.\nThis is combined with the character-specific multipliers above."
+            }
+        },
+        "lossGauge": {
+            "header": "Loss Gauge",
+            "description": "Multipliers for Loss Gauge (max HP penalty) accumulation after being hit.",
+            "player": "Player",
+            "partyPawn": "Player's pawns",
+            "vsSmallEnemy": "From non-boss attacks",
+            "smallEnemyTooltip": "Multiplies Loss Gauge accumulation when hit by an attack from a non-boss enemy.\nYou can use this to make resting at camps more important without affecting boss fights.",
+            "continuePenalty": {
+                "header": "Game Over Penalty",
+                "description": "Adjust the penalty for reloading the last save after every Game Over.",
+                "modifiedWarning": "Another mod appears to be controlling this feature.",
+                "mode": "Mode",
+                "modeDisabled": "Disabled (no penalty)",
+                "modeVanilla": "Vanilla",
+                "modeCustom": "Custom",
+                "disabledLabel": "No Loss Gauge penalty will be applied.",
+                "vanillaLabel": "Standard Loss Gauge penalty will be applied.\nThis is 20%% of remaining max HP per retry (player only).",
+                "customLabel": "A penalty relative to the character's remaining max HP will be applied.",
+                "player": "Player",
+                "partyPawn": "Player's pawns",
+                "minHp": "Minimum Max HP",
+                "minHpTooltip": "Penalty will not reduce max HP percent below this value."
+            }
+        },
+        "stagger": {
+            "header": "Stagger",
+            "description": "Multipliers for stagger effects received by a character.\nLower values make a character less likely to be staggered.",
+            "player": "Player",
+            "partyPawn": "Player's pawns",
+            "enemySmall": "Normal enemies",
+            "enemyBoss": "Boss enemies",
+            "other": "Other NPCs"
+        },
+        "expDcp": {
+            "header": "Exp / Dcp",
+            "description": "Multipliers for Exp and Dcp gains. Affects both player and main pawn.",
+            "battleExp": "Battle Exp",
+            "questExp": "Quest Exp",
+            "forceOneExp": "Always gain 1 Exp from quests and battles",
+            "forceOneExpTooltip": "Forces all quest and battle rewards to be 1 Exp.\nThis is essentially the minimum, as setting 0 Exp may cause quest progression issues.",
+            "playerBattleDcp": "Player Dcp",
+            "mainPawnBattleDcp": "Main pawn Dcp"
+        },
+        "healing": {
+            "header": "Healing",
+            "effectiveness": {
+                "description": "Multipliers for the effectiveness of curative items and spells.",
+                "health": "Health curative",
+                "stamina": "Stamina curative",
+                "anodyne": "Anodyne spell"
+            },
+            "mechanics": {
+                "description": "Tweaks for mechanics related to food and curative items.\nStamina recovery and debilitation curatives are not affected.",
+                "curativeHealOverTime": "Make curatives heal over time",
+                "curativeHoTTooltip": "Healing curatives will restore health over the specified duration. The total healing amount remains the same.\nMultiple effects can stack, but there is a brief cooldown between applications.\nAffects player and pawns.",
+                "curativeHoTDuration": "Duration",
+                "preventInventoryHealing": "Block using healing curatives from Pause Menu during battle",
+                "preventInventoryHealingTooltip": "Healing in combat will still be possible by using the quick shortcut button.",
+                "preventIncapacitatedHealing": "Block using healing curatives while knocked down",
+                "preventDeathCheeseHealing": "Block using healing curatives at 0 HP",
+                "preventDeathCheeseHealingTooltip": "Prevents using curatives after taking fatal damage to avoid a Game Over."
+            }
+        },
+        "economy": {
+            "header": "Economy and Items",
+            "description": "Tweaks for the game's economic balance.\nNOTE: Changes are not applied until 'Save changes' is clicked.",
+            "warning": "If using other mods which modify these parameters, leave them at 1.0.",
+            "goldDrop": "Gold drops",
+            "goldDropTooltip": "Multiplier for the amount of gold dropped from enemies. Does not affect chests or quest rewards.",
+            "buyPrice": "Buy price",
+            "sellPrice": "Sell price",
+            "weight": "Weight",
+            "curatives": {
+                "header": "Curatives",
+                "description": "Also includes herbs and food."
+            },
+            "materials": {
+                "header": "Materials",
+                "description": "Includes items used for gear enhancement."
+            },
+            "gear": {
+                "header": "Equipment"
+            },
+            "gearEnhancementCost": {
+                "header": "Equipment Enhancement Cost",
+                "gold": "Gold cost",
+                "materials": "Material cost"
+            },
+            "camping": {
+                "header": "Camping Kits",
+                "singleUse": "Make all camping kits single-use",
+                "singleUseTooltip": "Camping kits will always break after use, requiring you to buy more for each rest.\nNote that kits will break even if the camp is not raided."
+            },
+            "otherImplements": {
+                "header": "Other Implements",
+                "description": "Includes most other tools (lanterns, arrows, grimoires, etc.)."
+            }
+        },
+        "dynamicAdjustments": {
+            "header": "Dynamic Difficulty",
+            "description": "Difficulty adjustments applied under certain conditions.",
+            "descriptionTooltip": "These difficulty adjustments are relative to your preset's other multipliers.\nAt 0 percent, enemies receive no effect from your multipliers (Capcom difficulty).\nAt 100 percent, enemies receive the normal effect from your multipliers.\nAt 200 percent, enemies receive double the effect from your multipliers.",
+            "showSeparateSliders": "Adjust difficulty factors separately",
+            "combinedSlider": "Enemy difficulty",
+            "combinedSliderTooltip": "Adjusts enemy health, damage dealt, and stagger resistance.",
+            "healthSlider": "Effective health",
+            "damageToPlayerSlider": "Damage (to player)",
+            "damageToOthersSlider": "Damage (to others)",
+            "staggerSlider": "Stagger resistance",
+            "baseDifficulty": {
+                "header": "Base Difficulty",
+                "description": "Set the standard difficulty for all situations.\nOther dynamic adjustments will be applied on top of this."
+            },
+            "nighttime": {
+                "header": "Nighttime Boost",
+                "description": "Make small enemies stronger at night (between dusk and dawn).\nNo effect while inside caves or dungeons.",
+                "enabled": "Enabled",
+                "affectBosses": "Also strengthen boss enemies"
+            }
+        },
+        "enemyAdjustments": {
+            "header": "Enemy-Specific Adjustments",
+            "description": "Fine-tune the difficulty of particular enemies or groups of enemies.",
+            "enemyListPlaceholder": "Select an enemy...",
+            "enemyListSpoilerNote": "NOTE: List includes minor spoilers for monster names.",
+            "partialGroupInfo": "Some enemies in this group have varying adjustments.\nReset the group to adjust it as a whole.",
+            "resetGroupButton": "Reset group",
+            "enemyCountInfo": "(Includes %d enemies)",
+            "clearAllButton": "Clear adjustments for all enemies"
+        },
+        "backup": {
+            "header": "Preset Save / Load",
+            "description": "You can backup your current preset to a file.\nWhen loading a backup, the existing 'Custom' preset will be overwritten.",
+            "nameLabel": "Backup name:",
+            "saveButton": "Save backup",
+            "loadButton": "Load backup",
+            "saveSuccess": "Saved to '%s'.",
+            "saveFailure": "Failed to save backup.",
+            "loadSuccess": "Loaded backup.",
+            "loadFailure": "Failed to load backup.",
+            "availableBackupsLabel": "Available backups:",
+            "deleteBackupInfo": "To delete a backup, remove the file from your reframework/data folder."
+        },
+        "saveButton": "Save changes",
+        "revertButton": "Revert unsaved changes",
+        "buildInfo": "Custom Difficulty Tweaks v%s",
+        "showDebugLogButton": "Show debug log"
+    },
+    "debilitations": {
+        "wet": "Drenched",
+        "oil": "Tarred",
+        "fire": "Caught Fire",
+        "frostbite": "Frostbite",
+        "poison": "Blighted",
+        "sleep": "Sleep",
+        "dazed": "Unconscious / Dazed", 
+        "silence": "Silence",
+        "stone": "Petrification"
+    },
+    "monsters": {
+        "goblin": "Goblin",
+        "hobgoblin": "Hobgoblin",
+        "chopper": "Chopper",
+        "knacker": "Knacker",
+        "saurian": "Saurian",
+        "asp": "Asp",
+        "rattler": "Rattler",
+        "magmaScale": "Magma Scale",
+        "serpent": "Serpent",
+        "harpy": "Harpy",
+        "veninHarpy": "Venin Harpy",
+        "goreHarpy": "Gore Harpy",
+        "succubus": "Succubus",
+        "wolf": "Wolf",
+        "redwolf": "Redwolf",
+        "blackdog": "Blackdog",
+        "garm": "Garm",
+        "warg": "Warg",
+        "slime": "Slime",
+        "ooze": "Ooze",
+        "sludge": "Sludge",
+        "phantom": "Phantom",
+        "phantasm": "Phantasm",
+        "specter": "Specter",
+        "skeleton": "Skeleton",
+        "skeletonLord": "Skeleton Lord",
+        "undead": "Undead",
+        "stoutUndead": "Stout Undead",
+        "rogue": "Rogue",
+        "lostMercenary": "Lost Mercenary",
+        "coralSnake": "Coral Snake",
+        "scavenger": "Scavenger",
+        "cyclops": "Cyclops",
+        "ogre": "Ogre",
+        "grimOgre": "Grim Ogre",
+        "minotaur": "Minotaur",
+        "goreminotaur": "Goreminotaur",
+        "golem": "Golem",
+        "griffin": "Griffin",
+        "sphinx": "Sphinx",
+        "chimera": "Chimera",
+        "gorechimera": "Gorechimera",
+        "dullahan": "Dullahan",
+        "lich": "Lich",
+        "wight": "Wight",
+        "medusa": "Medusa",
+        "drake": "Drake",
+        "lesserDragon": "Lesser Dragon",
+        "dragon": "Dragon",
+        "nex": "Nex",
+        "talos": "Talos",
+        "vermundPurgener": "Vermund Purgener",
+        "battahlPurgener": "Battahl Purgener",
+        "islandEncampmentPurgener": "Island Encampment Purgener",
+        "sacredArborPurgener": "Sacred Arbor Purgener",
+        "volcanicIslandPurgener": "Volcanic Island Purgener"
+    },
+    "monsterGroup": {
+        "earlyVermundSmallMonsters": {
+            "name": "Early Vermund Small Monsters",
+            "description": "Enemies found in Northern Vermund and around Vernwerth."
+        },
+        "lateVermundSmallMonsters": {
+            "name": "Late Vermund Small Monsters",
+            "description": "More difficult enemies found in later Vermund areas."
+        },
+        "battahlSmallMonsters": {
+            "name": "Battahl Small Monsters",
+            "description": "Enemies found in Battahl."
+        },
+        "eliteMonsters": {
+            "name": "Elite Monsters",
+            "description": "Rare and more powerful variants of small monsters."
+        },
+        "earlyGameBosses": {
+            "name": "Early-Game Bosses",
+            "description": "Very early-game bosses that become outscaled quickly."
+        },
+        "overtunedBosses": {
+            "name": "Overtuned Bosses",
+            "description": "Bosses with very high health and damage in comparison to other bosses."
+        },
+        "postGameBosses": {
+            "name": "Post-Game Bosses",
+            "description": "Bosses that only appear in the Unmoored World post-game."
+        }
+    }
+}

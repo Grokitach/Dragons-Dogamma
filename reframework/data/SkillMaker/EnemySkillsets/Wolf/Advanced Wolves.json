@@ -1,0 +1,13 @@
+{
+    "Wolf": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Strafeattack",
+            "BiteR",
+            "BiteL",
+            "Backcounter",
+            "CounterL",
+            "CounterR"
+        ]
+    }
+}

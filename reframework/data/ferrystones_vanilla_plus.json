@@ -1,0 +1,21 @@
+{
+    "ferrystone_drop_rates": {
+        "DeadEnemy": {
+            "chance": 0.019999999552965164,
+            "enabled": true
+        },
+        "Gather": {
+            "chance": 0.029999999329447746,
+            "enabled": false
+        },
+        "Talk": {
+            "chance": 0.05000000074505806,
+            "enabled": true
+        },
+        "TreasureBox": {
+            "chance": 0.05000000074505806,
+            "enabled": true
+        }
+    },
+    "free_portcrystals_enabled": false
+}

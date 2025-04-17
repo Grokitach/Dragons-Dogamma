@@ -1,0 +1,13 @@
+{
+    "break_stagger": true,
+    "crawling": true,
+    "finisher_iframes": true,
+    "iframes": true,
+    "no_daze": true,
+    "no_grabs": true,
+    "prevent_wallbangs": true,
+    "stam_enabled": true,
+    "switch_staggers": true,
+    "version": 3.1,
+    "weak_ranged": true
+}

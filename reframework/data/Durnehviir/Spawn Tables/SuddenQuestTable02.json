@@ -1,0 +1,132 @@
+{
+    "SuddenQuestTable02.user": {
+        "0": {
+            "_AppearNum": [
+                4,
+                6
+            ],
+            "_AppearRate": 100,
+            "_CharaID": "Goblin_weapon_shield_weak",
+            "_GenerateDisableFlag": 255,
+            "_Group": "B",
+            "_InitSetType": "Wait",
+            "_IsDestinationMove": true,
+            "_IsFinishCheck": "null",
+            "_IsForceCombat": true,
+            "_IsThinkStop": false,
+            "_IsWanderMove": true,
+            "_ManualPos": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "_ParamId": 0,
+            "_QuestID": "null",
+            "_StatusID": "None",
+            "_TimeZone": 15
+        },
+        "1": {
+            "_AppearNum": [
+                1,
+                1
+            ],
+            "_AppearRate": 100,
+            "_CharaID": "Cyclops_legs_face_armor",
+            "_GenerateDisableFlag": 255,
+            "_Group": "B",
+            "_InitSetType": "Wait",
+            "_IsDestinationMove": true,
+            "_IsFinishCheck": "null",
+            "_IsForceCombat": true,
+            "_IsThinkStop": false,
+            "_IsWanderMove": true,
+            "_ManualPos": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "_ParamId": 0,
+            "_QuestID": "null",
+            "_StatusID": "None",
+            "_TimeZone": 15
+        },
+        "2": {
+            "_AppearNum": [
+                1,
+                1
+            ],
+            "_AppearRate": 100,
+            "_CharaID": "Hobgoblin_thrower_strong",
+            "_GenerateDisableFlag": 255,
+            "_Group": "B",
+            "_InitSetType": "Wait",
+            "_IsDestinationMove": true,
+            "_IsFinishCheck": "null",
+            "_IsForceCombat": true,
+            "_IsThinkStop": false,
+            "_IsWanderMove": true,
+            "_ManualPos": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "_ParamId": 0,
+            "_QuestID": "null",
+            "_StatusID": "None",
+            "_TimeZone": 15
+        },
+        "3": {
+            "_AppearNum": [
+                1,
+                1
+            ],
+            "_AppearRate": 100,
+            "_CharaID": "Griffin",
+            "_GenerateDisableFlag": 255,
+            "_Group": "C",
+            "_InitSetType": "Wait",
+            "_IsDestinationMove": true,
+            "_IsFinishCheck": "null",
+            "_IsForceCombat": true,
+            "_IsThinkStop": false,
+            "_IsWanderMove": true,
+            "_ManualPos": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "_ParamId": 0,
+            "_QuestID": "null",
+            "_StatusID": "None",
+            "_TimeZone": 15
+        },
+        "4": {
+            "_AppearNum": [
+                1,
+                1
+            ],
+            "_AppearRate": 100,
+            "_CharaID": "Golem_weakest",
+            "_GenerateDisableFlag": 255,
+            "_Group": "A",
+            "_InitSetType": "Wait",
+            "_IsDestinationMove": true,
+            "_IsFinishCheck": "null",
+            "_IsForceCombat": true,
+            "_IsThinkStop": false,
+            "_IsWanderMove": true,
+            "_ManualPos": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "_ParamId": 0,
+            "_QuestID": "null",
+            "_StatusID": "None",
+            "_TimeZone": 15
+        },
+        "A": 99,
+        "B": 99,
+        "C": 99
+    }
+}

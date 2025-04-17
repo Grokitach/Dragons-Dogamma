@@ -1,0 +1,10 @@
+{
+    "Harpy": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Feather Shot",
+            "Feather Shot2",
+            "Feather Shot3"
+        ]
+    }
+}

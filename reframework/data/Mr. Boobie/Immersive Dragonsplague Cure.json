@@ -1,0 +1,24 @@
+{
+    "CurativeItems": {
+        "67": {
+            "cureEnabled": false,
+            "name": "Panacea"
+        },
+        "70": {
+            "cureEnabled": true,
+            "name": "Allheal Elixir"
+        }
+    },
+    "DeletableCureItems": {
+        "175": {
+            "cureEnabled": false,
+            "name": "Emergent Vitality"
+        },
+        "176": {
+            "cureEnabled": false,
+            "name": "Governing Soul"
+        }
+    },
+    "EnableSpaCure": true,
+    "EnableSpecificCure": false
+}

@@ -1,0 +1,30 @@
+{
+    "Normal": {
+        "0": {
+            "MagDamage": {
+                "Holy": 1.25
+            },
+            "MagStagger": {
+                "Holy": 2.5
+            },
+            "PhysStagger": {
+                "Blow": 0.25,
+                "Shoot": 0.25,
+                "Slash": 0.25
+            }
+        },
+        "1": {
+            "MagDamage": {
+                "Holy": 1.5
+            },
+            "MagStagger": {
+                "Holy": 3.0
+            },
+            "PhysStagger": {
+                "Blow": 1.5,
+                "Shoot": 2.0,
+                "Slash": 1.5
+            }
+        }
+    }
+}

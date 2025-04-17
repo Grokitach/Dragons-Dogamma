@@ -1,0 +1,81 @@
+{
+    "SuddenQuestTable16.user": {
+        "0": {
+            "_AppearNum": [
+                2,
+                2
+            ],
+            "_AppearRate": 100,
+            "_CharaID": "Garm",
+            "_GenerateDisableFlag": 255,
+            "_Group": "A",
+            "_InitSetType": "Ch226_BuildUp",
+            "_IsDestinationMove": true,
+            "_IsFinishCheck": "null",
+            "_IsForceCombat": false,
+            "_IsThinkStop": false,
+            "_IsWanderMove": true,
+            "_ManualPos": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "_ParamId": 0,
+            "_QuestID": "null",
+            "_StatusID": "None",
+            "_TimeZone": 15
+        },
+        "1": {
+            "_AppearNum": [
+                1,
+                1
+            ],
+            "_AppearRate": 50,
+            "_CharaID": "Dullahan",
+            "_GenerateDisableFlag": 255,
+            "_Group": "B",
+            "_InitSetType": "Ch228_Ground",
+            "_IsDestinationMove": true,
+            "_IsFinishCheck": "null",
+            "_IsForceCombat": false,
+            "_IsThinkStop": false,
+            "_IsWanderMove": true,
+            "_ManualPos": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "_ParamId": 0,
+            "_QuestID": "null",
+            "_StatusID": "None",
+            "_TimeZone": 15
+        },
+        "2": {
+            "_AppearNum": [
+                1,
+                1
+            ],
+            "_AppearRate": 100,
+            "_CharaID": "Gorechimera",
+            "_GenerateDisableFlag": 255,
+            "_Group": "B",
+            "_InitSetType": "Ch228_Ground",
+            "_IsDestinationMove": true,
+            "_IsFinishCheck": "null",
+            "_IsForceCombat": false,
+            "_IsThinkStop": false,
+            "_IsWanderMove": true,
+            "_ManualPos": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "_ParamId": 0,
+            "_QuestID": "null",
+            "_StatusID": "None",
+            "_TimeZone": 15
+        },
+        "A": 99,
+        "B": 1
+    }
+}

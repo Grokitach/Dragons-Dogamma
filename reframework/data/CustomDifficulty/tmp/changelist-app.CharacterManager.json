@@ -1,0 +1,13 @@
+{
+    "appStart": 1744802013.9400826,
+    "changes": [
+        {
+            "addr": 1829144992,
+            "field": "HealActionRate",
+            "new": 0.13500000536441803,
+            "old": 0.13500000536441803,
+            "type": "app.Job03Parameter.AnodyneParameter"
+        }
+    ],
+    "singleton": "app.CharacterManager"
+}

@@ -1,0 +1,19 @@
+{
+    "Serpent": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Levin Leap2",
+            "Levin Leap3",
+            "Levin Leap4",
+            "Levin Leap5",
+            "Lightning Dash",
+            "Lightning Dash2",
+            "Storming Blast",
+            "Electric Flurry",
+            "Electric Flurry2",
+            "Electric Flurry3",
+            "Lightning Wave",
+            "Pulse"
+        ]
+    }
+}

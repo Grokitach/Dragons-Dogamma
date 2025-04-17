@@ -1,0 +1,43 @@
+{
+    "Skeleton": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Exsanguination",
+            "Dark Slash1",
+            "Dark Slash2",
+            "Dark Slash3",
+            "Combo1",
+            "Combo2",
+            "Combo2alt",
+            "Combo3",
+            "Combo3alt",
+            "Ghostblade Rush",
+            "Ghostblade Rush2",
+            "Bone Leap",
+            "Bone Leap2",
+            "Bone Leap3",
+            "Bone Leap4",
+            "Dark Bullets1",
+            "Dark Bullets2",
+            "Phantom Slice1",
+            "Specter Scythe",
+            "Specter Scythe2",
+            "Green Flame Blade1",
+            "Green Flame Blade2",
+            "Green Flame Blade3",
+            "Green Flame Blade4",
+            "Green Flame Blade5",
+            "Death Cyclone1",
+            "Death Cyclone2",
+            "Cursefire Slash1",
+            "Cursefire Slash2",
+            "Cursefire Slash3",
+            "Cursefire Slash Follow Up",
+            "Cursefire Slash Follow Up2",
+            "Charge",
+            "Side Slashes",
+            "Poison Flame Slash",
+            "Poison Flame Slash Followup"
+        ]
+    }
+}

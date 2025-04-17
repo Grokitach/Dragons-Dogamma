@@ -1,0 +1,13 @@
+{
+    "Gore Harpy": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Duststorm",
+            "Repeated Hit",
+            "Wind Slicer",
+            "Feather Duster",
+            "Windstorm",
+            "WindstormR"
+        ]
+    }
+}

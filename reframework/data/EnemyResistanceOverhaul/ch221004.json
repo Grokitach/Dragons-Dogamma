@@ -1,0 +1,42 @@
+{
+    "Injured": {
+        "0": {
+            "MagDamage": {
+                "Holy": 2.0
+            }
+        },
+        "1": {
+            "MagDamage": {
+                "Holy": 2.0
+            }
+        },
+        "2": {
+            "MagDamage": {
+                "Holy": 2.0
+            }
+        }
+    },
+    "Normal": {
+        "0": {
+            "MagDamage": {
+                "Holy": 1.25
+            },
+            "MagStagger": {
+                "Holy": 1.0
+            }
+        },
+        "1": {
+            "MagDamage": {
+                "Holy": 1.5
+            }
+        },
+        "2": {
+            "MagDamage": {
+                "Holy": 1.25
+            },
+            "MagStagger": {
+                "Holy": 1.0
+            }
+        }
+    }
+}

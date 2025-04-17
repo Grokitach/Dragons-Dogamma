@@ -1,0 +1,20 @@
+{
+    "Cyclops": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Cyclops Rage",
+            "Cyclops Rage2",
+            "Cyclops Rage3",
+            "Cyclops Poke",
+            "Cyclops Swinging",
+            "Cyclops Walkattack",
+            "Cyclops Walkattack2",
+            "Cyclops Turnswing1",
+            "Cyclops Turnswing2",
+            "Cyclops Turnswing3",
+            "Cyclops Turnswing4",
+            "Powered Armslam",
+            "Another Combo"
+        ]
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "Ooze": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Toxic Consumption",
+            "Toxic Fumes"
+        ]
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "Garm": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Bitecombo",
+            "Bitecombo2",
+            "Avoidbite",
+            "Avoidtackle1",
+            "Avoidtackle2",
+            "Sidecombor",
+            "Tacklecombo",
+            "Sidecombol"
+        ]
+    }
+}

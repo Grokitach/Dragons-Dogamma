@@ -1,0 +1,322 @@
+{
+    "Angry": {
+        "10": {
+            "MagStagger": {
+                "Fire": 18.0,
+                "Holy": 1.2,
+                "Neutral": 1.2
+            }
+        },
+        "11": {
+            "MagDamage": {
+                "Fire": 1.85,
+                "Holy": 1.65,
+                "Neutral": 1.65
+            },
+            "MagStagger": {
+                "Fire": 16.5,
+                "Holy": 1.2,
+                "Neutral": 1.2
+            }
+        },
+        "12": {
+            "MagStagger": {
+                "Fire": 6.75,
+                "Holy": 1.0,
+                "Neutral": 1.0
+            }
+        },
+        "13": {
+            "MagStagger": {
+                "Fire": 6.75,
+                "Holy": 1.0,
+                "Neutral": 1.0
+            }
+        },
+        "14": {
+            "MagDamage": {
+                "Fire": 0.734,
+                "Holy": 0.618,
+                "Neutral": 0.618
+            }
+        },
+        "15": {
+            "MagDamage": {
+                "Fire": 0.734,
+                "Holy": 0.618,
+                "Neutral": 0.618
+            }
+        },
+        "4": {
+            "MagDamage": {
+                "Fire": 0.734,
+                "Holy": 0.618,
+                "Neutral": 0.618
+            }
+        },
+        "5": {
+            "MagDamage": {
+                "Fire": 0.734,
+                "Holy": 0.618,
+                "Neutral": 0.618
+            }
+        },
+        "6": {
+            "MagDamage": {
+                "Fire": 1.376,
+                "Holy": 0.902,
+                "Neutral": 0.902
+            }
+        },
+        "8": {
+            "MagDamage": {
+                "Fire": 0.245,
+                "Holy": 0.146,
+                "Neutral": 0.146
+            }
+        }
+    },
+    "Down": {
+        "10": {
+            "MagStagger": {
+                "Fire": 18.0,
+                "Holy": 1.2,
+                "Neutral": 1.2
+            }
+        },
+        "11": {
+            "MagDamage": {
+                "Fire": 1.85,
+                "Holy": 1.65,
+                "Neutral": 1.65
+            },
+            "MagStagger": {
+                "Fire": 16.5,
+                "Holy": 1.2,
+                "Neutral": 1.2
+            }
+        },
+        "12": {
+            "MagStagger": {
+                "Fire": 6.75,
+                "Holy": 1.0,
+                "Neutral": 1.0
+            }
+        },
+        "13": {
+            "MagStagger": {
+                "Fire": 6.75,
+                "Holy": 1.0,
+                "Neutral": 1.0
+            }
+        },
+        "14": {
+            "MagDamage": {
+                "Fire": 1.72,
+                "Holy": 1.685,
+                "Neutral": 1.685
+            }
+        },
+        "15": {
+            "MagDamage": {
+                "Fire": 1.72,
+                "Holy": 1.685,
+                "Neutral": 1.685
+            }
+        },
+        "4": {
+            "MagDamage": {
+                "Fire": 1.72,
+                "Holy": 1.685,
+                "Neutral": 1.685
+            }
+        },
+        "5": {
+            "MagDamage": {
+                "Fire": 1.72,
+                "Holy": 1.685,
+                "Neutral": 1.685
+            }
+        },
+        "6": {
+            "MagDamage": {
+                "Fire": 3.44,
+                "Holy": 2.255,
+                "Neutral": 2.255
+            }
+        },
+        "8": {
+            "MagDamage": {
+                "Fire": 0.53,
+                "Holy": 0.316,
+                "Neutral": 0.316
+            }
+        }
+    },
+    "Flight": {
+        "14": {
+            "MagDamage": {
+                "Fire": 0.917,
+                "Holy": 0.898,
+                "Neutral": 0.898
+            }
+        },
+        "15": {
+            "MagDamage": {
+                "Fire": 0.917,
+                "Holy": 0.898,
+                "Neutral": 0.898
+            }
+        },
+        "4": {
+            "MagDamage": {
+                "Fire": 0.917,
+                "Holy": 0.898,
+                "Neutral": 0.898
+            }
+        },
+        "5": {
+            "MagDamage": {
+                "Fire": 0.917,
+                "Holy": 0.898,
+                "Neutral": 0.898
+            }
+        },
+        "6": {
+            "MagDamage": {
+                "Fire": 1.72,
+                "Holy": 1.128,
+                "Neutral": 1.128
+            }
+        },
+        "8": {
+            "MagDamage": {
+                "Fire": 0.306,
+                "Holy": 0.182,
+                "Neutral": 0.182
+            }
+        }
+    },
+    "FlightAngry": {
+        "14": {
+            "MagDamage": {
+                "Fire": 0.734,
+                "Holy": 0.618,
+                "Neutral": 0.618
+            }
+        },
+        "15": {
+            "MagDamage": {
+                "Fire": 0.734,
+                "Holy": 0.618,
+                "Neutral": 0.618
+            }
+        },
+        "4": {
+            "MagDamage": {
+                "Fire": 0.734,
+                "Holy": 0.618,
+                "Neutral": 0.618
+            }
+        },
+        "5": {
+            "MagDamage": {
+                "Fire": 0.734,
+                "Holy": 0.618,
+                "Neutral": 0.618
+            }
+        },
+        "6": {
+            "MagDamage": {
+                "Fire": 1.376,
+                "Holy": 0.902,
+                "Ice": 0.4,
+                "Neutral": 0.902
+            }
+        },
+        "8": {
+            "MagDamage": {
+                "Fire": 0.245,
+                "Holy": 0.146,
+                "Neutral": 0.146
+            }
+        }
+    },
+    "Normal": {
+        "10": {
+            "MagStagger": {
+                "Fire": 18.0,
+                "Holy": 1.2,
+                "Neutral": 1.2
+            }
+        },
+        "11": {
+            "MagDamage": {
+                "Fire": 1.85,
+                "Holy": 1.65,
+                "Neutral": 1.65
+            },
+            "MagStagger": {
+                "Fire": 16.5,
+                "Holy": 1.2,
+                "Neutral": 1.2
+            }
+        },
+        "12": {
+            "MagStagger": {
+                "Fire": 6.75,
+                "Holy": 1.0,
+                "Neutral": 1.0
+            }
+        },
+        "13": {
+            "MagStagger": {
+                "Fire": 6.75,
+                "Holy": 1.0,
+                "Neutral": 1.0
+            }
+        },
+        "14": {
+            "MagDamage": {
+                "Fire": 0.917,
+                "Holy": 0.898,
+                "Neutral": 0.898
+            }
+        },
+        "15": {
+            "MagDamage": {
+                "Fire": 0.917,
+                "Holy": 0.898,
+                "Neutral": 0.898
+            }
+        },
+        "4": {
+            "MagDamage": {
+                "Fire": 0.917,
+                "Holy": 0.898,
+                "Neutral": 0.898
+            }
+        },
+        "5": {
+            "MagDamage": {
+                "Fire": 0.917,
+                "Holy": 0.898,
+                "Neutral": 0.898
+            }
+        },
+        "6": {
+            "MagDamage": {
+                "Fire": 1.72,
+                "Holy": 1.128,
+                "Neutral": 1.128
+            }
+        },
+        "8": {
+            "MagDamage": {
+                "Fire": 0.306,
+                "Holy": 0.182,
+                "Neutral": 0.182
+            }
+        }
+    }
+}

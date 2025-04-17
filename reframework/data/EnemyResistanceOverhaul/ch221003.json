@@ -1,0 +1,113 @@
+{
+    "Injured": {
+        "0": {
+            "MagDamage": {
+                "Fire": 0.25
+            },
+            "MagStagger": {
+                "Fire": 0.1,
+                "Ice": 2.0
+            },
+            "PhysDamage": {
+                "Blow": 1.75
+            }
+        },
+        "1": {
+            "MagDamage": {
+                "Fire": 0.25
+            },
+            "MagStagger": {
+                "Fire": 0.1,
+                "Ice": 2.0
+            },
+            "PhysDamage": {
+                "Blow": 1.75
+            }
+        },
+        "2": {
+            "MagDamage": {
+                "Fire": 0.25
+            },
+            "MagStagger": {
+                "Fire": 0.1,
+                "Ice": 2.0
+            },
+            "PhysDamage": {
+                "Blow": 1.75
+            }
+        }
+    },
+    "Normal": {
+        "0": {
+            "MagDamage": {
+                "Ice": 1.25
+            },
+            "MagStagger": {
+                "Ice": 1.25
+            },
+            "PhysDamage": {
+                "Blow": 1.6
+            }
+        },
+        "1": {
+            "MagDamage": {
+                "Ice": 1.25
+            },
+            "MagStagger": {
+                "Fire": 0.1,
+                "Ice": 1.25
+            },
+            "PhysDamage": {
+                "Blow": 1.6
+            }
+        },
+        "2": {
+            "PhysDamage": {
+                "Blow": 1.6
+            }
+        },
+        "3": {
+            "MagDamage": {
+                "Ice": 1.5
+            },
+            "MagStagger": {
+                "Fire": 0.1,
+                "Ice": 1.5
+            }
+        },
+        "4": {
+            "MagDamage": {
+                "Ice": 1.5
+            },
+            "MagStagger": {
+                "Fire": 0.1,
+                "Ice": 1.5
+            }
+        },
+        "5": {
+            "MagDamage": {
+                "Ice": 1.25
+            },
+            "MagStagger": {
+                "Fire": 0.1,
+                "Ice": 1.25
+            },
+            "PhysDamage": {
+                "Blow": 1.6
+            }
+        },
+        "6": {
+            "MagDamage": {
+                "Fire": 0.0,
+                "Ice": 1.0
+            },
+            "MagStagger": {
+                "Ice": 1.0
+            },
+            "PhysDamage": {
+                "Blow": 1.6
+
+            }
+        }
+    }
+}

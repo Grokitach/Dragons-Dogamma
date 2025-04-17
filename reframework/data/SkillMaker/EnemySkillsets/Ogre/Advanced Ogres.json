@@ -1,0 +1,16 @@
+{
+    "Ogre": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "strafegrab",
+            "Ogre Tantrum",
+            "Ogre Jumps",
+            "Ogre UppercutcomboL",
+            "Ogre UppercutcomboR",
+            "Uppercuts",
+            "Uppercuts2",
+            "Uppercuts3",
+            "Dropkickmore"
+        ]
+    }
+}

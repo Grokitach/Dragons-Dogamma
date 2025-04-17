@@ -1,0 +1,14 @@
+{
+    "Minotaur": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Minotaur Combo 1",
+            "Minotaur Combo 2",
+            "Turnswingcombo1",
+            "Turnswingcombo2",
+            "Supercombo",
+            "Afterchargeswing",
+            "Slamcombo1"
+        ]
+    }
+}

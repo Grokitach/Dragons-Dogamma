@@ -1,0 +1,266 @@
+{
+    "Normal": {
+        "0": {
+            "MagDamage": {
+                "Fire": 0.35,
+                "Holy": 0.35,
+                "Ice": 0.35,
+                "Neutral": 0.35,
+                "Thunder": 0.35
+            },
+            "MagStagger": {
+                "Fire": 0.5,
+                "Holy": 0.5,
+                "Ice": 0.5,
+                "Neutral": 0.5,
+                "Thunder": 0.5
+            },
+            "PhysDamage": {
+                "Blow": 0.35,
+                "Shoot": 0.35,
+                "Slash": 0.35
+            },
+            "PhysStagger": {
+                "Blow": 0.5,
+                "Shoot": 0.5,
+                "Slash": 0.5
+            }
+        },
+        "1": {
+            "MagDamage": {
+                "Fire": 0.5,
+                "Holy": 0.5,
+                "Ice": 0.5,
+                "Neutral": 0.5,
+                "Thunder": 0.5
+            },
+            "MagStagger": {
+                "Fire": 0.625,
+                "Holy": 0.625,
+                "Ice": 0.625,
+                "Neutral": 0.625,
+                "Thunder": 0.625
+            },
+            "PhysDamage": {
+                "Blow": 0.5,
+                "Shoot": 0.5,
+                "Slash": 0.5
+            },
+            "PhysStagger": {
+                "Blow": 1.25,
+                "Shoot": 0.75,
+                "Slash": 1.25
+            }
+        },
+        "2": {
+            "MagDamage": {
+                "Fire": 0.1,
+                "Holy": 0.1,
+                "Ice": 0.1,
+                "Neutral": 0.1,
+                "Thunder": 0.1
+            },
+            "MagStagger": {
+                "Fire": 0.5,
+                "Holy": 0.5,
+                "Ice": 0.5,
+                "Neutral": 0.5,
+                "Thunder": 0.5
+            },
+            "PhysDamage": {
+                "Blow": 0.1,
+                "Shoot": 0.1,
+                "Slash": 0.1
+            },
+            "PhysStagger": {
+                "Blow": 0.5,
+                "Shoot": 0.5,
+                "Slash": 0.5
+            }
+        },
+        "3": {
+            "MagDamage": {
+                "Fire": 0.5,
+                "Holy": 0.5,
+                "Ice": 0.5,
+                "Neutral": 0.5,
+                "Thunder": 0.5
+            },
+            "MagStagger": {
+                "Fire": 1.0,
+                "Holy": 1.0,
+                "Ice": 1.0,
+                "Neutral": 1.0,
+                "Thunder": 1.0
+            },
+            "PhysDamage": {
+                "Blow": 0.5,
+                "Shoot": 0.5,
+                "Slash": 0.5
+            },
+            "PhysStagger": {
+                "Blow": 2.0,
+                "Shoot": 1.2,
+                "Slash": 2.0
+            }
+        },
+        "4": {
+            "MagDamage": {
+                "Fire": 0.5,
+                "Holy": 0.5,
+                "Ice": 0.5,
+                "Neutral": 0.5,
+                "Thunder": 0.5
+            },
+            "MagStagger": {
+                "Fire": 1.0,
+                "Holy": 1.0,
+                "Ice": 1.0,
+                "Neutral": 1.0,
+                "Thunder": 1.0
+            },
+            "PhysDamage": {
+                "Blow": 0.5,
+                "Shoot": 0.5,
+                "Slash": 0.5
+            },
+            "PhysStagger": {
+                "Blow": 2.0,
+                "Shoot": 1.2,
+                "Slash": 2.0
+            }
+        }
+    },
+    "Tired": {
+        "0": {
+            "MagDamage": {
+                "Fire": 0.55,
+                "Holy": 0.55,
+                "Ice": 0.55,
+                "Neutral": 0.55,
+                "Thunder": 0.55
+            },
+            "MagStagger": {
+                "Fire": 0.5,
+                "Holy": 0.5,
+                "Ice": 0.5,
+                "Neutral": 0.5,
+                "Thunder": 0.5
+            },
+            "PhysDamage": {
+                "Blow": 0.55,
+                "Shoot": 0.55,
+                "Slash": 0.55
+            },
+            "PhysStagger": {
+                "Blow": 0.5,
+                "Shoot": 0.5,
+                "Slash": 0.5
+            }
+        },
+        "1": {
+            "MagDamage": {
+                "Fire": 0.75,
+                "Holy": 0.75,
+                "Ice": 0.75,
+                "Neutral": 0.75,
+                "Thunder": 0.75
+            },
+            "MagStagger": {
+                "Fire": 0.625,
+                "Holy": 0.625,
+                "Ice": 0.625,
+                "Neutral": 0.625,
+                "Thunder": 0.625
+            },
+            "PhysDamage": {
+                "Blow": 0.75,
+                "Shoot": 0.75,
+                "Slash": 0.75
+            },
+            "PhysStagger": {
+                "Blow": 1.25,
+                "Shoot": 0.75,
+                "Slash": 1.25
+            }
+        },
+        "2": {
+            "MagDamage": {
+                "Fire": 0.4,
+                "Holy": 0.4,
+                "Ice": 0.4,
+                "Neutral": 0.4,
+                "Thunder": 0.4
+            },
+            "MagStagger": {
+                "Fire": 0.5,
+                "Holy": 0.5,
+                "Ice": 0.5,
+                "Neutral": 0.5,
+                "Thunder": 0.5
+            },
+            "PhysDamage": {
+                "Blow": 0.4,
+                "Shoot": 0.4,
+                "Slash": 0.4
+            },
+            "PhysStagger": {
+                "Blow": 0.5,
+                "Shoot": 0.5,
+                "Slash": 0.5
+            }
+        },
+        "3": {
+            "MagDamage": {
+                "Fire": 0.75,
+                "Holy": 0.75,
+                "Ice": 0.75,
+                "Neutral": 0.75,
+                "Thunder": 0.75
+            },
+            "MagStagger": {
+                "Fire": 1.0,
+                "Holy": 1.0,
+                "Ice": 1.0,
+                "Neutral": 1.0,
+                "Thunder": 1.0
+            },
+            "PhysDamage": {
+                "Blow": 0.75,
+                "Shoot": 0.75,
+                "Slash": 0.75
+            },
+            "PhysStagger": {
+                "Blow": 2.0,
+                "Shoot": 1.2,
+                "Slash": 2.0
+            }
+        },
+        "4": {
+            "MagDamage": {
+                "Fire": 0.5,
+                "Holy": 0.5,
+                "Ice": 0.5,
+                "Neutral": 0.5,
+                "Thunder": 0.5
+            },
+            "MagStagger": {
+                "Fire": 1.0,
+                "Holy": 1.0,
+                "Ice": 1.0,
+                "Neutral": 1.0,
+                "Thunder": 1.0
+            },
+            "PhysDamage": {
+                "Blow": 0.5,
+                "Shoot": 0.5,
+                "Slash": 0.5
+            },
+            "PhysStagger": {
+                "Blow": 2.0,
+                "Shoot": 1.2,
+                "Slash": 2.0
+            }
+        }
+    }
+}

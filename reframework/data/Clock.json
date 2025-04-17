@@ -1,0 +1,17 @@
+{
+    "backgroundcolor": 2289530743,
+    "color": 4293848814,
+    "customFormat": "{D}Day {T} {h}:{m}:{s} {a}",
+    "disableInMenu": false,
+    "enable": true,
+    "enableHotkey": "Alpha3",
+    "fontsize": 6,
+    "offset": [
+        50,
+        50
+    ],
+    "showbackground": true,
+    "showtimeslot": true,
+    "useAMPM": false,
+    "zerofill": false
+}

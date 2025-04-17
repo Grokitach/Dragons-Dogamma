@@ -1,0 +1,20 @@
+{
+    "Hobgoblin": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Goblin Frenzy Backflip",
+            "Barrel Bomb",
+            "AroundSwing",
+            "Blazing Swings",
+            "Blitz Strike",
+            "Faster Combo",
+            "ComboAfterBlinkStrike",
+            "ComboAfterJump",
+            "BlinkAfterTackle",
+            "BlinkStrafe",
+            "Goblin Fire",
+            "Goblin Fire2",
+            "Powered Upper Swing"
+        ]
+    }
+}

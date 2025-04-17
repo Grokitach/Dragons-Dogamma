@@ -1,0 +1,18 @@
+{
+    "Wight": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "Void Fire",
+            "Void Blizzard",
+            "Void Blizzard2",
+            "Dark Mines",
+            "Void Thunder",
+            "Void Miasma",
+            "Void Miasma2",
+            "Void Silence",
+            "Void Slumber",
+            "Void Slumber2",
+            "Phantom Bullets"
+        ]
+    }
+}

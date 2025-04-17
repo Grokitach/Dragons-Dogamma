@@ -1,0 +1,22 @@
+{
+    "Grim Ogre": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "ComboFlurry1",
+            "Laser Breath",
+            "Ogre Combo1",
+            "Punch Combo1",
+            "Punch Combo2",
+            "Turn Flurry1",
+            "Turn Flurry2",
+            "Ogre Jump 1",
+            "Ogre Jump 2",
+            "Ogre Jump 3",
+            "Ogre Combo2",
+            "Ogre Combo3",
+            "Ogre ComboDropKick",
+            "Ogre ComboDropKick2",
+            "Ogre ComboDropKick3"
+        ]
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "Venin Harpy": {
+        "redirect_idx": 1,
+        "skill_list": [
+            "FlurryResponse",
+            "Claw",
+            "Claw2",
+            "Repeated Breath",
+            "Corrosive Bile",
+            "Sleep Venom"
+        ]
+    }
+}
