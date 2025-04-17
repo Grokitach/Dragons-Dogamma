@@ -10,16 +10,19 @@ This modpack focuses on making Dragon's Dogma 2 more challenging by making fight
 - No gear in shops : money doesn’t buy gear. You need to find the gear by exploring, opening chests and killing bosses.
 - Much more expensive gear upgrades: most of your money will allow to you to upgrade your gear. Upgrades also require double the amount of materials.
 - Random items drop when scavenging items in the wild: there’s always a reason to loot everything you see.
-- Items in chests are modified.
+- Items in chests are modified: no prior knowledge of the game loot will help you cheese the game's progression.
 - Random chance of looting ferrystones on dead enemies and in chests.
+- Lock-on system for combat and dodge for all classes.
+- Less staggers for the player.
+- A more permissive Loss Gauge since you'll take much more damages in general.
 
 And much more!
 
 But why “Dogamma”?
 
-- Dogmas suck in general.
-- Dodogamas are super cute.
-- I’m the author of STALKER GAMMA, a gigantic modpack for STALKER Anomaly (500+ mods).
+- Dogmas are  kind of restrictive and something you do not really want.
+- Dodogamas on the other hand are super cute monsters from Monster Hunter, another Capcom franchise.
+- I am the author of STALKER GAMMA, a gigantic modpack for STALKER Anomaly (500+ mods).
 
 # How to install
 
