@@ -36,6 +36,11 @@ You can visit the Dragon's Dogamma Discord to chat about the project, get the la
 
 If you like this project, you can support me by donating on PayPal: https://www.paypal.com/paypalme/GrokitachGAMMA
 
+Also consider donating to the major mods makers for DD2 without which this project would not exist:
+- Nickesponja: https://ko-fi.com/nickesponja
+- alphaZomega: https://www.paypal.com/donate?token=7rkwN_UdRvjehWhXOG3NU3fSClcRPBOY6EgE1UK57ero18ihdnQbfd0oV8OIyuQMEcjkk-tXnTDPds3X&locale.x=US
+- MrGrimaldus: https://buymeacoffee.com/yourusername
+
 # Other Projects
 
 I'm also the author of one of the major STALKER Anomaly modpack: STALKER GAMMA: https://discord.com/invite/stalker-gamma
