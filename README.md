@@ -1,6 +1,6 @@
 
 ![dogamma](https://github.com/user-attachments/assets/c635bdcf-6544-4657-bb83-67bfa133ce71)
-# Dragon's Dogamma
+# Dragon's Dogamma Modpack for Dragon's Dogma 2
 
 This modpack focuses on making Dragon's Dogma 2 more challenging by making fights harder, gear harder to acquire and harder to empower, vocations more balanced and monster encounters more varied and more interesting. What’s inside you may ask?
 
