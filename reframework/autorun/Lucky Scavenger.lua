@@ -747,6 +747,10 @@ end
     else
         MonsterIsBoss[receiver:get_CharaID()] = false
     end
+
+    if receiverName == "ch250000" or receiverName == "ch252000" or receiverName == "ch226003" then
+        MonsterIsBoss[receiver:get_CharaID()] = true
+    end
 	
 	local mult = 1.0
 	if field == "Damage" then
@@ -829,7 +833,7 @@ sdk.hook(
             if tryDrop then
                 local experience = get_AverageEnemyExperience(this:get_CharaId())
                 if isBoss then
-                    experience = experience * 7
+                    experience = experience * 6
                 end
                 shuffleTable(BodyItems)
                 local randomIndex = math.random(1, #BodyItems)
@@ -887,7 +891,7 @@ sdk.hook(
                     Bdrop = math.random(1,99)
                     Ldrop = math.random(1,99)
                     Wdrop = math.random(1,99)
-                    if  Wdrop <= 70 then
+                    if  Wdrop <= 40 then
                         experience_mult = math.random(10,20) / 10
                         shuffleTable(Weapons)
                         randomIndex = math.random(1, #Weapons)
@@ -914,7 +918,7 @@ sdk.hook(
                         Log("Boss Find!: Received " .. itemName .. " ( Rank " .. string.format("%d", math.floor(selectedItem.level)) .. " )", txtColor, bgColor)
                         AddItem(newItem)
                     end
-                    if  Ldrop <= 70 then
+                    if  Ldrop <= 40 then
                         experience_mult = math.random(10,20) / 10
                         shuffleTable(LArmors)
                         randomIndex = math.random(1, #LArmors)
@@ -941,7 +945,7 @@ sdk.hook(
                         Log("Boss Find!: Received " .. itemName .. " ( Rank " .. string.format("%d", math.floor(selectedItem.level)) .. " )", txtColor, bgColor)
                         AddItem(newItem)
                     end
-                    if  Hdrop <= 70 then
+                    if  Hdrop <= 40 then
                         experience_mult = math.random(10,20) / 10
                         shuffleTable(HArmors)
                         randomIndex = math.random(1, #HArmors)
@@ -968,7 +972,7 @@ sdk.hook(
                         Log("Boss Find!: Received " .. itemName .. " ( Rank " .. string.format("%d", math.floor(selectedItem.level)) .. " )", txtColor, bgColor)
                         AddItem(newItem)
                     end
-                    if  Bdrop <= 70 then
+                    if  Bdrop <= 40 then
                         experience_mult = math.random(10,20) / 10
                         shuffleTable(BArmors)
                         randomIndex = math.random(1, #BArmors)
