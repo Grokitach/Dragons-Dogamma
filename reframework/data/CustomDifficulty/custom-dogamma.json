@@ -700,9 +700,9 @@
             "staggerImpact": 20
         },
         "ch251001_00": {
-            "damageTaken": 35,
-            "damageToOthers": 20,
-            "damageToPlayer": 20,
+            "damageTaken": 70,
+            "damageToOthers": 40,
+            "damageToPlayer": 40,
             "staggerImpact": 100
         },
         "ch252000_00": {
