@@ -833,7 +833,7 @@ sdk.hook(
             if tryDrop then
                 local experience = get_AverageEnemyExperience(this:get_CharaId())
                 if isBoss then
-                    experience = experience * 6
+                    experience = experience * 2
                 end
                 shuffleTable(BodyItems)
                 local randomIndex = math.random(1, #BodyItems)
@@ -844,7 +844,7 @@ sdk.hook(
                     tmp = BodyItems[randomIndex]
                 end
                 local selectedItem = getRandomItem(tmp)
-                if BodiesDropExtraItems and selectedItem ~= nil then
+                if BodiesDropExtraItems and selectedItem ~= nil and not isBoss then
                     local newItem = sdk.create_instance("app.gm80_001.ItemParam")
                     newItem.ItemId = selectedItem.id
                     newItem.ItemNum = 1
@@ -855,7 +855,7 @@ sdk.hook(
                     DumpSaveData()
                     AddItem(newItem)
                 end
-                if  tryBonusBodyDrop then
+                if  tryBonusBodyDrop and not isBoss then
                     shuffleTable(ChestItems)
                     randomIndex = math.random(1, #ChestItems)
                     tmp = ChestItems[randomIndex]
@@ -892,7 +892,7 @@ sdk.hook(
                     Ldrop = math.random(1,99)
                     Wdrop = math.random(1,99)
                     if  Wdrop <= 40 then
-                        experience_mult = math.random(10,20) / 10
+                        experience_mult = math.random(10,25) / 10
                         shuffleTable(Weapons)
                         randomIndex = math.random(1, #Weapons)
                         tmp = Weapons[randomIndex]
@@ -919,7 +919,7 @@ sdk.hook(
                         AddItem(newItem)
                     end
                     if  Ldrop <= 40 then
-                        experience_mult = math.random(10,20) / 10
+                        experience_mult = math.random(10,25) / 10
                         shuffleTable(LArmors)
                         randomIndex = math.random(1, #LArmors)
                         tmp = LArmors[randomIndex]
@@ -946,7 +946,7 @@ sdk.hook(
                         AddItem(newItem)
                     end
                     if  Hdrop <= 40 then
-                        experience_mult = math.random(10,20) / 10
+                        experience_mult = math.random(10,25) / 10
                         shuffleTable(HArmors)
                         randomIndex = math.random(1, #HArmors)
                         tmp = HArmors[randomIndex]
@@ -973,7 +973,7 @@ sdk.hook(
                         AddItem(newItem)
                     end
                     if  Bdrop <= 40 then
-                        experience_mult = math.random(10,20) / 10
+                        experience_mult = math.random(10,25) / 10
                         shuffleTable(BArmors)
                         randomIndex = math.random(1, #BArmors)
                         tmp = BArmors[randomIndex]
