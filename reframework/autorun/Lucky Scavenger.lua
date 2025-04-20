@@ -1,4 +1,5 @@
 local modname="Lucky Scavenger"
+local printlog = require("CustomDifficulty/logger").Log
 local configfile=modname.."/Config.json"
 local _config={
     {name="Enable Random Enhancements", type="bool", default=true},
@@ -674,344 +675,307 @@ sdk.hook(
     end, nil
 )
 
+local GuiManager = sdk.get_managed_singleton("app.GuiManager")
+
+-- The names are just for reference, they're not used for anything
+local BossInfo = {
+	[422306432] = {name = "Skeleton Lord", lootTier = 2},
+	[3566561083] = {name = "Lich", lootTier = 2},
+	[186889532] = {name = "Wight", lootTier = 1},
+	[2629601821] = {name = "Dullahan", lootTier = 5},
+	[797468852] = {name = "Cyclops (with club)", lootTier = 1},
+	[2314122076] = {name = "Cyclops (unarmed)", lootTier = 1},
+	[597201144] = {name = "Cyclops (armored) ", lootTier = 2},
+	[2487358235] = {name = "Cyclops (armored)", lootTier = 2},
+	[2142776531] = {name = "Cyclops (armored)", lootTier = 2},
+	[3906583030] = {name = "Cyclops (full armor)", lootTier = 3},
+	[377282979] = {name = "Cyclops (full armor)", lootTier = 3},
+	[884021677] = {name = "Cyclops (full armor)", lootTier = 3},
+	[2138374751] = {name = "Ogre", lootTier = 1},
+	[786298456] = {name = "Grim Ogre", lootTier = 3},
+	[2288155078] = {name = "Golem (2 health bars)", lootTier = 1}, 
+	[1156291195] = {name = "Golem (3 health bars)", lootTier = 2}, 
+	[2224608577] = {name = "Golem (4 health bars)", lootTier = 3}, 
+	[812385671] = {name = "Golem (5 health bars)", lootTier = 3}, 
+	[3547788120] = {name = "Griffin", lootTier = 3},
+	[3369196004] = {name = "Sphinx", lootTier = 5},
+	[4243003424] = {name = "Vermund Purgener", lootTier = 6},
+	[355142415] = {name = "Island Encampent Purgener", lootTier = 6},
+	[3550884773] = {name = "Chimera", lootTier = 2},
+	[3236853785] = {name = "Gorechimera", lootTier = 4},
+	[4170025353] = {name = "Medusa", lootTier = 4},
+	[2475491578] = {name = "Sacred Arbor Purgener", lootTier = 6},
+	[3417537573] = {name = "Volcanic Island Purgener", lootTier = 6},
+	[3061246416] = {name = "Minotaur", lootTier = 2},
+	[1057828479] = {name = "Goreminotaur", lootTier = 3},
+	[2133916449] = {name = "Drake", lootTier = 4},
+	[3538966457] = {name = "Lesser Dragon", lootTier = 5},
+	[2631267673] = {name = "Dragon", lootTier = 6},
+	[169713426] = {name = "Garm", lootTier = 3},
+	[247902159] = {name = "Warg", lootTier = 4},
+}
+
+local bossMaxRank = 6
+
+local gameTime = os.clock()
+local lastTime = os.clock()
+local lastFlush = os.clock()
 local AlreadyLooted = {}
 
-local function get_attacker(DamageInfo)
-	local AttackHitController = DamageInfo["<AttackHitController>k__BackingField"]
-	if not AttackHitController then return nil end
-	local shell = AttackHitController["<CachedShell>k__BackingField"]
-	local attacker
-	
-	if shell then
-		attacker = shell["<OwnerCharacter>k__BackingField"]
-	else
-		attacker = AttackHitController["<CachedCharacter>k__BackingField"]
+-- REF addresses may be reused for other objects later, so we need to flush them eventually
+-- Also to avoid using too much memory
+local function flush_looted()
+	for address,time in pairs(AlreadyLooted) do
+        if time then
+		-- Let's assume a player won't loot a boss once, then wait 5 minutes to loot a second time
+		    if gameTime - time > 3600.0 then
+			    AlreadyLooted[address] = nil
+		    end
+        end
 	end
-	
-	return attacker
 end
 
-local function get_receiver(DamageInfo)
-	local DamageHitController = DamageInfo["<DamageHitController>k__BackingField"]
-	if not DamageHitController then return nil end
-	local receiver = DamageHitController["<CachedCharacter>k__BackingField"]
+local function generate_boss_loot(lootTable, bossTier)
+    -- Pick a list of items among the lootTable, see Weapons for instance
+    shuffleTable(lootTable)
+    local randomIndex = math.random(1, #lootTable)
+    local itemList = lootTable[randomIndex]
+    if not itemList then
+        shuffleTable(lootTable)
+        local randomIndex = math.random(1, #lootTable)
+        local itemList = lootTable[randomIndex]
+    end
 
-	return receiver
-end
+    local available_items = {}
 
-  local function on_post_calc_damage(DamageInfo,field)
-	local attacker = get_attacker(DamageInfo)
-	local receiver = get_receiver(DamageInfo)
-	if not receiver then return end
-	if attacker and (not attacker:get_Valid() or not attacker:get_GameObject():get_Valid()) then return end
-	if receiver and (not receiver:get_Valid() or not receiver:get_GameObject():get_Valid()) then return end
-	
-	local attackerName = attacker and string.sub(attacker:get_GameObject():get_Name(),1,8)
-	local receiverName = receiver and string.sub(receiver:get_GameObject():get_Name(),1,8)
-	local attackerType = attackerName and string.sub(attackerName,1,3)
-	local receiverType = receiverName and string.sub(receiverName,1,3)
-	
-	-- Direct damage includes fall damage, debilitation damage, ragdoll damage and throwing enemies against a wall (which IS ragdoll damage)
-	-- It does NOT include throwing enemies at each other, or throwing stuff at enemies
-	if DamageInfo.IsDirectDamage then
-		local damageType = DamageInfo.DamageType
-		local damageActType = DamageInfo.DamageActType
-		local elementType = DamageInfo.OverwriteElementType._Value
-		
-		local isFallDamage = damageType == 14 or damageType == 15
-		if isFallDamage then
-			return	 
-		end
-		
-		local isRagdollDamage = damageType == -1 and damageActType == 0 and elementType == 0
-		if isRagdollDamage then
-			-- We only allow it for enemies because throwing enemies against the wall should be affected
-			if receiverType == "ch0" or receiverType == "ch1" then
-				return
-			end
-		end
-		-- Not actually accurate for all debilitation damage
-		-- local isDebilitationDamage = damageType == -1 and damageActType == 0 and elementType == -1
-	end
+    -- Defines loot quality based on the boss rank and the items list length
+    local rankScaler = bossMaxRank/#itemList
+    local maxItemRankAllowed = math.floor(bossTier / rankScaler)
+    local minItemRankAllowed = math.floor((bossTier - 1) / rankScaler) -- Ensures that strong bosses don't drop bad items
 
-	-- Hits received by NPCs are excluded 
-	-- This is to avoid poor NPCs always dying to monsters on harsher settings
-	local isNPCHit = receiverType == "ch3"
-	if isNPCHit then
-		return
-	end
-	
-	if receiver:get_IsBoss() then
-		receiverType = "boss"
-        MonsterIsBoss[receiver:get_CharaID()] = true
+    if minItemRankAllowed < 1 then
+        minItemRankAllowed = 1
+    end
+
+    if maxItemRankAllowed < 1 then
+        maxItemRankAllowed = 1
+    end
+
+    bigListRandomizer = (math.random(9,11) / 10)
+    if maxItemRankAllowed > 19 then
+        maxItemRankAllowed = math.ceil(maxItemRankAllowed * bigListRandomizer)
+    end
+
+    printlog("Boss tier: " .. bossTier .. " | Rank Scaler:" .. rankScaler .. " | maxItemRankAllowed:" .. maxItemRankAllowed .. " | minItemRankAllowed:" .. minItemRankAllowed .. " | bigListRandomizer: " .. bigListRandomizer)
+
+    for index, item in ipairs(itemList) do
+        local itemRank = index -- just so code is more clear but both are equal
+        if itemRank <= maxItemRankAllowed then
+            Debug("name: " .. item.item_name .. " rank: " .. itemRank)
+            printlog("name: " .. item.item_name .. " rank: " .. itemRank)
+            table.insert(available_items, {name = item.item_name, id = item.id, item_index = index, level = itemRank}) -- whatever is done with those in other functions, left untouched
+        end
+    end
+
+    -- Select a random item from the filtered list of available items
+    if #available_items > 0 then
+        local selectedIndex = math.random(minItemRankAllowed, #available_items)
+        selectedItem = available_items[selectedIndex]
     else
-        MonsterIsBoss[receiver:get_CharaID()] = false
+        selectedIndex = 1
+        selectedItem = available_items[selectedIndex]
     end
 
-    if receiverName == "ch250000" or receiverName == "ch252000" or receiverName == "ch226003" then
-        MonsterIsBoss[receiver:get_CharaID()] = true
+    if selectedItem then
+        local newItem = sdk.create_instance("app.gm80_001.ItemParam")
+        newItem.ItemId = selectedItem.id
+        newItem.ItemNum = 1
+        local itemName = selectedItem.name
+        txtColor = config.BossDropTextColor
+        txtColor = config.BossDropBackgroundColor
+        Log("Boss Find!: Received " .. itemName .. " ( Rank " .. string.format("%d", math.floor(selectedItem.level)) .. "/" .. maxItemRankAllowed .. " )", txtColor, bgColor)
+        AddItem(newItem)
     end
-	
-	local mult = 1.0
-	if field == "Damage" then
-		mult = 1
-		mult = 1
-		-- If an enemy hits another enemy, we shouldn't apply the damage dealt multiplier. This is because
-		-- 1) When throwing enemies at each other, attacker is the thrown enemy, not the thrower
-		-- 2) We don't want enemies to friendly fire each other to death
-		-- We do want to keep damage received mults, so e.g. humble offringe doesn't become OP because it bypasses them when throwing enemies at each other
-		local isEnemyToEnemy = attackerType == "ch2" and receiverType == "ch2"
-		if attackerName and not isEnemyToEnemy then
-			mult = 1
-		end
-	end
-	if field == "DamageReaction" then
-		mult = 1
-		mult = 1
-	end
-	DamageInfo[field] = mult * DamageInfo[field]
 end
 
-
 sdk.hook(
-	sdk.find_type_definition("app.HitController"):get_method("calcDamageValue(app.HitController.DamageInfo)"),
-	function(args)
-		local storage = thread.get_hook_storage()
-		storage.DamageInfo = sdk.to_managed_object(args[3])
-	end,
-	function(retval)
-		local DamageInfo = thread.get_hook_storage().DamageInfo
-		on_post_calc_damage(DamageInfo,"Damage")	
-		return retval
+    sdk.find_type_definition("app.ItemDropParam"):get_method("getFumbleLotItem(app.GatherContext, System.Int32, System.Int32)"),
+    function(args)
+        local this = sdk.to_managed_object(args[2])
+		if this._GimmickId ~= 0 then return end
+		
+        local gatherContext = sdk.to_managed_object(args[3])
+		
+		local address = gatherContext:get_address() -- Unique per enemy, but is the same if you loot the same enemy twice
+		if AlreadyLooted[address] then return end
+		local info = BossInfo[this._CharaId]
+		local isBoss = info ~= nil
+		local bossLootTier = info and info.lootTier
+
+        if isBoss then
+            local bossLootChance = GauranteedBossDrops
+            local Hdrop = math.random(1,99)
+            local Bdrop = math.random(1,99)
+            local Ldrop = math.random(1,99)
+            local Wdrop = math.random(1,99)
+            printlog(Hdrop)
+            printlog(Bdrop)
+            printlog(Ldrop)
+            printlog(Wdrop)
+
+            if Wdrop > bossLootChance and Hdrop > bossLootChance and Ldrop > bossLootChance and Bdrop > bossLootChance then -- Ensures atleast 1 loot per boss
+                unluckyDrop = math.random(1,4)
+
+                if unluckyDrop == 1 then
+                    Hdrop = 1
+                end
+
+                if unluckyDrop == 2 then
+                    Bdrop = 1
+                end
+
+                if unluckyDrop == 3 then
+                    Ldrop = 1
+                end
+
+                if unluckyDrop == 4 then
+                    Wdrop = 1
+                end
+            end
+
+            if  Wdrop <= bossLootChance then
+                generate_boss_loot(Weapons, bossLootTier)
+            end
+            if  Ldrop <= bossLootChance then
+                generate_boss_loot(LArmors, bossLootTier)
+            end
+            if  Hdrop <= bossLootChance then
+                generate_boss_loot(HArmors, bossLootTier)
+            end
+            if  Bdrop <= bossLootChance then
+                generate_boss_loot(BArmors, bossLootTier)
+            end
+        end
+
+        AlreadyLooted[address] = gameTime
+    end
+)
+
+re.on_application_entry(
+	"UpdateBehavior",
+	function()
+		local deltaTime = os.clock() - lastTime
+		lastTime = os.clock()
+		if GuiManager:isPausedGUI() then return end
+		gameTime = gameTime + deltaTime
+		if gameTime - lastFlush > 60.0 then
+			flush_looted()
+		end
 	end
 )
 
-sdk.hook(
-    sdk.find_type_definition("app.ExpDispenser.ExpGranter"):get_method("evaluateExpAmount"),
-    function (args)
-        local this = sdk.to_managed_object(args[2])
-        
-        local e_mgr = sdk.get_managed_singleton("app.EnemyManager")
-        for i, enemy in pairs(e_mgr._EnemyList._items) do
-            if enemy then
-                local enemy_character = getC(enemy:get_GameObject(), "app.Monster")
-                if enemy_character == nil then
-                    enemy_character = getC(enemy:get_GameObject(), "app.Character")
-                else
-                    enemy_character = getC(enemy:get_GameObject(), "app.Monster"):get_Chara()
-                end
-                local hp = enemy_character:get_OriginalMaxHp()
-                local expGranter = enemy_character:tryGetExpGranter()
-                local contextHolder = enemy_character:get_Context()
-                if expGranter == this then
-                    AlreadyLooted[enemy_character:get_CharaID()] = false
-                    break
-                end
-            end 
-        end
-    end
-)
+--sdk.hook(
+--    sdk.find_type_definition("app.ExpDispenser.ExpGranter"):get_method("evaluateExpAmount"),
+--    function (args)
+--        local this = sdk.to_managed_object(args[2])
+--        
+--        local e_mgr = sdk.get_managed_singleton("app.EnemyManager")
+--        for i, enemy in pairs(e_mgr._EnemyList._items) do
+--            if enemy then
+--                local enemy_character = getC(enemy:get_GameObject(), "app.Monster")
+--                if enemy_character == nil then
+--                    enemy_character = getC(enemy:get_GameObject(), "app.Character")
+--                else
+--                    enemy_character = getC(enemy:get_GameObject(), "app.Monster"):get_Chara()
+--                end
+--                local hp = enemy_character:get_OriginalMaxHp()
+--                local expGranter = enemy_character:tryGetExpGranter()
+--                local contextHolder = enemy_character:get_Context()
+--                if expGranter == this then
+--                    --AlreadyLooted[enemy_character:get_CharaID()] = false
+--                    break
+--                end
+--            end 
+--        end
+--    end
+--)
 
-sdk.hook(
-    sdk.find_type_definition("app.ItemDropParam"):get_method("getFumbleLotItem"),
-    function(args)
-        local this=sdk.to_managed_object(args[2])
-        local gid=this:get_GimmickId()
+--sdk.hook(
+--    sdk.find_type_definition("app.ItemDropParam"):get_method("getFumbleLotItem"),
+--    function(args)
+--        local this=sdk.to_managed_object(args[2])
+--        local gid=this:get_GimmickId()
         --get_CharaID
-        if gid ~=0 then
-        elseif AlreadyLooted[this:get_CharaId()] ~= true then
-            local isBoss = MonsterIsBoss[this:get_CharaId()]
-            local wasLooted = AlreadyLooted[this:get_CharaId()]
+--        if gid ~=0 then
+--        elseif AlreadyLooted[this:get_CharaId()] ~= true then
+--            local isBoss = false
+--            local wasLooted = AlreadyLooted[this:get_CharaId()]
 --            Debug("Monster HP: "..tostring(hp).." is Boss: " ..tostring(isBoss) .." was Looted: " ..tostring(wasLooted))
-            local dropChance = math.random(0, 99)
-            local super_lucky = math.random(0,99)
-            local tryDrop = EffectBodyLoot and dropChance < BodyFind
-            local tryBonusBodyDrop = BonusBodyLoot and super_lucky < BonusBodyLootChance
-            if isBoss then
-                tryDrop = dropChance < GauranteedBossDrops
-            end
-            if tryDrop then
-                local experience = get_AverageEnemyExperience(this:get_CharaId())
-                if isBoss then
-                    experience = experience * 2
-                end
-                shuffleTable(BodyItems)
-                local randomIndex = math.random(1, #BodyItems)
-                local tmp = BodyItems[randomIndex]
-                if not tmp then
-                    shuffleTable(BodyItems)
-                    randomIndex = math.random(1, #BodyItems)
-                    tmp = BodyItems[randomIndex]
-                end
-                local selectedItem = getRandomItem(tmp)
-                if BodiesDropExtraItems and selectedItem ~= nil and not isBoss then
-                    local newItem = sdk.create_instance("app.gm80_001.ItemParam")
-                    newItem.ItemId = selectedItem.id
-                    newItem.ItemNum = 1
-                    local itemName = selectedItem.name
-                    local txtColor = config.ItemTextColor
-                    local bgColor = config.ItemBackgroundColor
-                    Log("Lucky Find!: Received " .. itemName .. " ( " .. string.format("%d", math.floor(selectedItem.level)) .. " Rarity )",txtColor,bgColor)
-                    DumpSaveData()
-                    AddItem(newItem)
-                end
-                if  tryBonusBodyDrop and not isBoss then
-                    shuffleTable(ChestItems)
-                    randomIndex = math.random(1, #ChestItems)
-                    tmp = ChestItems[randomIndex]
-                    if not tmp then
-                        shuffleTable(ChestItems)
-                        randomIndex = math.random(1, #ChestItems)
-                        tmp = ChestItems[randomIndex]
-                    end
-                    selectedItem = getItemByExperience(tmp, experience, isBoss)
-                    if not selectedItem then
-                        selectedItem = getItemByExperience(tmp, experience, isBoss)
-                    end
-                    local newItem = sdk.create_instance("app.gm80_001.ItemParam")
-                    newItem.ItemId = selectedItem.id
-                    newItem.ItemNum = 1
-                    local itemName = selectedItem.name
-                    local txtColor = config.SuperLuckyTextColor
-                    local bgColor = config.SuperLuckyBackgroundColor
-                    if isBoss then
-                        txtColor = config.BossDropTextColor
-                        txtColor = config.BossDropBackgroundColor
-                    end
-                    if isBoss then
-                        Log("Boss Find!: Received " .. itemName .. " ( Rank " .. string.format("%d", math.floor(selectedItem.level)) .. " )", txtColor, bgColor)
-                    else
-                        Log("Super Lucky Find!: Received " .. itemName .. " ( Rank " .. string.format("%d", math.floor(selectedItem.level)) .. " )", txtColor, bgColor)
-                    end
-                    AddItem(newItem)
-                end
+--            local dropChance = math.random(0, 99)
+--            local super_lucky = math.random(0,99)
+--            local tryDrop = EffectBodyLoot and dropChance < BodyFind
+--            local tryBonusBodyDrop = BonusBodyLoot and super_lucky < BonusBodyLootChance
 
-                if isBoss then
-                    Hdrop = math.random(1,99)
-                    Bdrop = math.random(1,99)
-                    Ldrop = math.random(1,99)
-                    Wdrop = math.random(1,99)
-                    if  Wdrop <= 40 then
-                        experience_mult = math.random(10,25) / 10
-                        shuffleTable(Weapons)
-                        randomIndex = math.random(1, #Weapons)
-                        tmp = Weapons[randomIndex]
-                        if not tmp then
-                            shuffleTable(Weapons)
-                            randomIndex = math.random(1, #Weapons)
-                            tmp = Weapons[randomIndex]
-                        end
-                        selectedItem = getItemByExperience(tmp, experience, isBoss)
-                        if not selectedItem then
-                            selectedItem = getItemByExperience(tmp, experience, isBoss)
-                        end
-                        local newItem = sdk.create_instance("app.gm80_001.ItemParam")
-                        newItem.ItemId = selectedItem.id
-                        newItem.ItemNum = 1
-                        local itemName = selectedItem.name
-                        local txtColor = config.SuperLuckyTextColor
-                        local bgColor = config.SuperLuckyBackgroundColor
-                        if isBoss then
-                            txtColor = config.BossDropTextColor
-                            txtColor = config.BossDropBackgroundColor
-                        end
-                        Log("Boss Find!: Received " .. itemName .. " ( Rank " .. string.format("%d", math.floor(selectedItem.level)) .. " )", txtColor, bgColor)
-                        AddItem(newItem)
-                    end
-                    if  Ldrop <= 40 then
-                        experience_mult = math.random(10,25) / 10
-                        shuffleTable(LArmors)
-                        randomIndex = math.random(1, #LArmors)
-                        tmp = LArmors[randomIndex]
-                        if not tmp then
-                            shuffleTable(LArmors)
-                            randomIndex = math.random(1, #LArmors)
-                            tmp = LArmors[randomIndex]
-                        end
-                        selectedItem = getItemByExperience(tmp, experience * experience_mult, isBoss)
-                        if not selectedItem then
-                            selectedItem = getItemByExperience(tmp, experience * experience_mult, isBoss)
-                        end
-                        local newItem = sdk.create_instance("app.gm80_001.ItemParam")
-                        newItem.ItemId = selectedItem.id
-                        newItem.ItemNum = 1
-                        local itemName = selectedItem.name
-                        local txtColor = config.SuperLuckyTextColor
-                        local bgColor = config.SuperLuckyBackgroundColor
-                        if isBoss then
-                            txtColor = config.BossDropTextColor
-                            txtColor = config.BossDropBackgroundColor
-                        end
-                        Log("Boss Find!: Received " .. itemName .. " ( Rank " .. string.format("%d", math.floor(selectedItem.level)) .. " )", txtColor, bgColor)
-                        AddItem(newItem)
-                    end
-                    if  Hdrop <= 40 then
-                        experience_mult = math.random(10,25) / 10
-                        shuffleTable(HArmors)
-                        randomIndex = math.random(1, #HArmors)
-                        tmp = HArmors[randomIndex]
-                        if not tmp then
-                            shuffleTable(HArmors)
-                            randomIndex = math.random(1, #HArmors)
-                            tmp = HArmors[randomIndex]
-                        end
-                        selectedItem = getItemByExperience(tmp, experience * experience_mult, isBoss)
-                        if not selectedItem then
-                            selectedItem = getItemByExperience(tmp, experience * experience_mult, isBoss)
-                        end
-                        local newItem = sdk.create_instance("app.gm80_001.ItemParam")
-                        newItem.ItemId = selectedItem.id
-                        newItem.ItemNum = 1
-                        local itemName = selectedItem.name
-                        local txtColor = config.SuperLuckyTextColor
-                        local bgColor = config.SuperLuckyBackgroundColor
-                        if isBoss then
-                            txtColor = config.BossDropTextColor
-                            txtColor = config.BossDropBackgroundColor
-                        end
-                        Log("Boss Find!: Received " .. itemName .. " ( Rank " .. string.format("%d", math.floor(selectedItem.level)) .. " )", txtColor, bgColor)
-                        AddItem(newItem)
-                    end
-                    if  Bdrop <= 40 then
-                        experience_mult = math.random(10,25) / 10
-                        shuffleTable(BArmors)
-                        randomIndex = math.random(1, #BArmors)
-                        tmp = BArmors[randomIndex]
-                        if not tmp then
-                            shuffleTable(BArmors)
-                            randomIndex = math.random(1, #BArmors)
-                            tmp = BArmors[randomIndex]
-                        end
-                        selectedItem = getItemByExperience(tmp, experience * experience_mult, isBoss)
-                        if not selectedItem then
-                            selectedItem = getItemByExperience(tmp, experience * experience_mult, isBoss)
-                        end
-                        local newItem = sdk.create_instance("app.gm80_001.ItemParam")
-                        newItem.ItemId = selectedItem.id
-                        newItem.ItemNum = 1
-                        local itemName = selectedItem.name
-                        local txtColor = config.SuperLuckyTextColor
-                        local bgColor = config.SuperLuckyBackgroundColor
-                        if isBoss then
-                            txtColor = config.BossDropTextColor
-                            txtColor = config.BossDropBackgroundColor
-                        end
-                        Log("Boss Find!: Received " .. itemName .. " ( Rank " .. string.format("%d", math.floor(selectedItem.level)) .. " )", txtColor, bgColor)
-                        AddItem(newItem)
-                    end
-                end
-                BodyFind = 0
-                AlreadyLooted[this:get_CharaId()] = true
-                return sdk.to_ptr(retval)
-            end
-            BodyFind = BodyFind + BodyDropRate
-        end
-    end,
-    function (retval)
-        isLootingBody=false
-        return retval
-    end
-)
+--            if tryDrop then
+--                local experience = get_AverageEnemyExperience()
+--                shuffleTable(BodyItems)
+--                local randomIndex = math.random(1, #BodyItems)
+--                local tmp = BodyItems[randomIndex]
+--                if not tmp then
+--                    shuffleTable(BodyItems)
+--                    randomIndex = math.random(1, #BodyItems)
+--                    tmp = BodyItems[randomIndex]
+--                end
+--                local selectedItem = getRandomItem(tmp)
+--                if BodiesDropExtraItems and selectedItem ~= nil then
+--                    local newItem = sdk.create_instance("app.gm80_001.ItemParam")
+--                    newItem.ItemId = selectedItem.id
+--                    newItem.ItemNum = 1
+--                    local itemName = selectedItem.name
+--                    local txtColor = config.ItemTextColor
+--                    local bgColor = config.ItemBackgroundColor
+--                    Log("Lucky Find!: Received " .. itemName .. " ( " .. string.format("%d", math.floor(selectedItem.level)) .. " Rarity )",txtColor,bgColor)
+--                    DumpSaveData()
+--                    AddItem(newItem)
+--                end
+--                if  tryBonusBodyDrop then
+--                    shuffleTable(ChestItems)
+--                    randomIndex = math.random(1, #ChestItems)
+--                    tmp = ChestItems[randomIndex]
+--                    if not tmp then
+--                        shuffleTable(ChestItems)
+--                        randomIndex = math.random(1, #ChestItems)
+--                        tmp = ChestItems[randomIndex]
+--                    end
+--                    selectedItem = getItemByExperience(tmp, experience, isBoss)
+--                    if not selectedItem then
+--                        selectedItem = getItemByExperience(tmp, experience, isBoss)
+--                    end
+--                    local newItem = sdk.create_instance("app.gm80_001.ItemParam")
+--                    newItem.ItemId = selectedItem.id
+--                    newItem.ItemNum = 1
+--                    local itemName = selectedItem.name
+--                    local txtColor = config.SuperLuckyTextColor
+--                    local bgColor = config.SuperLuckyBackgroundColor
+--                    if isBoss then
+--                        txtColor = config.BossDropTextColor
+--                        txtColor = config.BossDropBackgroundColor
+--                    end
+--                    Log("Super Lucky Find!: Received " .. itemName .. " ( Rank " .. string.format("%d", math.floor(selectedItem.level)) .. " )", txtColor, bgColor)
+--                    AddItem(newItem)
+--                end
+--                BodyFind = 0
+--                AlreadyLooted[this:get_CharaId()] = true
+--                return sdk.to_ptr(retval)
+--            end
+--            BodyFind = BodyFind + BodyDropRate
+--        end
+--    end,
+--    function (retval)
+--        isLootingBody=false
+--        return retval
+--    end
+--)
 
 sdk.hook(
     sdk.find_type_definition("app.Gm82_009"):get_method("giveItem"),
