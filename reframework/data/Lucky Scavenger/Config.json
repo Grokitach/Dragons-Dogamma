@@ -7,7 +7,7 @@
     "Bonus Chest Loot": true,
     "Bonus Chest Loot Chance": 75,
     "Boss Drop Gear Rank Threshold": 2,
-    "Boss Drop Percentage": 100,
+    "Boss Drop Percentage": 40,
     "BossDropBackgroundColor": 4278210742,
     "BossDropTextColor": 4294967295,
     "Chest Drop Rate": 75,
