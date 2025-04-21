@@ -119,12 +119,11 @@ local tmpShields = json.load_file(modname .. "/Shields.json")
 local GimmickItems = {tmpMaterials, tmpForage}
 local BodyItems = {tmpCuratives, tmpMaterials, tmpImplements}
 local ChestItems = {tmpHeadArmor, tmpBodyArmor, tmpLegArmor, tmpRings, tmpCloaks, tmpArchistaffs, tmpBows, tmpCensers, 
-    tmpDaggers, tmpDuospears, tmpGreatSwords, tmpHammers, tmpMaces, tmpMagickalBows, tmpStaffs, tmpSwords, tmpShields
-}
+    tmpDaggers, tmpDuospears, tmpGreatSwords, tmpMagickalBows, tmpStaffs, tmpSwords, tmpShields}
 local HArmors = {tmpHeadArmor}
 local BArmors = {tmpBodyArmor}
 local LArmors = {tmpLegArmor}
-local Weapons = {tmpArchistaffs, tmpBows, tmpCensers, tmpDaggers, tmpDuospears, tmpGreatSwords, tmpHammers, tmpMaces, tmpMagickalBows, tmpStaffs, tmpSwords, tmpShields}
+local Weapons = {tmpArchistaffs, tmpBows, tmpCensers, tmpDaggers, tmpDuospears, tmpGreatSwords, tmpMagickalBows, tmpStaffs, tmpSwords, tmpShields}
 local BonusChestItems = {tmpCuratives, tmpMaterials, tmpImplements}
 math.randomseed(os.time())
 

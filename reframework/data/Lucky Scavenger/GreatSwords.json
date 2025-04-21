@@ -1,10 +1,15 @@
 [
 	{"id": "1200", "item_name": "Two-Hander"},
+	{"id": "1300", "item_name": "Steel Urchin"},
 	{"id": "1202", "item_name": "War Blade"},
+	{"id": "1301", "item_name": "Eyecrusher"},
 	{"id": "1201", "item_name": "Lifetaker"},
+	{"id": "1304", "item_name": "Black Matter"},
 	{"id": "1205", "item_name": "Ogresbane"},
 	{"id": "1204", "item_name": "Gryphic Victory"},
+	{"id": "1206", "item_name": "Cyclopean Thunder"},
 	{"id": "1203", "item_name": "Flamberge"},
+	{"id": "1302", "item_name": "Cinderspine"},
 	{"id": "1208", "item_name": "Wounded Heart"},
 	{"id": "1303", "item_name": "Dragon's Flight"},
 	{"id": "1207", "item_name": "Dragon's Bite"}

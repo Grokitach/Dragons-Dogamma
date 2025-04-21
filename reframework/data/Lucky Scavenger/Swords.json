@@ -5,11 +5,16 @@
 	{"id": "1002", "item_name": "Cutlass"},
 	{"id": "1004", "item_name": "Silver Rapier"},
 	{"id": "1008", "item_name": "Vermundian Brand"},
+	{"id": "1100", "item_name": "Bane of Bones"},
 	{"id": "1005", "item_name": "Almace"},
 	{"id": "1007", "item_name": "Steeled Virtue"},
 	{"id": "1012", "item_name": "Battahli Shotel"},
+	{"id": "1104", "item_name": "Labyrinthus"},
 	{"id": "1013", "item_name": "Silver Cinquedea"},
+	{"id": "1103", "item_name": "Threaded Cudgel"},
+	{"id": "1102", "item_name": "The Exalted"},
 	{"id": "1006", "item_name": "Stalwart Sword"},
+	{"id": "1101", "item_name": "Molten Fury"},
 	{"id": "1009", "item_name": "Carnation"},
 	{"id": "1010", "item_name": "Dragon's Dogma"}
 ]
