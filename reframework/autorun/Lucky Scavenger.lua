@@ -660,7 +660,7 @@ local BossInfo = {
 	[3061246416] = {name = "Minotaur", lootTier = 2},
 	[1057828479] = {name = "Goreminotaur", lootTier = 3},
 	[2133916449] = {name = "Drake", lootTier = 4},
-	[3538966457] = {name = "Lesser Dragon", lootTier = 5},
+	[3538966457] = {name = "Lesser Dragon", lootTier = 6},
 	[2631267673] = {name = "Dragon", lootTier = 6},
 	[169713426] = {name = "Garm", lootTier = 3},
 	[247902159] = {name = "Warg", lootTier = 4},
