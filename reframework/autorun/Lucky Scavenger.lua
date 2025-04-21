@@ -628,48 +628,28 @@ sdk.hook(
 sdk.hook(
     sdk.find_type_definition("app.gm80_001"):get_method("getItem"),
     function(args)
-        shuffleTable(ChestItems)
-        local randomIndex = math.random(1, #ChestItems)
-        local tmp = ChestItems[randomIndex]
-        local experience = get_AverageEnemyExperience()
-        local selectedItem = nil 
-        if experience > 0 then 
-            selectedItem = getItemByExperience(tmp, experience, false) 
-        else
-            selectedItem = getItemByLevel(tmp)
-        end
-        local this = sdk.to_managed_object(args[2])
-        local ItemList = this.ItemList
-        if ItemList ~= nil then
-            if selectedItem ~= nil and math.random(0, 99) < ChestFind then
-                local newItem = sdk.create_instance("app.gm80_001.ItemParam")
+        if math.random(0, 99) < ChestFind then
+            generate_chest_loot(ChestItems)
+            ChestFind = 0
+
+            randomIndex = math.random(1, #BonusChestItems)
+            tmp = BonusChestItems[randomIndex]
+            selectedItem = getRandomItem(tmp)
+            if BonusChestLoot and selectedItem ~= nil and math.random(0, 99) < BonusChestLootChance then
+                newItem = sdk.create_instance("app.gm80_001.ItemParam")
                 newItem.ItemId = selectedItem.id
                 newItem.ItemNum = 1
-                local itemName = selectedItem.name
-                local txtColor = config.GearTextColor
-                local bgColor = config.GearBackgroundColor
-                Log("Lucky Find!: Received " .. itemName .. " ( Rank " .. string.format("%d", math.floor(selectedItem.level)) .. " )", txtColor, bgColor)
+                --getItemData(System.Int32)
+                itemName = selectedItem.name
+                local txtColor = config.ItemTextColor
+                local bgColor = config.ItemBackgroundColor
+                Log("Lucky Find!: Received " .. itemName .. " ( " .. string.format("%d", math.floor(selectedItem.level)) .. " Rarity ! )",txtColor,bgColor)
                 ItemList:Add(newItem)
-                ChestFind = 0
-                randomIndex = math.random(1, #BonusChestItems)
-                tmp = BonusChestItems[randomIndex]
-                selectedItem = getRandomItem(tmp)
-                if BonusChestLoot and selectedItem ~= nil and math.random(0, 99) < BonusChestLootChance then
-                    newItem = sdk.create_instance("app.gm80_001.ItemParam")
-                    newItem.ItemId = selectedItem.id
-                    newItem.ItemNum = 1
-                    --getItemData(System.Int32)
-                    itemName = selectedItem.name
-                    local txtColor = config.ItemTextColor
-                    local bgColor = config.ItemBackgroundColor
-                    Log("Lucky Find!: Received " .. itemName .. " ( " .. string.format("%d", math.floor(selectedItem.level)) .. " Rarity ! )",txtColor,bgColor)
-                    ItemList:Add(newItem)
-                end
-                DumpSaveData()
-            else
-                ChestFind = ChestFind + ChestDropRate
-                DumpSaveData()
             end
+            DumpSaveData()
+        else
+            ChestFind = ChestFind + ChestDropRate
+            DumpSaveData()
         end
     end, nil
 )
@@ -794,6 +774,67 @@ local function generate_boss_loot(lootTable, bossTier)
         txtColor = config.BossDropTextColor
         txtColor = config.BossDropBackgroundColor
         Log("Boss Find!: Received " .. itemName .. " ( Rank " .. string.format("%d", math.floor(selectedItem.level)) .. "/" .. maxItemRankAllowed .. " )", txtColor, bgColor)
+        AddItem(newItem)
+    end
+end
+
+local function generate_chest_loot(lootTable)
+    -- Pick a list of items among the lootTable, see Weapons for instance
+    shuffleTable(lootTable)
+    local randomIndex = math.random(1, #lootTable)
+    local itemList = lootTable[randomIndex]
+    if not itemList then
+        shuffleTable(lootTable)
+        local randomIndex = math.random(1, #lootTable)
+        local itemList = lootTable[randomIndex]
+    end
+
+    local available_items = {}
+
+    chestTier = math.floor(math.random(10,22)/10) -- Mostly Tier 1, some rare Tier 2
+
+    -- Defines loot quality based on the boss rank and the items list length
+    local rankScaler = chestTier/#itemList
+    local maxItemRankAllowed = math.ceil(chestTier / rankScaler)
+    local minItemRankAllowed = 1 -- Ensures that strong chests don't drop bad items
+
+    if maxItemRankAllowed < 1 then
+        maxItemRankAllowed = 1
+    end
+
+    bigListRandomizer = (math.random(8,13) / 10)
+    if maxItemRankAllowed > 19 then
+        maxItemRankAllowed = math.ceil(maxItemRankAllowed * bigListRandomizer)
+    end
+
+    --printlog("Chest tier: " .. chestTier .. " | Rank Scaler:" .. rankScaler .. " | maxItemRankAllowed:" .. maxItemRankAllowed .. " | minItemRankAllowed:" .. minItemRankAllowed .. " | bigListRandomizer: " .. bigListRandomizer)
+
+    for index, item in ipairs(itemList) do
+        local itemRank = index -- just so code is more clear but both are equal
+        if itemRank <= maxItemRankAllowed then
+            Debug("name: " .. item.item_name .. " rank: " .. itemRank)
+            --printlog("name: " .. item.item_name .. " rank: " .. itemRank)
+            table.insert(available_items, {name = item.item_name, id = item.id, item_index = index, level = itemRank}) -- whatever is done with those in other functions, left untouched
+        end
+    end
+
+    -- Select a random item from the filtered list of available items
+    if #available_items > 0 then
+        local selectedIndex = math.random(minItemRankAllowed, #available_items)
+        selectedItem = available_items[selectedIndex]
+    else
+        selectedIndex = 1
+        selectedItem = available_items[selectedIndex]
+    end
+
+    if selectedItem then
+        local newItem = sdk.create_instance("app.gm80_001.ItemParam")
+        newItem.ItemId = selectedItem.id
+        newItem.ItemNum = 1
+        local itemName = selectedItem.name
+        txtColor = config.GearTextColor
+        txtColor = config.GearBackgroundColor
+        Log("Chest Find!: Received " .. itemName .. " ( Rank " .. string.format("%d", math.floor(selectedItem.level)) .. "/" .. maxItemRankAllowed .. " )", txtColor, bgColor)
         AddItem(newItem)
     end
 end
