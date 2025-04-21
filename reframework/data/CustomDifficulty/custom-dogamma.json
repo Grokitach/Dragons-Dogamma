@@ -14,27 +14,27 @@
         "player": 2.25
     },
     "damageDealtModifier": {
-        "hiredPawn": 0.6499999761581421,
+        "hiredPawn": 0.65,
         "mainPawn": 1.0,
         "other": 1.0,
-        "strayPawn": 0.6499999761581421
+        "strayPawn": 0.65
     },
     "damageTakenModifier": {
         "enemyBoss": {
             "1": 1.0,
-            "2": 0.6000000238418579,
-            "3": 0.6000000238418579,
-            "4": 0.4000000059604645
+            "2": 0.60,
+            "3": 0.60,
+            "4": 0.40
         },
         "enemySmall": {
             "1": 1.0,
-            "2": 0.699999988079071,
-            "3": 0.6000000238418579,
-            "4": 0.4000000059604645
+            "2": 0.70,
+            "3": 0.60,
+            "4": 0.40
         },
         "other": 1.0,
         "partyPawn": 1.0,
-        "player": 1.399999976158142
+        "player": 1.4
     },
     "debilitationModifier": {
         "byType": {
@@ -52,7 +52,7 @@
         "enemySmall": 1.0,
         "other": 1.0,
         "partyPawn": 1.0,
-        "player": 0.800000011920929
+        "player": 1.0
     },
     "dynamicAdjustments": {
         "night": {
@@ -509,9 +509,9 @@
         },
         "ch229000_00": {
             "damageTaken": 50,
-            "damageToOthers": 30,
-            "damageToPlayer": 30,
-            "staggerImpact": 35
+            "damageToOthers": 85,
+            "damageToPlayer": 85,
+            "staggerImpact": 50
         },
         "ch230000_01": {
             "damageTaken": -20,
@@ -865,12 +865,12 @@
     },
     "healing": {
         "anodyneHealRateModifier": 1.0,
-        "curativeHoT": false,
-        "curativeHoTDuration": 4.900000095367432,
+        "curativeHoT": true,
+        "curativeHoTDuration": 6.0,
         "healthCurativeModifier": 1.0,
         "preventDeathCheeseHealing": true,
         "preventIncapacitatedHealing": true,
-        "preventInventoryHealing": true,
+        "preventInventoryHealing": false,
         "staminaCurativeModifier": 1.0
     },
     "leanModifier": {
