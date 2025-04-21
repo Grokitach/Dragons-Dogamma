@@ -22,15 +22,15 @@
     "damageTakenModifier": {
         "enemyBoss": {
             "1": 1.0,
-            "2": 0.60,
-            "3": 0.60,
-            "4": 0.40
+            "2": 0.6,
+            "3": 0.6,
+            "4": 0.4
         },
         "enemySmall": {
             "1": 1.0,
-            "2": 0.70,
-            "3": 0.60,
-            "4": 0.40
+            "2": 0.7,
+            "3": 0.6,
+            "4": 0.4
         },
         "other": 1.0,
         "partyPawn": 1.0,
@@ -69,14 +69,14 @@
     "economy": {
         "campKitBreakOnUse": false,
         "campKitBuyPriceModifier": 2.0,
-        "campKitWeightModifier": 0.20,
+        "campKitWeightModifier": 0.2,
         "curativesBuyPriceModifier": 2.5,
         "curativesSellPriceModifier": 1.0,
-        "curativesWeightModifier": 0.40,
+        "curativesWeightModifier": 0.4,
         "gearBuyPriceModifier": 1.0,
         "gearEnhanceGoldModifier": 8.0,
         "gearEnhanceMaterialModifier": 2.0,
-        "gearSellPriceModifier": 0.30,
+        "gearSellPriceModifier": 0.3,
         "gearWeightModifier": 0.35,
         "goldDropModifier": 1.0,
         "materialsBuyPriceModifier": 1.5,
@@ -84,7 +84,7 @@
         "materialsWeightModifier": 0.35,
         "otherImplementsBuyPriceModifier": 1.5,
         "otherImplementsSellPriceModifier": 1.0,
-        "otherImplementsWeightModifier": 0.40
+        "otherImplementsWeightModifier": 0.4
     },
     "enemyAdjustments": {
         "ch220000_00": {
@@ -337,13 +337,13 @@
             "damageTaken": 80,
             "damageToOthers": 80,
             "damageToPlayer": 80,
-            "staggerImpact": 60
+            "staggerImpact": 20
         },
         "ch222003_20": {
             "damageTaken": 80,
             "damageToOthers": 80,
             "damageToPlayer": 80,
-            "staggerImpact": 60
+            "staggerImpact": 20
         },
         "ch223000_00": {
             "damageTaken": -40,
@@ -838,10 +838,10 @@
             "staggerImpact": 25
         },
         "ch257001_00": {
-            "damageTaken": 70,
-            "damageToOthers": 65,
-            "damageToPlayer": 65,
-            "staggerImpact": 60
+            "damageTaken": 40,
+            "damageToOthers": 45,
+            "damageToPlayer": 45,
+            "staggerImpact": 25
         },
         "ch260000_00": {
             "damageTaken": 25,
