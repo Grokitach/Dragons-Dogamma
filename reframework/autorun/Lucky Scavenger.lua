@@ -765,7 +765,7 @@ local function generate_chest_loot(lootTable)
     chestTier = math.floor(math.random(10,21)/10) -- Mostly Tier 1, some rare Tier 2
 
     -- Defines loot quality based on the boss rank and the items list length
-    local rankScaler = chestTier/#itemList
+    local rankScaler = bossMaxRank/#itemList
     local maxItemRankAllowed = math.ceil(chestTier / rankScaler)
     local minItemRankAllowed = 1 -- Ensures that strong chests don't drop bad items
 
