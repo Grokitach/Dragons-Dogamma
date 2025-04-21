@@ -674,7 +674,7 @@ local AreaInfo = {
 	[4] = {name = "Vermund to Battalh 1", chestTiers = {1,1,1,2,2}},
 	[5] = {name = "Vermund to Battalh 2", chestTiers = {1,1,1,2,2}},
 	[6] = {name = "Misty Marshes", chestTiers = {1,1,1,1,2}},
-	[7] = {name = "Unmoored World", chestTiers = {3,3,3,4,4,4,4,4,4,4,5,5,5,6}},
+	[7] = {name = "Unmoored World", chestTiers = {3,3,4,4,4,4,4,4,4,4,5,5,5,6}},
 }
 
 local bossMaxRank = 6
