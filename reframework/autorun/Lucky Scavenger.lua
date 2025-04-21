@@ -1,5 +1,6 @@
 local modname="Lucky Scavenger"
---local printlog = require("CustomDifficulty/logger").Log
+local WeatherManager = sdk.get_managed_singleton("app.WeatherManager")
+--printlog = require("CustomDifficulty/logger").Log
 local configfile=modname.."/Config.json"
 local _config={
     {name="Enable Random Enhancements", type="bool", default=true},
@@ -660,10 +661,20 @@ local BossInfo = {
 	[3061246416] = {name = "Minotaur", lootTier = 2},
 	[1057828479] = {name = "Goreminotaur", lootTier = 3},
 	[2133916449] = {name = "Drake", lootTier = 4},
-	[3538966457] = {name = "Lesser Dragon", lootTier = 6},
+	[3538966457] = {name = "Lesser Dragon", lootTier = 5},
 	[2631267673] = {name = "Dragon", lootTier = 6},
 	[169713426] = {name = "Garm", lootTier = 3},
 	[247902159] = {name = "Warg", lootTier = 4},
+}
+
+local AreaInfo = {
+	[1] = {name = "Vermund", chestTiers = {1,1,1,1,1,2}},
+	[2] = {name = "Battalh", chestTiers = {1,2,2,2,2,2,2,3,3}},
+	[3] = {name = "Volcanic Island", chestTiers = {2,3,3,3,3,3,3,4}},
+	[4] = {name = "Vermund to Battalh 1", chestTiers = {1,1,1,2,2}},
+	[5] = {name = "Vermund to Battalh 2", chestTiers = {1,1,1,2,2}},
+	[6] = {name = "Misty Marshes", chestTiers = {1,1,1,1,2}},
+	[7] = {name = "Unmoored World", chestTiers = {3,3,3,4,4,4,4,4,4,4,5,5,5,6}},
 }
 
 local bossMaxRank = 6
@@ -684,6 +695,10 @@ local function flush_looted()
 		    end
         end
 	end
+end
+
+local function get_area()
+    return WeatherManager._NowArea
 end
 
 local function generate_boss_loot(lootTable, bossTier)
@@ -750,6 +765,7 @@ local function generate_boss_loot(lootTable, bossTier)
 end
 
 local function generate_chest_loot(lootTable)
+
     -- Pick a list of items among the lootTable, see Weapons for instance
     shuffleTable(lootTable)
     local randomIndex = math.random(1, #lootTable)
@@ -762,7 +778,12 @@ local function generate_chest_loot(lootTable)
 
     local available_items = {}
 
-    chestTier = math.floor(math.random(10,21)/10) -- Mostly Tier 1, some rare Tier 2
+    local area = get_area()
+    --printlog("Openning a chest in : " .. area)
+    local info = AreaInfo[area]
+    local tierList = info.chestTiers
+    local tierIndex = math.random(1,#tierList)
+    local chestTier = tierList[tierIndex]
 
     -- Defines loot quality based on the boss rank and the items list length
     local rankScaler = bossMaxRank/#itemList
