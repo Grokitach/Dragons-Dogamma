@@ -1,5 +1,5 @@
 local modname="Lucky Scavenger"
-local printlog = require("CustomDifficulty/logger").Log
+--local printlog = require("CustomDifficulty/logger").Log
 local configfile=modname.."/Config.json"
 local _config={
     {name="Enable Random Enhancements", type="bool", default=true},
@@ -683,6 +683,7 @@ local BossInfo = {
 	[3566561083] = {name = "Lich", lootTier = 2},
 	[186889532] = {name = "Wight", lootTier = 1},
 	[2629601821] = {name = "Dullahan", lootTier = 5},
+    [4200835371] = {name = "Cyclops (all)", lootTier = 1},
 	[797468852] = {name = "Cyclops (with club)", lootTier = 1},
 	[2314122076] = {name = "Cyclops (unarmed)", lootTier = 1},
 	[597201144] = {name = "Cyclops (armored) ", lootTier = 2},
@@ -766,13 +767,13 @@ local function generate_boss_loot(lootTable, bossTier)
         maxItemRankAllowed = math.ceil(maxItemRankAllowed * bigListRandomizer)
     end
 
-    printlog("Boss tier: " .. bossTier .. " | Rank Scaler:" .. rankScaler .. " | maxItemRankAllowed:" .. maxItemRankAllowed .. " | minItemRankAllowed:" .. minItemRankAllowed .. " | bigListRandomizer: " .. bigListRandomizer)
+    --printlog("Boss tier: " .. bossTier .. " | Rank Scaler:" .. rankScaler .. " | maxItemRankAllowed:" .. maxItemRankAllowed .. " | minItemRankAllowed:" .. minItemRankAllowed .. " | bigListRandomizer: " .. bigListRandomizer)
 
     for index, item in ipairs(itemList) do
         local itemRank = index -- just so code is more clear but both are equal
         if itemRank <= maxItemRankAllowed then
             Debug("name: " .. item.item_name .. " rank: " .. itemRank)
-            printlog("name: " .. item.item_name .. " rank: " .. itemRank)
+            --printlog("name: " .. item.item_name .. " rank: " .. itemRank)
             table.insert(available_items, {name = item.item_name, id = item.id, item_index = index, level = itemRank}) -- whatever is done with those in other functions, left untouched
         end
     end
@@ -808,9 +809,19 @@ sdk.hook(
 		
 		local address = gatherContext:get_address() -- Unique per enemy, but is the same if you loot the same enemy twice
 		if AlreadyLooted[address] then return end
+        --printlog(this._CharaId)
 		local info = BossInfo[this._CharaId]
 		local isBoss = info ~= nil
 		local bossLootTier = info and info.lootTier
+
+        if this._CharaId == "4200835371" then
+            cyclopTier = math.random(1,10)
+            if cyclopTier <= 9 then
+                bossLootTier = 1
+            else
+                bossLootTier = 2
+            end
+        end
 
         if isBoss then
             local bossLootChance = GauranteedBossDrops
@@ -818,10 +829,10 @@ sdk.hook(
             local Bdrop = math.random(1,99)
             local Ldrop = math.random(1,99)
             local Wdrop = math.random(1,99)
-            printlog(Hdrop)
-            printlog(Bdrop)
-            printlog(Ldrop)
-            printlog(Wdrop)
+            --printlog(Hdrop)
+            --printlog(Bdrop)
+            --printlog(Ldrop)
+            --printlog(Wdrop)
 
             if Wdrop > bossLootChance and Hdrop > bossLootChance and Ldrop > bossLootChance and Bdrop > bossLootChance then -- Ensures atleast 1 loot per boss
                 unluckyDrop = math.random(1,4)
