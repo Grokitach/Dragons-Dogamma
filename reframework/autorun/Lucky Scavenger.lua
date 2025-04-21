@@ -625,35 +625,6 @@ sdk.hook(
     end
 )
 
-sdk.hook(
-    sdk.find_type_definition("app.gm80_001"):get_method("getItem"),
-    function(args)
-        if math.random(0, 99) < ChestFind then
-            generate_chest_loot(ChestItems)
-            ChestFind = 0
-
-            randomIndex = math.random(1, #BonusChestItems)
-            tmp = BonusChestItems[randomIndex]
-            selectedItem = getRandomItem(tmp)
-            if BonusChestLoot and selectedItem ~= nil and math.random(0, 99) < BonusChestLootChance then
-                newItem = sdk.create_instance("app.gm80_001.ItemParam")
-                newItem.ItemId = selectedItem.id
-                newItem.ItemNum = 1
-                --getItemData(System.Int32)
-                itemName = selectedItem.name
-                local txtColor = config.ItemTextColor
-                local bgColor = config.ItemBackgroundColor
-                Log("Lucky Find!: Received " .. itemName .. " ( " .. string.format("%d", math.floor(selectedItem.level)) .. " Rarity ! )",txtColor,bgColor)
-                ItemList:Add(newItem)
-            end
-            DumpSaveData()
-        else
-            ChestFind = ChestFind + ChestDropRate
-            DumpSaveData()
-        end
-    end, nil
-)
-
 local GuiManager = sdk.get_managed_singleton("app.GuiManager")
 
 -- The names are just for reference, they're not used for anything
@@ -791,7 +762,7 @@ local function generate_chest_loot(lootTable)
 
     local available_items = {}
 
-    chestTier = math.floor(math.random(10,22)/10) -- Mostly Tier 1, some rare Tier 2
+    chestTier = math.floor(math.random(10,21)/10) -- Mostly Tier 1, some rare Tier 2
 
     -- Defines loot quality based on the boss rank and the items list length
     local rankScaler = chestTier/#itemList
@@ -838,6 +809,37 @@ local function generate_chest_loot(lootTable)
         AddItem(newItem)
     end
 end
+
+sdk.hook(
+    sdk.find_type_definition("app.gm80_001"):get_method("getItem"),
+    function(args)
+        --printlog("Assessing Chest Loot...")
+
+        if math.random(0, 99) < ChestFind then
+            generate_chest_loot(ChestItems)
+            ChestFind = 0
+
+            randomIndex = math.random(1, #BonusChestItems)
+            tmp = BonusChestItems[randomIndex]
+            selectedItem = getRandomItem(tmp)
+            if BonusChestLoot and selectedItem ~= nil and math.random(0, 99) < BonusChestLootChance then
+                newItem = sdk.create_instance("app.gm80_001.ItemParam")
+                newItem.ItemId = selectedItem.id
+                newItem.ItemNum = 1
+                --getItemData(System.Int32)
+                itemName = selectedItem.name
+                local txtColor = config.ItemTextColor
+                local bgColor = config.ItemBackgroundColor
+                Log("Lucky Find!: Received " .. itemName .. " ( " .. string.format("%d", math.floor(selectedItem.level)) .. " Rarity ! )",txtColor,bgColor)
+                ItemList:Add(newItem)
+            end
+            DumpSaveData()
+        else
+            ChestFind = ChestFind + ChestDropRate
+            DumpSaveData()
+        end
+    end, nil
+)
 
 sdk.hook(
     sdk.find_type_definition("app.ItemDropParam"):get_method("getFumbleLotItem(app.GatherContext, System.Int32, System.Int32)"),
