@@ -663,8 +663,6 @@ local BossInfo = {
 	[2133916449] = {name = "Drake", lootTier = 4},
 	[3538966457] = {name = "Lesser Dragon", lootTier = 6},
 	[2631267673] = {name = "Dragon", lootTier = 6},
-	[169713426] = {name = "Garm", lootTier = 3},
-	[247902159] = {name = "Warg", lootTier = 4},
 }
 
 local AreaInfo = {
@@ -872,6 +870,8 @@ sdk.hook(
 		
 		local address = gatherContext:get_address() -- Unique per enemy, but is the same if you loot the same enemy twice
 		if AlreadyLooted[address] then return end
+        if this._CharaId == "3538966457" and WeatherManager._NowArea == 1 then return end
+
         --printlog(this._CharaId)
 		local info = BossInfo[this._CharaId]
 		local isBoss = info ~= nil
