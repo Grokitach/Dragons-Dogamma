@@ -300,7 +300,9 @@ local function pick_a_class()
     shuffleTable(ClassRollTable)
     local ClassRoll = math.random(1,#ClassRollTable)
     local ClassPicked = ClassRollTable[ClassRoll]
-    
+
+    --printlog("Vocation picked: " .. ClassPicked)
+
     return ClassPicked
 end
 
@@ -715,9 +717,7 @@ local function generate_boss_loot(lootTable, bossTier)
     end
 
     bigListRandomizer = (math.random(9,11) / 10)
-    if maxItemRankAllowed > 19 then
-        maxItemRankAllowed = math.ceil(maxItemRankAllowed * bigListRandomizer)
-    end
+    maxItemRankAllowed = math.ceil(maxItemRankAllowed * bigListRandomizer)
 
     --printlog("Boss tier: " .. bossTier .. " | Rank Scaler:" .. rankScaler .. " | maxItemRankAllowed:" .. maxItemRankAllowed .. " | minItemRankAllowed:" .. minItemRankAllowed .. " | bigListRandomizer: " .. bigListRandomizer)
 
@@ -780,10 +780,8 @@ local function generate_chest_loot(lootTable)
         maxItemRankAllowed = 1
     end
 
-    bigListRandomizer = (math.random(8,13) / 10)
-    if maxItemRankAllowed > 19 then
-        maxItemRankAllowed = math.ceil(maxItemRankAllowed * bigListRandomizer)
-    end
+    bigListRandomizer = (math.random(9,11) / 10)
+    maxItemRankAllowed = math.floor(maxItemRankAllowed * bigListRandomizer)
 
     --printlog("Chest tier: " .. chestTier .. " | Rank Scaler:" .. rankScaler .. " | maxItemRankAllowed:" .. maxItemRankAllowed .. " | minItemRankAllowed:" .. minItemRankAllowed .. " | bigListRandomizer: " .. bigListRandomizer)
 
