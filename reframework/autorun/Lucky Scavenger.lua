@@ -79,7 +79,7 @@ local ChestFind = 0
 local BodyFind = 0
 local GimmickFind = 0
 local EndGameExperienceScaler = 25000
-
+local EndGameLevel = 80
 local archer = config["Archer Gear Chance"]
 local fighter = config["Fighter Gear Chance"]
 local mage = config["Mage Gear Chance"]
@@ -777,7 +777,11 @@ local function generate_chest_loot(lootTable)
     -- Defines loot quality based on the boss rank and the items list length
     local rankScaler = bossMaxRank/#itemList
     local maxItemRankAllowed = math.ceil(chestTier / rankScaler)
-    local minItemRankAllowed = 1 -- Ensures that strong chests don't drop bad items
+    local minItemRankAllowed = math.floor((chestTier - 1) / rankScaler) -- Ensures that strong chests don't drop bad items
+
+    if chestTier == 6 then
+        local minItemRankAllowed = math.floor((chestTier - 2) / rankScaler)
+    end
 
     if maxItemRankAllowed < 1 then
         maxItemRankAllowed = 1
