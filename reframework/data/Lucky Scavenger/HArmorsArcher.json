@@ -1,0 +1,22 @@
+[
+	{"id": "4000", "item_name": "Wanderer's Hood"},
+    {"id": "4119", "item_name": "Marcher's Helm"},
+    {"id": "4074", "item_name": "Felt Cap"},
+    {"id": "4075", "item_name": "Scout's Hood"},
+    {"id": "4090", "item_name": "Hard-Leather Helm"},
+    {"id": "4081", "item_name": "Plumed Cap"},
+    {"id": "4019", "item_name": "Howling Hood"},
+    {"id": "4133", "item_name": "Farseer's Circlet"},
+    {"id": "4078", "item_name": "Aerie's Watch"},
+    {"id": "4126", "item_name": "Tail of Simurgh"},
+    {"id": "4050", "item_name": "Sage's Hood"},
+	{"id": "4131", "item_name": "Gnostic Wings"},
+    {"id": "4034", "item_name": "Battahli Turban"},
+    {"id": "4085", "item_name": "Griffin-Feather Hood"},
+    {"id": "4130", "item_name": "Twilight Star"},
+	{"id": "4083", "item_name": "Galewind Helm"},
+    {"id": "4132", "item_name": "Hood of Nonentity"},
+    {"id": "4102", "item_name": "Predator's Maw"},
+	{"id": "4087", "item_name": "Cavalier Hat"},
+    {"id": "4115", "item_name": "Confidant's Hood"}
+]

@@ -3,6 +3,15 @@ local WeatherManager = sdk.get_managed_singleton("app.WeatherManager")
 --printlog = require("CustomDifficulty/logger").Log
 local configfile=modname.."/Config.json"
 local _config={
+    {name="Archer Gear Chance", type="int", default=10, min=0, max=100},
+    {name="Fighter Gear Chance", type="int", default=10, min=0, max=100},
+    {name="Mage Gear Chance", type="int", default=10, min=0, max=100},
+    {name="Magick Archer Gear Chance", type="int", default=10, min=0, max=100},
+    {name="Mystic Spearhand Gear Chance", type="int", default=10, min=0, max=100},
+    {name="Sorcerer Gear Chance", type="int", default=10, min=0, max=100},
+    {name="Thief Gear Chance", type="int", default=10, min=0, max=100},
+    {name="Trickster Gear Chance", type="int", default=10, min=0, max=100},
+    {name="Warrior Gear Chance", type="int", default=10, min=0, max=100},
     {name="Enable Random Enhancements", type="bool", default=true},
     {name="Enhancement Chance", type="int", default=15, min=0, max=100},
     {name="Max Enhancement Slots", type="int", default=4, min=1, max=4},
@@ -10,21 +19,20 @@ local _config={
     {name="Battahli Rate", type="int", default=5, min=0, max=10},
     {name="Elven Rate", type="int", default=5, min=0, max=10},
     {name="Dwarven Rate", type="int", default=2, min=0, max=10},
-    {name="Gear Level Scaling", type="int", default=100, min=50, max=200, tip="Effects chest drop item tiers.  This should be equal to predicted end game levels"},
-    {name="Chest Drop Rate",type="int",default=5,min=1,max=100, tip="How often chests are likely to spawn extra items/materials/gear"},
-    {name="Body Drop Rate",type="int",default=3,min=1,max=100, tip="How often corpses are likely to spawn extra items/materials/gear"},
-    {name="Gimmick Drop Rate",type="int",default=3,min=1,max=10, tip="How often environmental objects are likely to spawn extra items/materials"},
-    {name="Super Lucky Find Gear Chance", type="int",default=5,min=1,max=100, tip="On occasion a lucky find will drop higher tier gear than normal"},
-    {name="Super Lucky Find Gear Rank Offset", type="int",default=1,min=1,max=3, tip="The number of ranks to make an item available"},
-    {name="Bonus Chest Loot",type="bool",default=true, tip="Whether items along with gear also drop from chests."},
+--    {name="Body Drop Rate",type="int",default=3,min=1,max=100, tip="How often corpses are likely to spawn extra items/materials/gear"},
+--    {name="Super Lucky Find Gear Chance", type="int",default=5,min=1,max=100, tip="On occasion a lucky find will drop higher tier gear than normal"},
+--    {name="Super Lucky Find Gear Rank Offset", type="int",default=1,min=1,max=3, tip="The number of ranks to make an item available"},
+    {name="Chest Drop Rate",type="int",default=5,min=1,max=100, tip="How often chests are likely to spawn gear"},
+    {name="Bonus Chest Loot",type="bool",default=true, tip="Whether items along with gear also drop from chests"},
     {name="Bonus Chest Loot Chance",type="int",default=25,min=1,max=100, tip="Chance for extra items that aren't gear to drop from chests"},
-    {name="Bodies Drop Extra Items",type="bool",default=false, tip="Whether items drop from corpses at all"},
-    {name="Bodies Drop Gear",type="bool",default=true, tip="Whether gear drops from corpses at all"},
-    {name="Bodies Drop Gear Chance",type="int",default=15,min=1,max=100, tip="Chance for gear to drop from all corpses"},
-    {name="Boss Drop Percentage",type="int",default=100,min=1,max=100, tip="Gear Drop Chance from Bosses"},
-    {name="Boss Drop Gear Rank Threshold",type="int",default=3,min=1,max=10, tip="Lower Values -> Higher Quality (Tighten's possible gear range of boss)"},
-    {name="Effect Body Loot",type="bool",default=true, tip="Enable/Disable extra items corpses"},
+--    {name="Bodies Drop Extra Items",type="bool",default=false, tip="Whether items drop from corpses at all"},
+--    {name="Bodies Drop Gear",type="bool",default=true, tip="Whether gear drops from corpses at all"},
+--    {name="Bodies Drop Gear Chance",type="int",default=15,min=1,max=100, tip="Chance for gear to drop from all corpses"},
+    {name="Boss Gear Drop Chance",type="int",default=100,min=1,max=100, tip="Gear Drop Chance from Bosses"},
+--    {name="Boss Drop Gear Rank Threshold",type="int",default=3,min=1,max=10, tip="Lower Values -> Higher Quality (Tighten's possible gear range of boss)"},
+--    {name="Effect Body Loot",type="bool",default=true, tip="Enable/Disable extra items corpses"},
     {name="Effect Gimmick Loot",type="bool",default=false, tip="Enable/Disable extra items environmental objects"},
+    {name="Gimmick Drop Rate",type="int",default=3,min=1,max=10, tip="How often environmental objects are likely to spawn extra items/materials"},
     {name="Enable Notifications",type="bool",default=true},
     {name="TestTextBox", type="bool", default=false},
     {name="DockRight", type="bool", default=false},
@@ -64,22 +72,32 @@ local ChestFind = 0
 local BodyFind = 0
 local GimmickFind = 0
 local EndGameExperienceScaler = 25000
-local EndGameLevel = config["Gear Level Scaling"]
+
+local archer = config["Archer Gear Chance"]
+local fighter = config["Fighter Gear Chance"]
+local mage = config["Mage Gear Chance"]
+local magick_archer = config["Magick Archer Gear Chance"]
+local mystic_spearhand = config["Mystic Spearhand Gear Chance"]
+local sorcerer = config["Sorcerer Gear Chance"]
+local thief = config["Thief Gear Chance"]
+local trickster = config["Trickster Gear Chance"]
+local warrior = config["Warrior Gear Chance"]
+
 local EnableNotifications = config["Enable Notifications"]
 local GimmickDropRate = config["Gimmick Drop Rate"]
-local BodyDropRate = config["Body Drop Rate"]
+--local BodyDropRate = config["Body Drop Rate"]
 local ChestDropRate = config["Chest Drop Rate"]
-local SuperLuckyFindGearDropChance = config["Super Lucky Find Gear Chance"]
-local SuperLuckyFindGearLevelingFactor = config["Super Lucky Find Gear Rank Offset"]
-local EffectBodyLoot = config["Effect Body Loot"]
+--local SuperLuckyFindGearDropChance = config["Super Lucky Find Gear Chance"]
+--local SuperLuckyFindGearLevelingFactor = config["Super Lucky Find Gear Rank Offset"]
+--local EffectBodyLoot = config["Effect Body Loot"]
 local EffectGimmickLoot = config["Effect Gimmick Loot"]
 local BonusChestLoot = config["Bonus Chest Loot"]
 local BonusChestLootChance = config["Bonus Chest Loot Chance"]
-local BonusBodyLoot = config["Bodies Drop Gear"]
-local BonusBodyLootChance = config["Bodies Drop Gear Chance"]
-local BodiesDropExtraItems = config["Bodies Drop Extra Items"]
-local GauranteedBossDrops = config["Boss Drop Percentage"]
-local BossDropGearScale = config["Boss Drop Gear Rank Threshold"]
+--local BonusBodyLoot = config["Bodies Drop Gear"]
+--local BonusBodyLootChance = config["Bodies Drop Gear Chance"]
+--local BodiesDropExtraItems = config["Bodies Drop Extra Items"]
+local GauranteedBossDrops = config["Boss Gear Drop Chance"]
+--local BossDropGearScale = config["Boss Drop Gear Rank Threshold"]
 local EnableRandomEnhancements = false
 local EnhancementChance = 0
 local MaxEnhancementSlots = config["Max Enhancement Slots"]
@@ -117,6 +135,37 @@ local tmpMagickalBows = json.load_file(modname .. "/MagickalBows.json")
 local tmpStaffs = json.load_file(modname .. "/Staffs.json")
 local tmpSwords = json.load_file(modname .. "/Swords.json")
 local tmpShields = json.load_file(modname .. "/Shields.json")
+
+local tmpBArmorsArcher = json.load_file(modname .. "/BArmorsArcher.json")
+local tmpBArmorsFighter = json.load_file(modname .. "/BArmorsFighter.json")
+local tmpBArmorsMage = json.load_file(modname .. "/BArmorsMage.json")
+local tmpBArmorsMagickArcher = json.load_file(modname .. "/BArmorsMagickArcher.json")
+local tmpBArmorsMystic = json.load_file(modname .. "/BArmorsMystic.json")
+local tmpBArmorsSorcerer = json.load_file(modname .. "/BArmorsSorcerer.json")
+local tmpBArmorsThief = json.load_file(modname .. "/BArmorsThief.json")
+local tmpBArmorsTrickster = json.load_file(modname .. "/BArmorsTrickster.json")
+local tmpBArmorsWarrior = json.load_file(modname .. "/BArmorsWarrior.json")
+
+local tmpHArmorsArcher = json.load_file(modname .. "/HArmorsArcher.json")
+local tmpHArmorsFighter = json.load_file(modname .. "/HArmorsFighter.json")
+local tmpHArmorsMage = json.load_file(modname .. "/HArmorsMage.json")
+local tmpHArmorsMagickArcher = json.load_file(modname .. "/HArmorsMagickArcher.json")
+local tmpHArmorsMystic = json.load_file(modname .. "/HArmorsMystic.json")
+local tmpHArmorsSorcerer = json.load_file(modname .. "/HArmorsSorcerer.json")
+local tmpHArmorsThief = json.load_file(modname .. "/HArmorsThief.json")
+local tmpHArmorsTrickster = json.load_file(modname .. "/HArmorsTrickster.json")
+local tmpHArmorsWarrior = json.load_file(modname .. "/HArmorsWarrior.json")
+
+local tmpLArmorsArcher = json.load_file(modname .. "/LArmorsArcher.json")
+local tmpLArmorsFighter = json.load_file(modname .. "/LArmorsFighter.json")
+local tmpLArmorsMage = json.load_file(modname .. "/LArmorsMage.json")
+local tmpLArmorsMagickArcher = json.load_file(modname .. "/LArmorsMagickArcher.json")
+local tmpLArmorsMystic = json.load_file(modname .. "/LArmorsMystic.json")
+local tmpLArmorsSorcerer = json.load_file(modname .. "/LArmorsSorcerer.json")
+local tmpLArmorsThief = json.load_file(modname .. "/LArmorsThief.json")
+local tmpLArmorsTrickster = json.load_file(modname .. "/LArmorsTrickster.json")
+local tmpLArmorsWarrior = json.load_file(modname .. "/LArmorsWarrior.json")
+
 local GimmickItems = {tmpMaterials, tmpForage}
 local BodyItems = {tmpCuratives, tmpMaterials, tmpImplements}
 local ChestItems = {tmpHeadArmor, tmpBodyArmor, tmpLegArmor, tmpRings, tmpCloaks, tmpArchistaffs, tmpBows, tmpCensers, 
@@ -125,7 +174,20 @@ local HArmors = {tmpHeadArmor}
 local BArmors = {tmpBodyArmor}
 local LArmors = {tmpLegArmor}
 local Weapons = {tmpArchistaffs, tmpBows, tmpCensers, tmpDaggers, tmpDuospears, tmpGreatSwords, tmpMagickalBows, tmpStaffs, tmpSwords, tmpShields}
-local BonusChestItems = {tmpCuratives, tmpMaterials, tmpImplements}
+local BonusChestItems = {tmpCuratives, tmpMaterials, tmpImplements, tmpCloaks}
+
+local VocationToLoot = {
+    ["Archer"] = {tmpBArmorsArcher, tmpHArmorsArcher, tmpLArmorsArcher, tmpBows},
+    ["Fighter"] = {tmpBArmorsFighter, tmpHArmorsFighter, tmpLArmorsFighter, tmpSwords, tmpShields},
+    ["Mage"] = {tmpBArmorsMage, tmpHArmorsMage, tmpLArmorsMage, tmpStaffs},
+    ["MagickArcher"] = {tmpBArmorsMagickArcher, tmpHArmorsMagickArcher, tmpLArmorsMagickArcher, tmpMagickalBows},
+    ["Mystic"] = {tmpBArmorsMystic, tmpHArmorsMystic, tmpLArmorsMystic, tmpDuospears},
+    ["Sorcerer"] = {tmpBArmorsSorcerer, tmpHArmorsSorcerer, tmpLArmorsSorcerer, tmpArchistaffs},
+    ["Thief"] = {tmpBArmorsThief, tmpHArmorsThief, tmpLArmorsThief, tmpDaggers},
+    ["Trickster"] = {tmpBArmorsTrickster, tmpHArmorsTrickster, tmpLArmorsTrickster, tmpCensers},
+    ["Warrior"] = {tmpBArmorsWarrior, tmpHArmorsWarrior, tmpLArmorsWarrior, tmpGreatSwords}
+}
+
 math.randomseed(os.time())
 
 local function Log(msg,tc,bgc)
@@ -179,6 +241,69 @@ loadSaveData()
 local Wakestone=77
 local WakestoneShards=78
 
+local function pick_a_class()
+    local ClassRollTable = {}
+    if archer > 0 then
+        for i = 1,archer do
+            table.insert(ClassRollTable, "Archer")
+        end
+    end
+
+    if fighter > 0 then
+        for i = 1,fighter do
+            table.insert(ClassRollTable, "Fighter")
+        end
+    end
+
+    if mage > 0 then
+        for i = 1,mage do
+            table.insert(ClassRollTable, "Mage")
+        end
+    end
+
+    if magick_archer > 0 then
+        for i = 1,magick_archer do
+            table.insert(ClassRollTable, "MagickArcher")
+        end
+    end
+
+    if mystic_spearhand > 0 then
+        for i = 1,mystic_spearhand do
+            table.insert(ClassRollTable, "Mystic")
+        end
+    end
+
+    if sorcerer > 0 then
+        for i = 1,sorcerer do
+            table.insert(ClassRollTable, "Sorcerer")
+        end
+    end
+
+    if thief > 0 then
+        for i = 1,thief do
+            table.insert(ClassRollTable, "Thief")
+        end
+    end
+
+    if trickster > 0 then
+        for i = 1,trickster do
+            table.insert(ClassRollTable, "Trickster")
+        end
+    end
+
+    if warrior > 0 then
+        for i = 1,warrior do
+            table.insert(ClassRollTable, "Warrior")
+        end
+    end
+
+    shuffleTable(ClassRollTable)
+    local ClassRoll = math.random(1,#ClassRollTable)
+    local ClassPicked = ClassRollTable[ClassRoll]
+    
+    return ClassPicked
+end
+
 local function AddItem(Item)
     local im=sdk.get_managed_singleton("app.ItemManager")
     local player_man=sdk.get_managed_singleton("app.CharacterManager")
@@ -207,97 +332,42 @@ local function AddItem(Item)
     end
 end
 
+local function shuffleTable(t)
+    for i = #t, 2, -1 do
+        local j = math.random(i)
+        t[i], t[j] = t[j], t[i]
+    end
+end
+
 local bat_mgr = sdk.get_managed_singleton("app.BattleManager")
 local em_mgr = sdk.get_managed_singleton("app.EnemyManager")
-
-local function getC(gameobj, component_name)
-	return gameobj:call("getComponent(System.Type)", sdk.typeof(component_name))
-end
-
-local recent_danger_rank = ""
-local recent_experience_calculation = 0
-
-local function get_EnemyDangerousRank()
-    local rank = bat_mgr:call("get_EnemyDangerousRank")
-    if rank == 1 then
-        recent_danger_rank = "Chick"
-    elseif rank == 2 then
-        recent_danger_rank = "Weak"
-    elseif rank == 3 then
-        recent_danger_rank = "Normal"
-    elseif rank == 4 then
-        recent_danger_rank = "Hard"
-    else
-        recent_danger_rank = "Danger"
-    end
-    return recent_danger_rank
-end
-
-function get_userdata_int(userdata)
-    local userdataStr = tostring(userdata)
-    local hexStr = userdataStr:gsub("userdata: ","")
-    local intValue = tonumber(hexStr,16)
-    return intValue
-end
-
-local function get_experience_amount(charID)
-    local char_mgr = sdk.get_managed_singleton("app.CharacterManager")
-    local exp_table = char_mgr:get_CharacterExperiencePointsTable()
-    local exp_rows = exp_table:get_field("ExpDataList")
-    for i=0, exp_rows:get_Count()-1 do
-        if exp_rows[i]:get_GetCharaID() == charID then 
-            return exp_rows[i]:get_GetExpAmount() 
-        end
-    end
-end
-
-local function get_AverageEnemyExperience()
-    local total_experience = 0
-    local count = 0
-    for i, enemy in pairs(em_mgr._EnemyList._items) do
-        if enemy then
-            local enemy_character = enemy:get_Chara()
-            local experience = get_experience_amount(enemy_character:get_CharaID())
-            if experience then
-                total_experience = total_experience + experience
-                count = count + 1
-            end
-        end 
-    end
-    return math.ceil(total_experience / count)
-end
-
-local function get_HighestEnemyExperience()
-    local highest_experience = 0
-    for i, enemy in pairs(em_mgr._EnemyList._items) do
-        if enemy then
-            local enemy_character = enemy:get_Chara()
-            local experience = get_experience_amount(enemy_character:get_CharaID())
-            if experience < highest_experience then highest_experience = experience end
-        end 
-    end
-    return math.ceil(highest_experience)
-end
-
 local font = imgui.load_font("Lucky Scavenger.otf", config.FontSize)
 
 re.on_frame(function()
-    EndGameLevel = config["Gear Level Scaling"]
+    archer = config["Archer Gear Chance"]
+    fighter = config["Fighter Gear Chance"]
+    mage = config["Mage Gear Chance"]
+    magick_archer = config["Magick Archer Gear Chance"]
+    mystic_spearhand = config["Mystic Spearhand Gear Chance"]
+    sorcerer = config["Sorcerer Gear Chance"]
+    thief = config["Thief Gear Chance"]
+    trickster = config["Trickster Gear Chance"]
+    warrior = config["Warrior Gear Chance"]
     EnableNotifications = config["Enable Notifications"]
     GimmickDropRate = config["Gimmick Drop Rate"]
-    BodyDropRate = config["Body Drop Rate"]
+--    BodyDropRate = config["Body Drop Rate"]
     ChestDropRate = config["Chest Drop Rate"]
-    SuperLuckyFindGearDropChance = config["Super Lucky Find Gear Chance"]
-    SuperLuckyFindGearLevelingFactor = config["Super Lucky Find Gear Rank Offset"]
-    EffectBodyLoot = config["Effect Body Loot"]
+--    SuperLuckyFindGearDropChance = config["Super Lucky Find Gear Chance"]
+--    SuperLuckyFindGearLevelingFactor = config["Super Lucky Find Gear Rank Offset"]
+--    EffectBodyLoot = config["Effect Body Loot"]
     EffectGimmickLoot = config["Effect Gimmick Loot"]
     BonusChestLoot = config["Bonus Chest Loot"]
     BonusChestLootChance = config["Bonus Chest Loot Chance"]
-    BonusBodyLoot = config["Bodies Drop Gear"]
-    BonusBodyLootChance = config["Bodies Drop Gear Chance"]
-    BodiesDropExtraItems = config["Bodies Drop Extra Items"]
-    GauranteedBossDrops = config["Boss Drop Percentage"]
-    BossDropGearScale = config["Boss Drop Gear Rank Threshold"]
+--    BonusBodyLoot = config["Bodies Drop Gear"]
+--    BonusBodyLootChance = config["Bodies Drop Gear Chance"]
+--    BodiesDropExtraItems = config["Bodies Drop Extra Items"]
+    GauranteedBossDrops = config["Boss Gear Drop Chance"]
+--    BossDropGearScale = config["Boss Drop Gear Rank Threshold"]
     EnhancementChance = config["Enhancement Chance"]
     MaxEnhancementSlots = config["Max Enhancement Slots"]
     VermudianRate = config["Vermudian Rate"]
@@ -374,12 +444,6 @@ re.on_frame(function()
     imgui.pop_font()
 end)
 
-local function shuffleTable(t)
-    for i = #t, 2, -1 do
-        local j = math.random(i)
-        t[i], t[j] = t[j], t[i]
-    end
-end
 local PlayerManager = sdk.get_managed_singleton("app.CharacterManager")
 local function GetPlayerManager()
     if PlayerManager == nil then PlayerManager = sdk.get_managed_singleton("app.CharacterManager") end
@@ -392,6 +456,7 @@ local function GetPlayer()
         return playerMgr:call("get_ManualPlayer()");
     end
 end
+
 local ItemManager = nil
 local itemID = nil
 local itemNum = nil
@@ -494,82 +559,6 @@ function (args)
         itemEventType = nil
     end
 end, enhance_item)
-
-local function get_PlayerLevel()
-    local CharacterManagerSingleton = sdk.get_managed_singleton('app.AppSingleton`1<app.CharacterManager>')
-    local CharacterManager = CharacterManagerSingleton:call('get_Instance')
-    local ManualPlayer = CharacterManager:call("get_ManualPlayer")
-    local Human = ManualPlayer:call("get_Human")
-    local StatusContext = Human:call("get_StatusContext")
-    local level = StatusContext:call("get_Level")
-    return level
-end
-
-local function getItemByLevel(itemList)
-    local sortedItems = itemList -- itemList is already an array
-
-    local item_pool_size = #sortedItems
-    local current_level = get_PlayerLevel()
-    local available_items = {}
-
-    for index, item in ipairs(sortedItems) do
-        local super_lucky = math.random(0,99)
-        local super_lucky_factor = 0
-        if super_lucky < SuperLuckyFindGearDropChance then
-            super_lucky_factor = math.random(1,SuperLuckyFindGearLevelingFactor)
-        end
-        local item_name = item.item_name
-        local itemId = item.id
-        local level_requirement = EndGameLevel / item_pool_size * (index-1) + 1
-
-        if current_level >= level_requirement - super_lucky_factor then
-            table.insert(available_items, {name=item_name, id=itemId, item_index=index, level=level_requirement, pool_size=item_pool_size})
-        end
-    end
-
-    if #available_items > 0 then
-        local i = math.random(1, #available_items)
-        return available_items[i]
-    end
-
-    return nil
-end
-
-local function getItemByExperience(itemList, experience, isBoss)
-    local available_items = {}
-    if experience == nil then
-        experience = 1
-    end
-    for index, item in ipairs(itemList) do
-        local super_lucky = math.random(0, 99)
-        local super_lucky_factor = 0
-        if super_lucky < SuperLuckyFindGearDropChance then
-            super_lucky_factor = math.random(1, SuperLuckyFindGearLevelingFactor)
-        end
-        local rank_adjuster = math.ceil(#itemList * .25)
-        if isBoss then
-            rank_adjuster = BossDropGearScale or 1
-            super_lucky_factor = 0
-        end
-        local experience_offset = EndGameExperienceScaler / #itemList
-        local item_rank = (experience_offset * index) / experience_offset
-        local item_rank_allowed = math.floor(experience / experience_offset) + 1
-        --and math.abs(experience - experience_requirement) <= experienceThreshold 
-        if item_rank_allowed >= item_rank - (super_lucky_factor) and item_rank >= item_rank_allowed - rank_adjuster then
-            Debug("name: " .. item.item_name .. " rank: " .. item_rank)
-            Debug("experience offset: " .. experience_offset)
-            table.insert(available_items, {name = item.item_name, id = item.id, item_index = index, level = item_rank})
-        end
-    end
-
-    -- Select a random item from the filtered list of available items
-    if #available_items > 0 then
-        local selectedIndex = math.random(1, #available_items)
-        return available_items[selectedIndex]
-    else
-        return nil
-    end
-end
 
 local function getRandomItem(itemList)
     math.randomseed(os.time())
@@ -763,7 +752,6 @@ local function generate_boss_loot(lootTable, bossTier)
 end
 
 local function generate_chest_loot(lootTable)
-
     -- Pick a list of items among the lootTable, see Weapons for instance
     shuffleTable(lootTable)
     local randomIndex = math.random(1, #lootTable)
@@ -835,7 +823,10 @@ sdk.hook(
         --printlog("Assessing Chest Loot...")
 
         if math.random(0, 99) < ChestFind then
-            generate_chest_loot(ChestItems)
+            Vocation = pick_a_class()
+            ChestLootTable = VocationToLoot[Vocation]
+
+            generate_chest_loot(ChestLootTable)
             ChestFind = 0
 
             randomIndex = math.random(1, #BonusChestItems)
@@ -917,17 +908,21 @@ sdk.hook(
                 end
             end
 
+            Vocation = pick_a_class()
+
+            BossLootTable = VocationToLoot[Vocation]
+
             if  Wdrop <= bossLootChance then
-                generate_boss_loot(Weapons, bossLootTier)
+                generate_boss_loot(BossLootTable[4], bossLootTier)
             end
             if  Ldrop <= bossLootChance then
-                generate_boss_loot(LArmors, bossLootTier)
+                generate_boss_loot(BossLootTable[3], bossLootTier)
             end
             if  Hdrop <= bossLootChance then
-                generate_boss_loot(HArmors, bossLootTier)
+                generate_boss_loot(BossLootTable[2], bossLootTier)
             end
             if  Bdrop <= bossLootChance then
-                generate_boss_loot(BArmors, bossLootTier)
+                generate_boss_loot(BossLootTable[1], bossLootTier)
             end
         end
 

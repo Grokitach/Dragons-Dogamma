@@ -1,0 +1,22 @@
+[
+	{"id": "4000", "item_name": "Wanderer's Hood"},
+    {"id": "4119", "item_name": "Marcher's Helm"},
+	{"id": "4001", "item_name": "Sentry's Coif"},
+    {"id": "4004", "item_name": "Soldier's Helm"},
+	{"id": "4123", "item_name": "Decapitator"},
+    {"id": "4007", "item_name": "Iron Helm"},
+    {"id": "4019", "item_name": "Howling Hood"},
+    {"id": "4133", "item_name": "Farseer's Circlet"},
+    {"id": "4122", "item_name": "Allesian Oxhide Hood"},
+    {"id": "4013", "item_name": "Winged Sallet"},
+	{"id": "4131", "item_name": "Gnostic Wings"},
+    {"id": "4134", "item_name": "Sergeant's Armet"},
+    {"id": "4009", "item_name": "Gryphic Helm"},
+    {"id": "4130", "item_name": "Twilight Star"},
+    {"id": "4006", "item_name": "Laurel Circlet"},
+    {"id": "4132", "item_name": "Hood of Nonentity"},
+    {"id": "4012", "item_name": "Fiendish Armet"},
+    {"id": "4014", "item_name": "Monarch's Crown"},
+    {"id": "4026", "item_name": "Blazing Soul"},
+    {"id": "4015", "item_name": "Subjugator's Sallet"}
+]

@@ -1,0 +1,22 @@
+[
+    {"id": "4000", "item_name": "Wanderer's Hood"},
+    {"id": "4119", "item_name": "Marcher's Helm"},
+    {"id": "4043", "item_name": "Wizard's Hat"},
+    {"id": "4075", "item_name": "Scout's Hood"},
+    {"id": "4129", "item_name": "Serpentine Circlet"},
+    {"id": "4081", "item_name": "Plumed Cap"},
+    {"id": "4133", "item_name": "Farseer's Circlet"},
+    {"id": "4031", "item_name": "Friar's Hood"},
+    {"id": "4106", "item_name": "Ruminant Circlet"},
+    {"id": "4105", "item_name": "Leafshade Hood"},
+    {"id": "4104", "item_name": "Crown of Insight"},
+    {"id": "4050", "item_name": "Sage's Hood"},
+    {"id": "4045", "item_name": "Dawn Hood"},
+    {"id": "4131", "item_name": "Gnostic Wings"},
+    {"id": "4034", "item_name": "Battahli Turban"},
+    {"id": "4085", "item_name": "Griffin-Feather Hood"},
+    {"id": "4130", "item_name": "Twilight Star"},
+    {"id": "4058", "item_name": "Solar Ascension"},
+    {"id": "4115", "item_name": "Confidant's Hood"},
+    {"id": "4107", "item_name": "Ancient Galea"}
+]

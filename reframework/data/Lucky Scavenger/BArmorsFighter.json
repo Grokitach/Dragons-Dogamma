@@ -1,0 +1,23 @@
+[
+    {"id": "5117", "item_name": "Marcher's Armor"},
+	{"id": "5000", "item_name": "Foot Soldier Armor"},
+    {"id": "5001", "item_name": "Chain Mail"},
+    {"id": "5081", "item_name": "Hunter's Mail"},
+	{"id": "5004", "item_name": "Plate Armor"},
+    {"id": "5119", "item_name": "Researcher's Robe"},
+    {"id": "5132", "item_name": "Half-Plate Armor"},
+    {"id": "5006", "item_name": "Grand Surcoat"},
+	{"id": "5007", "item_name": "Guardian Plate Armor"},
+    {"id": "5137", "item_name": "Gauntleted Petticoat"},
+    {"id": "5106", "item_name": "Graceful Tunic"},
+    {"id": "5013", "item_name": "Dominion Armor"},
+	{"id": "5139", "item_name": "Meloirean Plate"},
+    {"id": "5134", "item_name": "Brunhilda's Embrace"},
+    {"id": "5009", "item_name": "Valiant Armor"},
+    {"id": "5035", "item_name": "Creedbound Armor"},
+    {"id": "5012", "item_name": "Grand Cuirass"},
+    {"id": "5135", "item_name": "Beastren Pride"},
+    {"id": "5026", "item_name": "Thrasher's Surcoat"},
+    {"id": "5014", "item_name": "Knightly Brigandine"},
+    {"id": "5015", "item_name": "Stygian Omen"}
+]

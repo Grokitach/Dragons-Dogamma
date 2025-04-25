@@ -1,0 +1,20 @@
+[
+    {"id": "4000", "item_name": "Wanderer's Hood"},
+    {"id": "4119", "item_name": "Marcher's Helm"},
+	{"id": "4001", "item_name": "Sentry's Coif"},
+    {"id": "4075", "item_name": "Scout's Hood"},
+    {"id": "4129", "item_name": "Serpentine Circlet"},
+    {"id": "4053", "item_name": "Scale Band"},
+    {"id": "4133", "item_name": "Farseer's Circlet"},
+    {"id": "4031", "item_name": "Friar's Hood"},
+    {"id": "4104", "item_name": "Crown of Insight"},
+    {"id": "4045", "item_name": "Dawn Hood"},
+    {"id": "4131", "item_name": "Gnostic Wings"},
+    {"id": "4034", "item_name": "Battahli Turban"},
+    {"id": "4032", "item_name": "Wardancer's Hat"},
+    {"id": "4130", "item_name": "Twilight Star"},
+    {"id": "4035", "item_name": "Crusader's Helm"},
+    {"id": "4006", "item_name": "Laurel Circlet"},
+    {"id": "4115", "item_name": "Confidant's Hood"},
+    {"id": "4038", "item_name": "Dragon Knight's Helm"}
+]
