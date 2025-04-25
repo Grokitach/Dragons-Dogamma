@@ -745,8 +745,8 @@
             },
             "ch253010_00": {
                 "damageTaken": 60,
-                "damageToOthers": 40,
-                "damageToPlayer": 40,
+                "damageToOthers": 200,
+                "damageToPlayer": 200,
                 "staggerImpact": 75
             },
             "ch253011_00": {
@@ -811,8 +811,8 @@
             },
             "ch255010_00": {
                 "damageTaken": 50,
-                "damageToOthers": 130,
-                "damageToPlayer": 130,
+                "damageToOthers": 150,
+                "damageToPlayer": 150,
                 "staggerImpact": 75
             },
             "ch255011_00": {
@@ -841,9 +841,9 @@
             },
             "ch257001_00": {
                 "damageTaken": 40,
-                "damageToOthers": 50,
-                "damageToPlayer": 50,
-                "staggerImpact": 35
+                "damageToOthers": 45,
+                "damageToPlayer": 45,
+                "staggerImpact": 25
             },
             "ch260000_00": {
                 "damageTaken": 25,
