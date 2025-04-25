@@ -47,7 +47,7 @@
     "dodge_idx": 1,
     "dodge_only_unsheathed": false,
     "dodge_single_press": false,
-    "dodge_stam_cost": 150.0,
+    "dodge_stam_cost": 100.0,
     "drift_cam_freeze": false,
     "drift_cam_invert": true,
     "drift_hotkeys_lockon_only": true,
@@ -76,6 +76,6 @@
         "Tilt Lockon Right": "LRight",
         "Tilt Lockon Up": "LUp"
     },
-    "perf_dodge_stamina_reward": 150.0,
+    "perf_dodge_stamina_reward": 100.0,
     "sliding_dodge_min_speed": 5.0
 }
