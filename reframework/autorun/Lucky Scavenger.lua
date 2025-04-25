@@ -50,6 +50,13 @@ local _config={
     {name="BossDropBackgroundColor",type="rgba32",default=4278210742}
 }
 
+local function shuffleTable(t)
+    for i = #t, 2, -1 do
+        local j = math.random(i)
+        t[i], t[j] = t[j], t[i]
+    end
+end
+
 local function recurse_def_settings(tbl, new_tbl)
     for key, value in pairs(new_tbl) do
         if type(tbl[key]) == type(value) then
@@ -176,16 +183,26 @@ local LArmors = {tmpLegArmor}
 local Weapons = {tmpArchistaffs, tmpBows, tmpCensers, tmpDaggers, tmpDuospears, tmpGreatSwords, tmpMagickalBows, tmpStaffs, tmpSwords, tmpShields}
 local BonusChestItems = {tmpCuratives, tmpMaterials, tmpImplements, tmpCloaks}
 
+local ArcherLoot = {tmpBArmorsArcher, tmpHArmorsArcher, tmpLArmorsArcher, tmpBows}
+local FighterLoot = {tmpBArmorsFighter, tmpHArmorsFighter, tmpLArmorsFighter, tmpSwords, tmpShields}
+local MageLoot = {tmpBArmorsMage, tmpHArmorsMage, tmpLArmorsMage, tmpStaffs}
+local MagickArcherLoot = {tmpBArmorsMagickArcher, tmpHArmorsMagickArcher, tmpLArmorsMagickArcher, tmpMagickalBows}
+local MysticLoot = {tmpBArmorsMystic, tmpHArmorsMystic, tmpLArmorsMystic, tmpDuospears}
+local SorcererLoot = {tmpBArmorsSorcerer, tmpHArmorsSorcerer, tmpLArmorsSorcerer, tmpArchistaffs}
+local ThiefLoot = {tmpBArmorsThief, tmpHArmorsThief, tmpLArmorsThief, tmpDaggers}
+local TricksterLoot = {tmpBArmorsTrickster, tmpHArmorsTrickster, tmpLArmorsTrickster, tmpCensers}
+local WarriorLoot = {tmpBArmorsWarrior, tmpHArmorsWarrior, tmpLArmorsWarrior, tmpGreatSwords}
+
 local VocationToLoot = {
-    ["Archer"] = {tmpBArmorsArcher, tmpHArmorsArcher, tmpLArmorsArcher, tmpBows},
-    ["Fighter"] = {tmpBArmorsFighter, tmpHArmorsFighter, tmpLArmorsFighter, tmpSwords, tmpShields},
-    ["Mage"] = {tmpBArmorsMage, tmpHArmorsMage, tmpLArmorsMage, tmpStaffs},
-    ["MagickArcher"] = {tmpBArmorsMagickArcher, tmpHArmorsMagickArcher, tmpLArmorsMagickArcher, tmpMagickalBows},
-    ["Mystic"] = {tmpBArmorsMystic, tmpHArmorsMystic, tmpLArmorsMystic, tmpDuospears},
-    ["Sorcerer"] = {tmpBArmorsSorcerer, tmpHArmorsSorcerer, tmpLArmorsSorcerer, tmpArchistaffs},
-    ["Thief"] = {tmpBArmorsThief, tmpHArmorsThief, tmpLArmorsThief, tmpDaggers},
-    ["Trickster"] = {tmpBArmorsTrickster, tmpHArmorsTrickster, tmpLArmorsTrickster, tmpCensers},
-    ["Warrior"] = {tmpBArmorsWarrior, tmpHArmorsWarrior, tmpLArmorsWarrior, tmpGreatSwords}
+    ["Archer"] = ArcherLoot,
+    ["Fighter"] = FighterLoot,
+    ["Mage"] = MageLoot,
+    ["MagickArcher"] = MagickArcherLoot,
+    ["Mystic"] = MysticLoot,
+    ["Sorcerer"] = SorcererLoot,
+    ["Thief"] = ThiefLoot,
+    ["Trickster"] = TricksterLoot,
+    ["Warrior"] = WarriorLoot
 }
 
 math.randomseed(os.time())
@@ -331,13 +348,6 @@ local function AddItem(Item)
         end
     else
         getItemMethod:call(im,Item.ItemId,Item.ItemNum,player,true,false,false,1,false,false)
-    end
-end
-
-local function shuffleTable(t)
-    for i = #t, 2, -1 do
-        local j = math.random(i)
-        t[i], t[j] = t[j], t[i]
     end
 end
 
@@ -690,16 +700,9 @@ local function get_area()
     return WeatherManager._NowArea
 end
 
-local function generate_boss_loot(lootTable, bossTier)
+local function generate_boss_loot(lootTable, bossTier, TypeNumber)
     -- Pick a list of items among the lootTable, see Weapons for instance
-    shuffleTable(lootTable)
-    local randomIndex = math.random(1, #lootTable)
-    local itemList = lootTable[randomIndex]
-    if not itemList then
-        shuffleTable(lootTable)
-        local randomIndex = math.random(1, #lootTable)
-        local itemList = lootTable[randomIndex]
-    end
+    itemList = lootTable[TypeNumber]
 
     local available_items = {}
 
@@ -911,16 +914,16 @@ sdk.hook(
             BossLootTable = VocationToLoot[Vocation]
 
             if  Wdrop <= bossLootChance then
-                generate_boss_loot(BossLootTable[4], bossLootTier)
+                generate_boss_loot(BossLootTable, bossLootTier, 4)
             end
             if  Ldrop <= bossLootChance then
-                generate_boss_loot(BossLootTable[3], bossLootTier)
+                generate_boss_loot(BossLootTable, bossLootTier, 3)
             end
             if  Hdrop <= bossLootChance then
-                generate_boss_loot(BossLootTable[2], bossLootTier)
+                generate_boss_loot(BossLootTable, bossLootTier, 2)
             end
             if  Bdrop <= bossLootChance then
-                generate_boss_loot(BossLootTable[1], bossLootTier)
+                generate_boss_loot(BossLootTable, bossLootTier, 1)
             end
         end
 
