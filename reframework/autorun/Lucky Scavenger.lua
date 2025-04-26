@@ -3,32 +3,33 @@ local WeatherManager = sdk.get_managed_singleton("app.WeatherManager")
 --printlog = require("CustomDifficulty/logger").Log
 local configfile=modname.."/Config.json"
 local _config={
-    {name="Archer Gear Chance", type="int", default=10, min=0, max=100},
-    {name="Fighter Gear Chance", type="int", default=10, min=0, max=100},
-    {name="Mage Gear Chance", type="int", default=10, min=0, max=100},
-    {name="Magick Archer Gear Chance", type="int", default=10, min=0, max=100},
-    {name="Mystic Spearhand Gear Chance", type="int", default=10, min=0, max=100},
-    {name="Sorcerer Gear Chance", type="int", default=10, min=0, max=100},
-    {name="Thief Gear Chance", type="int", default=10, min=0, max=100},
-    {name="Trickster Gear Chance", type="int", default=10, min=0, max=100},
-    {name="Warrior Gear Chance", type="int", default=10, min=0, max=100},
-    {name="Enable Random Enhancements", type="bool", default=true},
-    {name="Enhancement Chance", type="int", default=15, min=0, max=100},
-    {name="Max Enhancement Slots", type="int", default=4, min=1, max=4},
-    {name="Vermudian Rate", type="int", default=8, min=0, max=10},
-    {name="Battahli Rate", type="int", default=5, min=0, max=10},
-    {name="Elven Rate", type="int", default=5, min=0, max=10},
-    {name="Dwarven Rate", type="int", default=2, min=0, max=10},
+    {name="Archer Gear Chance", type="int", default=10, min=0, max=100, tip="How often chests and bosses will drop Archer gear. If all vocations have the same value, they will all have an equal chance of being picked when loot is generated."},
+    {name="Fighter Gear Chance", type="int", default=10, min=0, max=100, tip="How often chests and bosses will drop Fighter gear. If all vocations have the same value, they will all have an equal chance of being picked when loot is generated."}, ,
+    {name="Mage Gear Chance", type="int", default=10, min=0, max=100, tip="How often chests and bosses will drop Mage gear. If all vocations have the same value, they will all have an equal chance of being picked when loot is generated."},
+    {name="Magick Archer Gear Chance", type="int", default=10, min=0, max=100, tip="How often chests and bosses will drop Magick Archer gear. If all vocations have the same value, they will all have an equal chance of being picked when loot is generated."},
+    {name="Mystic Spearhand Gear Chance", type="int", default=10, min=0, max=100, tip="How often chests and bosses will drop Mystic Spearhand gear. If all vocations have the same value, they will all have an equal chance of being picked when loot is generated."},
+    {name="Sorcerer Gear Chance", type="int", default=10, min=0, max=100, tip="How often chests and bosses will drop Sorcerer gear. If all vocations have the same value, they will all have an equal chance of being picked when loot is generated."},
+    {name="Thief Gear Chance", type="int", default=10, min=0, max=100, tip="How often chests and bosses will drop Thief gear. If all vocations have the same value, they will all have an equal chance of being picked when loot is generated."},
+    {name="Trickster Gear Chance", type="int", default=10, min=0, max=100, tip="How often chests and bosses will drop Trickster gear. If all vocations have the same value, they will all have an equal chance of being picked when loot is generated."},
+    {name="Warrior Gear Chance", type="int", default=10, min=0, max=100, tip="How often chests and bosses will drop Warrior gear. If all vocations have the same value, they will all have an equal chance of being picked when loot is generated."},
+--    {name="Enable Random Enhancements", type="bool", default=true},
+--    {name="Enhancement Chance", type="int", default=15, min=0, max=100},
+--    {name="Max Enhancement Slots", type="int", default=4, min=1, max=4},
+--    {name="Vermudian Rate", type="int", default=8, min=0, max=10},
+--    {name="Battahli Rate", type="int", default=5, min=0, max=10},
+--    {name="Elven Rate", type="int", default=5, min=0, max=10},
+--    {name="Dwarven Rate", type="int", default=2, min=0, max=10},
 --    {name="Body Drop Rate",type="int",default=3,min=1,max=100, tip="How often corpses are likely to spawn extra items/materials/gear"},
 --    {name="Super Lucky Find Gear Chance", type="int",default=5,min=1,max=100, tip="On occasion a lucky find will drop higher tier gear than normal"},
 --    {name="Super Lucky Find Gear Rank Offset", type="int",default=1,min=1,max=3, tip="The number of ranks to make an item available"},
+    {name="Boss Gear Drop Chance",type="int",default=100,min=1,max=100, tip="Gear Drop Chance from Bosses. 100 means bosses will all drop 4 pieces of equipement (4 rolls are made versus the boss gear drop chance)."},
     {name="Chest Drop Rate",type="int",default=5,min=1,max=100, tip="How often chests are likely to spawn gear"},
     {name="Bonus Chest Loot",type="bool",default=true, tip="Whether items along with gear also drop from chests"},
     {name="Bonus Chest Loot Chance",type="int",default=25,min=1,max=100, tip="Chance for extra items that aren't gear to drop from chests"},
 --    {name="Bodies Drop Extra Items",type="bool",default=false, tip="Whether items drop from corpses at all"},
 --    {name="Bodies Drop Gear",type="bool",default=true, tip="Whether gear drops from corpses at all"},
 --    {name="Bodies Drop Gear Chance",type="int",default=15,min=1,max=100, tip="Chance for gear to drop from all corpses"},
-    {name="Boss Gear Drop Chance",type="int",default=100,min=1,max=100, tip="Gear Drop Chance from Bosses"},
+
 --    {name="Boss Drop Gear Rank Threshold",type="int",default=3,min=1,max=10, tip="Lower Values -> Higher Quality (Tighten's possible gear range of boss)"},
 --    {name="Effect Body Loot",type="bool",default=true, tip="Enable/Disable extra items corpses"},
     {name="Effect Gimmick Loot",type="bool",default=false, tip="Enable/Disable extra items environmental objects"},
@@ -107,12 +108,12 @@ local GauranteedBossDrops = config["Boss Gear Drop Chance"]
 --local BossDropGearScale = config["Boss Drop Gear Rank Threshold"]
 local EnableRandomEnhancements = false
 local EnhancementChance = 0
-local MaxEnhancementSlots = config["Max Enhancement Slots"]
-local VermudianRate = config["Vermudian Rate"]
-local BattahliRate = config["Battahli Rate"]
-local ElvenRate = config["Elven Rate"]
-local DwarvenRate = config["Dwarven Rate"]
-local WyrmfireRate = config["Wyrmfire Rate"]
+local MaxEnhancementSlots = 0
+local VermudianRate = 0
+local BattahliRate = 0
+local ElvenRate = 0
+local DwarvenRate = 0
+local WyrmfireRate = 0
 local MonsterExperience = {}
 local MonsterIsBoss = {}
 local MonsterHP = {}
@@ -365,14 +366,13 @@ re.on_frame(function()
     thief = config["Thief Gear Chance"]
     trickster = config["Trickster Gear Chance"]
     warrior = config["Warrior Gear Chance"]
-    EnableNotifications = config["Enable Notifications"]
+    EffectGimmickLoot = config["Effect Gimmick Loot"]
     GimmickDropRate = config["Gimmick Drop Rate"]
 --    BodyDropRate = config["Body Drop Rate"]
-    ChestDropRate = config["Chest Drop Rate"]
 --    SuperLuckyFindGearDropChance = config["Super Lucky Find Gear Chance"]
 --    SuperLuckyFindGearLevelingFactor = config["Super Lucky Find Gear Rank Offset"]
 --    EffectBodyLoot = config["Effect Body Loot"]
-    EffectGimmickLoot = config["Effect Gimmick Loot"]
+    ChestDropRate = config["Chest Drop Rate"]
     BonusChestLoot = config["Bonus Chest Loot"]
     BonusChestLootChance = config["Bonus Chest Loot Chance"]
 --    BonusBodyLoot = config["Bodies Drop Gear"]
@@ -380,13 +380,14 @@ re.on_frame(function()
 --    BodiesDropExtraItems = config["Bodies Drop Extra Items"]
     GauranteedBossDrops = config["Boss Gear Drop Chance"]
 --    BossDropGearScale = config["Boss Drop Gear Rank Threshold"]
-    EnhancementChance = config["Enhancement Chance"]
-    MaxEnhancementSlots = config["Max Enhancement Slots"]
-    VermudianRate = config["Vermudian Rate"]
-    BattahliRate = config["Battahli Rate"]
-    ElvenRate = config["Elven Rate"]
-    DwarvenRate = config["Dwarven Rate"]
-    WyrmfireRate = config["Wyrmfire Rate"]
+--    EnhancementChance = config["Enhancement Chance"]
+--    MaxEnhancementSlots = config["Max Enhancement Slots"]
+--    VermudianRate = config["Vermudian Rate"]
+--    BattahliRate = config["Battahli Rate"]
+--    ElvenRate = config["Elven Rate"]
+--    DwarvenRate = config["Dwarven Rate"]
+--    WyrmfireRate = config["Wyrmfire Rate"]
+    EnableNotifications = config["Enable Notifications"]
     if EnableNotifications == false then return end
     imgui.push_font()
     if config.TestTextBox then
@@ -632,7 +633,7 @@ local GuiManager = sdk.get_managed_singleton("app.GuiManager")
 -- The names are just for reference, they're not used for anything
 local BossInfo = {
 	[422306432] = {name = "Skeleton Lord", lootTier = 2},
-	[3566561083] = {name = "Lich", lootTier = 2},
+	[3566561083] = {name = "Lich", lootTier = 3},
 	[186889532] = {name = "Wight", lootTier = 1},
 	[2629601821] = {name = "Dullahan", lootTier = 5},
     [4200835371] = {name = "Cyclops (all)", lootTier = 1},
@@ -664,6 +665,8 @@ local BossInfo = {
 	[2133916449] = {name = "Drake", lootTier = 4},
 	[3538966457] = {name = "Lesser Dragon", lootTier = 6},
 	[2631267673] = {name = "Dragon", lootTier = 6},
+    [169713426] = {name = "Garm", lootTier = 3},
+	[247902159] = {name = "Warg", lootTier = 3},
 }
 
 local AreaInfo = {
@@ -856,20 +859,15 @@ sdk.hook(
     end, nil
 )
 
+
 sdk.hook(
-    sdk.find_type_definition("app.ItemDropParam"):get_method("getFumbleLotItem(app.GatherContext, System.Int32, System.Int32)"),
+    sdk.find_type_definition("app.SearchDeadBodyInteractController"):get_method("executeInteract(System.UInt32, app.Character)"),
     function(args)
         local this = sdk.to_managed_object(args[2])
-		if this._GimmickId ~= 0 then return end
-		
-        local gatherContext = sdk.to_managed_object(args[3])
-		
-		local address = gatherContext:get_address() -- Unique per enemy, but is the same if you loot the same enemy twice
+		local chara = this.Chara
+		local address = chara:get_address() -- Unique per enemy
 		if AlreadyLooted[address] then return end
-        if this._CharaId == "3538966457" and WeatherManager._NowArea == 1 then return end
-
-        --printlog(this._CharaId)
-		local info = BossInfo[this._CharaId]
+		local info = BossInfo[chara:get_CharaID()] -- Since this is the true CharaID of the enemy, Cyclops variants should work properly
 		local isBoss = info ~= nil
 		local bossLootTier = info and info.lootTier
 
@@ -892,6 +890,14 @@ sdk.hook(
             --printlog(Bdrop)
             --printlog(Ldrop)
             --printlog(Wdrop)
+ 
+            if this._CharaId == "169713426" or this._CharaId == "247902159" then -- Garm and Wargs are "semi bosses" and can only drop 1 item
+                Hdrop = 102
+                Bdrop = 102
+                Ldrop = 102
+                Wdrop = 102
+                bossLootTier = math.random(3,4)
+            end
 
             if Wdrop > bossLootChance and Hdrop > bossLootChance and Ldrop > bossLootChance and Bdrop > bossLootChance then -- Ensures atleast 1 loot per boss
                 unluckyDrop = math.random(1,4)
@@ -931,20 +937,19 @@ sdk.hook(
             end
         end
 
-        AlreadyLooted[address] = gameTime
+		AlreadyLooted[address] = true
     end
 )
 
-re.on_application_entry(
-	"UpdateBehavior",
-	function()
-		local deltaTime = os.clock() - lastTime
-		lastTime = os.clock()
-		if GuiManager:isPausedGUI() then return end
-		gameTime = gameTime + deltaTime
-		if gameTime - lastFlush > 60.0 then
-			flush_looted()
-		end
+-- Pretty reliable at flushing addresses, no need to flush regularly
+sdk.hook(
+	sdk.find_type_definition("app.HitController"):get_method("onDestroy()"),
+	function(args)
+		local this = sdk.to_managed_object(args[2])
+		local character = this["<CachedCharacter>k__BackingField"]
+		if not character then return end
+		local address = character:get_address()
+		AlreadyLooted[address] = nil
 	end
 )
 
