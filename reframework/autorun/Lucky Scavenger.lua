@@ -1382,6 +1382,13 @@ sdk.hook(
                 bossLootTier = math.random(3,4)
             end
 
+            if this._CharaId == "3538966457" then  -- Lesser Dragon always drops 4 items
+                Hdrop = 1
+                Bdrop = 1
+                Ldrop = 1
+                Wdrop = 1
+            end
+
             if Wdrop > bossLootChance and Hdrop > bossLootChance and Ldrop > bossLootChance and Bdrop > bossLootChance then -- Ensures atleast 1 loot per boss
                 unluckyDrop = math.random(1,4)
 
