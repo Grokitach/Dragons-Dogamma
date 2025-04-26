@@ -1169,6 +1169,7 @@ local function generate_boss_loot(lootTable, bossTier, TypeNumber)
 
     bigListRandomizer = (math.random(9,11) / 10)
     maxItemRankAllowed = math.ceil(maxItemRankAllowed * bigListRandomizer)
+    minItemRankAllowed = math.ceil(minItemRankAllowed * bigListRandomizer)
 
     --printlog("Boss tier: " .. bossTier .. " | Rank Scaler:" .. rankScaler .. " | maxItemRankAllowed:" .. maxItemRankAllowed .. " | minItemRankAllowed:" .. minItemRankAllowed .. " | bigListRandomizer: " .. bigListRandomizer)
 
@@ -1237,6 +1238,7 @@ local function generate_chest_loot(lootTable)
 
     bigListRandomizer = (math.random(9,11) / 10)
     maxItemRankAllowed = math.floor(maxItemRankAllowed * bigListRandomizer)
+    minItemRankAllowed = math.floor(minItemRankAllowed * bigListRandomizer)
 
     --printlog("Chest tier: " .. chestTier .. " | Rank Scaler:" .. rankScaler .. " | maxItemRankAllowed:" .. maxItemRankAllowed .. " | minItemRankAllowed:" .. minItemRankAllowed .. " | bigListRandomizer: " .. bigListRandomizer)
 
@@ -1327,11 +1329,15 @@ sdk.hook(
                 local txtColor = config.ItemTextColor
                 local bgColor = config.ItemBackgroundColor
                 Log("Lucky Find!: Received " .. itemName .. " ( " .. string.format("%d", math.floor(selectedItem.level)) .. " Rarity ! )",txtColor,bgColor)
-                ItemList:Add(newItem)
+                AddItem(newItem)
             end
             DumpSaveData()
         else
-            ChestFind = ChestFind + ChestDropRate
+            if ChestFind then
+                ChestFind = ChestFind + ChestDropRate
+            else
+                ChestFind = ChestDropRate
+            end
             DumpSaveData()
         end
     end, nil
