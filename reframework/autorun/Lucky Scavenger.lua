@@ -1077,7 +1077,6 @@ local StaticLootToBan = {
 
 -- The names are just for reference, they're not used for anything
 local BossInfo = {
-	[422306432] = {name = "Skeleton Lord", lootTier = 2},
 	[3566561083] = {name = "Lich", lootTier = 3},
 	[186889532] = {name = "Wight", lootTier = 1},
 	[2629601821] = {name = "Dullahan", lootTier = 5},
@@ -1112,6 +1111,16 @@ local BossInfo = {
 	[2631267673] = {name = "Dragon", lootTier = 6},
     [169713426] = {name = "Garm", lootTier = 3},
 	[247902159] = {name = "Warg", lootTier = 3},
+}
+
+local VanishingBosses = {
+	[186889532] = true,
+	[2629601821] = true,
+	[3369196004] = true,
+	[4243003424] = true,
+	[355142415] = true,
+	[2475491578] = true,
+	[3417537573] = true,
 }
 
 local AreaInfo = {
@@ -1430,6 +1439,81 @@ sdk.hook(
 		AlreadyLooted[address] = true
     end
 )
+
+local hitControllerGetCachedCharacter = sdk.find_type_definition("app.HitController"):get_method("get_CachedCharacter")
+local characterGetCharaIdMethod = sdk.find_type_definition("app.Character"):get_method("get_CharaID")
+
+sdk.hook(
+	sdk.find_type_definition("app.Character"):get_method("onDieFromAttack(app.HitController.DamageInfo)"),
+	function(args)
+        --printlog("Enemy dying from attack")
+        local this = sdk.to_managed_object(args[2])
+        if not this then return end
+        --printlog("This found")
+        local id = this:get_CharaID()
+        local address = this:get_address() -- Unique per enemy
+        if AlreadyLooted[address] then return end
+        --printlog("Found a chara being destroyed and not already looted with the following id: " .. id .. "| Address: " .. address)
+
+        if VanishingBosses[id] then
+            --printlog("Found a boss with vanishing body.")
+            local info = BossInfo[id] -- Since this is the true CharaID of the enemy, Cyclops variants should work properly
+            local isBoss = info ~= nil
+            local bossLootTier = info and info.lootTier
+            if isBoss then
+                local bossLootChance = GauranteedBossDrops
+                local Hdrop = math.random(1,99)
+                local Bdrop = math.random(1,99)
+                local Ldrop = math.random(1,99)
+                local Wdrop = math.random(1,99)
+                --printlog(Hdrop)
+                --printlog(Bdrop)
+                --printlog(Ldrop)
+                --printlog(Wdrop)
+
+                if Wdrop > bossLootChance and Hdrop > bossLootChance and Ldrop > bossLootChance and Bdrop > bossLootChance then -- Ensures atleast 1 loot per boss
+                    unluckyDrop = math.random(1,4)
+
+                    if unluckyDrop == 1 then
+                        Hdrop = 1
+                    end
+
+                    if unluckyDrop == 2 then
+                        Bdrop = 1
+                    end
+
+                    if unluckyDrop == 3 then
+                        Ldrop = 1
+                    end
+
+                    if unluckyDrop == 4 then
+                        Wdrop = 1
+                    end
+                end
+
+                Vocation = pick_a_class()
+
+                BossLootTable = VocationToLoot[Vocation]
+
+                if  Wdrop <= bossLootChance then
+                    generate_boss_loot(BossLootTable, bossLootTier, 4)
+                end
+                if  Ldrop <= bossLootChance then
+                    generate_boss_loot(BossLootTable, bossLootTier, 3)
+                end
+                if  Hdrop <= bossLootChance then
+                    generate_boss_loot(BossLootTable, bossLootTier, 2)
+                end
+                if  Bdrop <= bossLootChance then
+                    generate_boss_loot(BossLootTable, bossLootTier, 1)
+                end
+            end
+        end
+
+--        AlreadyLooted[address] = true
+	end
+)
+
 
 -- Pretty reliable at flushing addresses, no need to flush regularly
 sdk.hook(
