@@ -4,7 +4,7 @@ local WeatherManager = sdk.get_managed_singleton("app.WeatherManager")
 local configfile=modname.."/Config.json"
 local _config={
     {name="Archer Gear Chance", type="int", default=10, min=0, max=100, tip="How often chests and bosses will drop Archer gear. If all vocations have the same value, they will all have an equal chance of being picked when loot is generated."},
-    {name="Fighter Gear Chance", type="int", default=10, min=0, max=100, tip="How often chests and bosses will drop Fighter gear. If all vocations have the same value, they will all have an equal chance of being picked when loot is generated."}, ,
+    {name="Fighter Gear Chance", type="int", default=10, min=0, max=100, tip="How often chests and bosses will drop Fighter gear. If all vocations have the same value, they will all have an equal chance of being picked when loot is generated."},
     {name="Mage Gear Chance", type="int", default=10, min=0, max=100, tip="How often chests and bosses will drop Mage gear. If all vocations have the same value, they will all have an equal chance of being picked when loot is generated."},
     {name="Magick Archer Gear Chance", type="int", default=10, min=0, max=100, tip="How often chests and bosses will drop Magick Archer gear. If all vocations have the same value, they will all have an equal chance of being picked when loot is generated."},
     {name="Mystic Spearhand Gear Chance", type="int", default=10, min=0, max=100, tip="How often chests and bosses will drop Mystic Spearhand gear. If all vocations have the same value, they will all have an equal chance of being picked when loot is generated."},
