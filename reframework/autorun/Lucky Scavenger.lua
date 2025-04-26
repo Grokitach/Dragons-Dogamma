@@ -26,6 +26,7 @@ local _config={
     {name="Chest Drop Rate",type="int",default=5,min=1,max=100, tip="How often chests are likely to spawn gear"},
     {name="Bonus Chest Loot",type="bool",default=true, tip="Whether items along with gear also drop from chests"},
     {name="Bonus Chest Loot Chance",type="int",default=25,min=1,max=100, tip="Chance for extra items that aren't gear to drop from chests"},
+    {name="Chests Static Gear",type="bool",default=false, tip="Whether normal static gear drop in chests"},
 --    {name="Bodies Drop Extra Items",type="bool",default=false, tip="Whether items drop from corpses at all"},
 --    {name="Bodies Drop Gear",type="bool",default=true, tip="Whether gear drops from corpses at all"},
 --    {name="Bodies Drop Gear Chance",type="int",default=15,min=1,max=100, tip="Chance for gear to drop from all corpses"},
@@ -101,6 +102,7 @@ local ChestDropRate = config["Chest Drop Rate"]
 local EffectGimmickLoot = config["Effect Gimmick Loot"]
 local BonusChestLoot = config["Bonus Chest Loot"]
 local BonusChestLootChance = config["Bonus Chest Loot Chance"]
+local EnableStaticGear = config["Chests Static Gear"]
 --local BonusBodyLoot = config["Bodies Drop Gear"]
 --local BonusBodyLootChance = config["Bodies Drop Gear Chance"]
 --local BodiesDropExtraItems = config["Bodies Drop Extra Items"]
@@ -375,6 +377,7 @@ re.on_frame(function()
     ChestDropRate = config["Chest Drop Rate"]
     BonusChestLoot = config["Bonus Chest Loot"]
     BonusChestLootChance = config["Bonus Chest Loot Chance"]
+    EnableStaticGear = config["Chests Static Gear"]
 --    BonusBodyLoot = config["Bodies Drop Gear"]
 --    BonusBodyLootChance = config["Bodies Drop Gear Chance"]
 --    BodiesDropExtraItems = config["Bodies Drop Extra Items"]
@@ -630,6 +633,448 @@ sdk.hook(
 
 local GuiManager = sdk.get_managed_singleton("app.GuiManager")
 
+local UsefulItemsToReplaceBans = {1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23, 25, 26, 28, 29, 37, 38, 39, 41, 42, 43, 45, 46, 47, 49, 50, 52, 53, 55, 56, 57, 59, 60, 61, 62, 64, 65, 66, 67, 72, 73, 74, 80}
+
+local StaticLootToBan = {
+    [7000] = true,
+    [5088] = true,
+    [5040] = true,
+    [5000] = true,
+    [5074] = true,
+    [5046] = true,
+    [5117] = true,
+    [5001] = true,
+    [5081] = true,
+    [5138] = true,
+    [5019] = true,
+    [5043] = true,
+    [5091] = true,
+    [5065] = true,
+    [5004] = true,
+    [5104] = true,
+    [5122] = true,
+    [5128] = true,
+    [5132] = true,
+    [5045] = true,
+    [5041] = true,
+    [5006] = true,
+    [5016] = true,
+    [5053] = true,
+    [5130] = true,
+    [5090] = true,
+    [5034] = true,
+    [5007] = true,
+    [5119] = true,
+    [5075] = true,
+    [5125] = true,
+    [5078] = true,
+    [5137] = true,
+    [5067] = true,
+    [5123] = true,
+    [5050] = true,
+    [5032] = true,
+    [5018] = true,
+    [5097] = true,
+    [5013] = true,
+    [5139] = true,
+    [5031] = true,
+    [5106] = true,
+    [5092] = true,
+    [5052] = true,
+    [5066] = true,
+    [5105] = true,
+    [5054] = true,
+    [5024] = true,
+    [5133] = true,
+    [5134] = true,
+    [5009] = true,
+    [5035] = true,
+    [5048] = true,
+    [5055] = true,
+    [5058] = true,
+    [5102] = true,
+    [5113] = true,
+    [5068] = true,
+    [5115] = true,
+    [5083] = true,
+    [5136] = true,
+    [5095] = true,
+    [5129] = true,
+    [5124] = true,
+    [5064] = true,
+    [5012] = true,
+    [5127] = true,
+    [5135] = true,
+    [5026] = true,
+    [5116] = true,
+    [5107] = true,
+    [5073] = true,
+    [5062] = true,
+    [5039] = true,
+    [5126] = true,
+    [5131] = true,
+    [5014] = true,
+    [5096] = true,
+    [5087] = true,
+    [5085] = true,
+    [5051] = true,
+    [5060] = true,
+    [5038] = true,
+    [5015] = true,
+    [5071] = true,
+    [5028] = true,
+    [5114] = true,
+    [5029] = true,
+    [5103] = true,
+	[7001] = true,
+	[6088] = true,
+	[6040] = true,
+	[6074] = true,
+	[6000] = true,
+	[6041] = true,
+	[6075] = true,
+	[6117] = true,
+	[6016] = true,
+	[6104] = true,
+	[6043] = true,
+	[6046] = true,
+	[6124] = true,
+	[6001] = true,
+	[6091] = true,
+	[6065] = true,
+	[6004] = true,
+	[6090] = true,
+	[6045] = true,
+	[6018] = true,
+	[6095] = true,
+	[6031] = true,
+	[6006] = true,
+	[6119] = true,
+	[6092] = true,
+	[6081] = true,
+	[6097] = true,
+	[6116] = true,
+	[6060] = true,
+	[6053] = true,
+	[6007] = true,
+	[6123] = true,
+	[6058] = true,
+	[6052] = true,
+	[6078] = true,
+	[6050] = true,
+	[6102] = true,
+	[6055] = true,
+	[6122] = true,
+	[6009] = true,
+	[6067] = true,
+	[6024] = true,
+	[6013] = true,
+	[6048] = true,
+	[6062] = true,
+	[6085] = true,
+	[6073] = true,
+	[6032] = true,
+	[6113] = true,
+	[6114] = true,
+	[6012] = true,
+	[6034] = true,
+	[6028] = true,
+	[6071] = true,
+	[6035] = true,
+	[6064] = true,
+	[6015] = true,
+	[6115] = true,
+	[6103] = true,
+	[6014] = true,
+	[6019] = true,
+	[6096] = true,
+	[6087] = true,
+	[6026] = true,
+	[6068] = true,
+	[6051] = true,
+	[6038] = true,
+	[6029] = true,
+	[7001] = true,
+	[6088] = true,
+	[6040] = true,
+	[6074] = true,
+	[6000] = true,
+	[6041] = true,
+	[6075] = true,
+	[6117] = true,
+	[6016] = true,
+	[6104] = true,
+	[6043] = true,
+	[6046] = true,
+	[6124] = true,
+	[6001] = true,
+	[6091] = true,
+	[6065] = true,
+	[6004] = true,
+	[6090] = true,
+	[6045] = true,
+	[6018] = true,
+	[6095] = true,
+	[6031] = true,
+	[6006] = true,
+	[6119] = true,
+	[6092] = true,
+	[6081] = true,
+	[6097] = true,
+	[6116] = true,
+	[6060] = true,
+	[6053] = true,
+	[6007] = true,
+	[6123] = true,
+	[6058] = true,
+	[6052] = true,
+	[6078] = true,
+	[6050] = true,
+	[6102] = true,
+	[6055] = true,
+	[6122] = true,
+	[6009] = true,
+	[6067] = true,
+	[6024] = true,
+	[6013] = true,
+	[6048] = true,
+	[6062] = true,
+	[6085] = true,
+	[6073] = true,
+	[6032] = true,
+	[6113] = true,
+	[6114] = true,
+	[6012] = true,
+	[6034] = true,
+	[6028] = true,
+	[6071] = true,
+	[6035] = true,
+	[6064] = true,
+	[6015] = true,
+	[6115] = true,
+	[6103] = true,
+	[6014] = true,
+	[6019] = true,
+	[6096] = true,
+	[6087] = true,
+	[6026] = true,
+	[6068] = true,
+	[6051] = true,
+	[6038] = true,
+	[6029] = true,
+	[4000] = true,
+	[4088] = true,
+	[4074] = true,
+	[4040] = true,
+	[4001] = true,
+	[4075] = true,
+	[4119] = true,
+	[4090] = true,
+	[4004] = true,
+	[4043] = true,
+	[4065] = true,
+	[4019] = true,
+	[4081] = true,
+	[4007] = true,
+	[4091] = true,
+	[4130] = true,
+	[4016] = true,
+	[4122] = true,
+	[4053] = true,
+	[4123] = true,
+	[4129] = true,
+	[4041] = true,
+	[4018] = true,
+	[4031] = true,
+	[4092] = true,
+	[4078] = true,
+	[4046] = true,
+	[4106] = true,
+	[4034] = true,
+	[4105] = true,
+	[4131] = true,
+	[4124] = true,
+	[4032] = true,
+	[4045] = true,
+	[4013] = true,
+	[4097] = true,
+	[4050] = true,
+	[4134] = true,
+	[4104] = true,
+	[4067] = true,
+	[4022] = true,
+	[4052] = true,
+	[4035] = true,
+	[4064] = true,
+	[4128] = true,
+	[4133] = true,
+	[4126] = true,
+	[4085] = true,
+	[4048] = true,
+	[4009] = true,
+	[4055] = true,
+	[4006] = true,
+	[4125] = true,
+	[4024] = true,
+	[4132] = true,
+	[4012] = true,
+	[4083] = true,
+	[4095] = true,
+	[4058] = true,
+	[4066] = true,
+	[4068] = true,
+	[4060] = true,
+	[4135] = true,
+	[4102] = true,
+	[4087] = true,
+	[4115] = true,
+	[4038] = true,
+	[4071] = true,
+	[4014] = true,
+	[4062] = true,
+	[4103] = true,
+	[4073] = true,
+	[4029] = true,
+	[4026] = true,
+	[4051] = true,
+	[4039] = true,
+	[4096] = true,
+	[4015] = true,
+    [1600] = true,
+    [1611] = true,
+    [1601] = true,
+    [1602] = true,
+    [1603] = true,
+    [1604] = true,
+    [1607] = true,
+    [1605] = true,
+    [1608] = true,
+    [1609] = true,
+    [1612] = true,
+    [1610] = true,
+    [1606] = true,
+    [1700] = true,
+	[1701] = true,
+	[1702] = true,
+	[1705] = true,
+	[1704] = true,
+	[1703] = true,
+	[1707] = true,
+	[1709] = true,
+	[1708] = true,
+	[1803] = true,
+	[1801] = true,
+	[1802] = true,
+	[1800] = true,
+	[1706] = true,
+	[1805] = true,
+	[1804] = true,
+    [2100] = true,
+	[2101] = true,
+	[2102] = true,
+	[2103] = true,
+	[2104] = true,
+	[2105] = true,
+    [1400] = true,
+	[1401] = true,
+	[8100] = true,
+	[1403] = true,
+	[1405] = true,
+	[1406] = true,
+	[1407] = true,
+	[1404] = true,
+	[1408] = true,
+	[1410] = true,
+	[1409] = true,
+	[1415] = true,
+	[1413] = true,
+	[1417] = true,
+	[1416] = true,
+	[1412] = true,
+	[1414] = true,
+	[1411] = true,
+    [2000] = true,
+	[2001] = true,
+	[2003] = true,
+	[2002] = true,
+	[2006] = true,
+	[2005] = true,
+	[2004] = true,
+	[2009] = true,
+	[2007] = true,
+	[2010] = true,
+    [1200] = true,
+	[1300] = true,
+	[1202] = true,
+	[1301] = true,
+	[1201] = true,
+	[1304] = true,
+	[1205] = true,
+	[1204] = true,
+	[1206] = true,
+	[1203] = true,
+	[1302] = true,
+	[1208] = true,
+	[1303] = true,
+	[1207] = true,
+    [1900] = true,
+	[1902] = true,
+	[1909] = true,
+	[1901] = true,
+	[1904] = true,
+	[1905] = true,
+	[1906] = true,
+	[1903] = true,
+	[1907] = true,
+	[1908] = true,
+    [2200] = true,
+	[2201] = true,
+	[2202] = true,
+	[2203] = true,
+	[2204] = true,
+	[2205] = true,
+	[2206] = true,
+	[2207] = true,
+	[2208] = true,
+	[2209] = true,
+	[2210] = true,
+    [1500] = true,
+	[1501] = true,
+	[1502] = true,
+	[1503] = true,
+	[1516] = true,
+	[1506] = true,
+	[1504] = true,
+	[1517] = true,
+	[1508] = true,
+	[1505] = true,
+	[1507] = true,
+	[1510] = true,
+	[1509] = true,
+	[1511] = true,
+	[1512] = true,
+	[1513] = true,
+	[1514] = true,
+    [1000] = true,
+	[1001] = true,
+	[1003] = true,
+	[1002] = true,
+	[1004] = true,
+	[1008] = true,
+	[1100] = true,
+	[1005] = true,
+	[1007] = true,
+	[1012] = true,
+	[1104] = true,
+	[1013] = true,
+	[1103] = true,
+	[1102] = true,
+	[1006] = true,
+	[1101] = true,
+	[1009] = true,
+	[1010] = true,
+}
+
 -- The names are just for reference, they're not used for anything
 local BossInfo = {
 	[422306432] = {name = "Skeleton Lord", lootTier = 2},
@@ -825,6 +1270,39 @@ local function generate_chest_loot(lootTable)
     end
 end
 
+sdk.hook(sdk.find_type_definition("app.ItemManager"):get_method("getItem(System.Int32, System.Int32, app.Character, System.Boolean, System.Boolean, System.Boolean, app.ItemManager.GetItemEventType, System.Boolean, System.Boolean)"),
+function (args)
+    if EnableStaticGear == false then
+
+        local player = GetPlayer()
+        local chara = sdk.to_managed_object(args[5])
+        if chara and player then
+            if chara:get_CharaID() == player:get_CharaID() then
+                ItemManager = sdk.to_managed_object(args[2])
+                itemID = sdk.to_int64(args[3])
+                itemNum = sdk.to_int64(args[4])
+                itemEventType = sdk.to_int64(args[9])
+            end
+        else
+            ItemManager = nil
+            itemID = nil
+            itemNum = nil
+            itemEventType = nil
+        end
+
+        if itemID ~= nil then
+            --printlog("Loot to potentially ban: " .. itemID .. " | EventType: " .. itemEventType .. " | Ban it? " .. tostring(StaticLootToBan[itemID]))
+
+            if itemEventType == 4 then
+                if StaticLootToBan[itemID] then
+                    randomItemID =   UsefulItemsToReplaceBans[ math.random( #UsefulItemsToReplaceBans ) ]
+                    args[3] = sdk.to_ptr(randomItemID)
+                end
+            end
+        end
+    end
+end, nil)
+
 sdk.hook(
     sdk.find_type_definition("app.gm80_001"):get_method("getItem"),
     function(args)
@@ -858,7 +1336,6 @@ sdk.hook(
         end
     end, nil
 )
-
 
 sdk.hook(
     sdk.find_type_definition("app.SearchDeadBodyInteractController"):get_method("executeInteract(System.UInt32, app.Character)"),
@@ -952,109 +1429,6 @@ sdk.hook(
 		AlreadyLooted[address] = nil
 	end
 )
-
---sdk.hook(
---    sdk.find_type_definition("app.ExpDispenser.ExpGranter"):get_method("evaluateExpAmount"),
---    function (args)
---        local this = sdk.to_managed_object(args[2])
---        
---        local e_mgr = sdk.get_managed_singleton("app.EnemyManager")
---        for i, enemy in pairs(e_mgr._EnemyList._items) do
---            if enemy then
---                local enemy_character = getC(enemy:get_GameObject(), "app.Monster")
---                if enemy_character == nil then
---                    enemy_character = getC(enemy:get_GameObject(), "app.Character")
---                else
---                    enemy_character = getC(enemy:get_GameObject(), "app.Monster"):get_Chara()
---                end
---                local hp = enemy_character:get_OriginalMaxHp()
---                local expGranter = enemy_character:tryGetExpGranter()
---                local contextHolder = enemy_character:get_Context()
---                if expGranter == this then
---                    --AlreadyLooted[enemy_character:get_CharaID()] = false
---                    break
---                end
---            end 
---        end
---    end
---)
-
---sdk.hook(
---    sdk.find_type_definition("app.ItemDropParam"):get_method("getFumbleLotItem"),
---    function(args)
---        local this=sdk.to_managed_object(args[2])
---        local gid=this:get_GimmickId()
-        --get_CharaID
---        if gid ~=0 then
---        elseif AlreadyLooted[this:get_CharaId()] ~= true then
---            local isBoss = false
---            local wasLooted = AlreadyLooted[this:get_CharaId()]
---            Debug("Monster HP: "..tostring(hp).." is Boss: " ..tostring(isBoss) .." was Looted: " ..tostring(wasLooted))
---            local dropChance = math.random(0, 99)
---            local super_lucky = math.random(0,99)
---            local tryDrop = EffectBodyLoot and dropChance < BodyFind
---            local tryBonusBodyDrop = BonusBodyLoot and super_lucky < BonusBodyLootChance
-
---            if tryDrop then
---                local experience = get_AverageEnemyExperience()
---                shuffleTable(BodyItems)
---                local randomIndex = math.random(1, #BodyItems)
---                local tmp = BodyItems[randomIndex]
---                if not tmp then
---                    shuffleTable(BodyItems)
---                    randomIndex = math.random(1, #BodyItems)
---                    tmp = BodyItems[randomIndex]
---                end
---                local selectedItem = getRandomItem(tmp)
---                if BodiesDropExtraItems and selectedItem ~= nil then
---                    local newItem = sdk.create_instance("app.gm80_001.ItemParam")
---                    newItem.ItemId = selectedItem.id
---                    newItem.ItemNum = 1
---                    local itemName = selectedItem.name
---                    local txtColor = config.ItemTextColor
---                    local bgColor = config.ItemBackgroundColor
---                    Log("Lucky Find!: Received " .. itemName .. " ( " .. string.format("%d", math.floor(selectedItem.level)) .. " Rarity )",txtColor,bgColor)
---                    DumpSaveData()
---                    AddItem(newItem)
---                end
---                if  tryBonusBodyDrop then
---                    shuffleTable(ChestItems)
---                    randomIndex = math.random(1, #ChestItems)
---                    tmp = ChestItems[randomIndex]
---                    if not tmp then
---                        shuffleTable(ChestItems)
---                        randomIndex = math.random(1, #ChestItems)
---                        tmp = ChestItems[randomIndex]
---                    end
---                    selectedItem = getItemByExperience(tmp, experience, isBoss)
---                    if not selectedItem then
---                        selectedItem = getItemByExperience(tmp, experience, isBoss)
---                    end
---                    local newItem = sdk.create_instance("app.gm80_001.ItemParam")
---                    newItem.ItemId = selectedItem.id
---                    newItem.ItemNum = 1
---                    local itemName = selectedItem.name
---                    local txtColor = config.SuperLuckyTextColor
---                    local bgColor = config.SuperLuckyBackgroundColor
---                    if isBoss then
---                        txtColor = config.BossDropTextColor
---                        txtColor = config.BossDropBackgroundColor
---                    end
---                    Log("Super Lucky Find!: Received " .. itemName .. " ( Rank " .. string.format("%d", math.floor(selectedItem.level)) .. " )", txtColor, bgColor)
---                    AddItem(newItem)
---                end
---                BodyFind = 0
---                AlreadyLooted[this:get_CharaId()] = true
---                return sdk.to_ptr(retval)
---            end
---            BodyFind = BodyFind + BodyDropRate
---        end
---    end,
---    function (retval)
---        isLootingBody=false
---        return retval
---    end
---)
 
 sdk.hook(
     sdk.find_type_definition("app.Gm82_009"):get_method("giveItem"),
