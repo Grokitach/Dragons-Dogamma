@@ -42,7 +42,7 @@
     "do_sprint_after_slide": true,
     "do_vertical_lockon_damp": true,
     "do_wallhack_lifebars": false,
-    "dodge_cancel_threshold": 50.0,
+    "dodge_cancel_threshold": 30.0,
     "dodge_esc_threshold": 80.0,
     "dodge_idx": 1,
     "dodge_only_unsheathed": false,
