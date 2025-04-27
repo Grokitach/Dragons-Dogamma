@@ -1307,7 +1307,9 @@ function (args)
             if itemEventType == 4 then
                 if StaticLootToBan[itemID] then
                     randomItemID =   UsefulItemsToReplaceBans[ math.random( #UsefulItemsToReplaceBans ) ]
+                    randomItemNum = 1
                     args[3] = sdk.to_ptr(randomItemID)
+                    args[4] = sdk.to_ptr(randomItemNum)
                 end
             end
         end
