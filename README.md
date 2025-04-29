@@ -4,19 +4,26 @@
 
 This modpack focuses on making Dragon's Dogma 2 more challenging by making fights harder, gear harder to acquire and harder to empower, vocations more balanced and monster encounters more varied and more interesting. What’s inside you may ask?
 
-- Bosses drop random gear: worked a lot on updating the Lucky Scavenger code and improving the gear drop balance and system. The loot quality is based on the XP amount given by the boss.
-- Harder boss fights: much less stagger, more damage done to player, some bosses can simply not be defeated until you have proper gear and level. Don’t expect to kill a chimera or a drake at lv 15.
-- Harder and more balanced enemies: even a crowd of base enemies at the start can mean your end. And if you don’t get well prepared for new areas, you will be crushed.
-- No gear in shops : money doesn’t buy gear. You need to find the gear by exploring, opening chests and killing bosses.
-- Much more expensive gear upgrades: most of your money will allow to you to upgrade your gear. Upgrades also require double the amount of materials.
+- Bosses drop random gear: worked a lot on updating the Lucky Scavenger code and improving the gear drop balance and system. The loot quality is based on bosses Tier: the harder the boss, the better the loot. Bosses can drop up to 4 items : a weapon, leg armor, head armor and torso armor.
+- Chests drop random gear based on the area they are located in: Vermund drops the lowest quality gear and unmoored drops the highest quality.
+- Bosses and Chests drops are vocation based: you can choose how often you’ll get gear corresponding to each vocation individually.
+- Toggleable removal of static gear loot in chests for a fully randomized gear acquisition.
+- Harder boss fights: much less stagger, more damage done to player, more Bosses HP, better scaling of bosses over the game. Some bosses can simply not be defeated until you have proper gear and level. Don’t expect to kill a chimera or a drake at lv 15. Currently the strongest farmable bosses are the Dullahan (Tier 5) and Lesser Dragon (Tier 6).
+- Harder and more balanced enemies: even a crowd of base enemies at the start can mean your end. And if you don’t get well prepared for new areas, you will be crushed. If you don’t have the correct methods to kill enemies, they might be almost unkillable (archer vs saurians).
+- NG and NG+ difficulty presets (requires manual switch within the REFramework > Custom Difficulty Tweaks > Presets menu).
+- No gear in shops : money doesn’t buy gear. You need to find the gear by exploring, opening chests and killing bosses. Shops have very basic gear for sale for immersion purposes.
+- Much more expensive gear upgrades: most of your money will allow to you to upgrade your gear. Upgrades also require double the amount of materials. This can be configured within Custom Difficulty Tweaks mod.
 - Random items drop when scavenging items in the wild: there’s always a reason to loot everything you see.
-- Items in chests are modified: no prior knowledge of the game loot will help you cheese the game's progression.
-- Random chance of looting ferrystones on dead enemies and in chests.
-- Lock-on system for combat and dodge for all classes.
+- Random chance of looting ferrystones on dead enemies and in chests thanks to Vanilla+ Ferrystones mod.
+- Lock-on system for combat and dodge for all classes thanks to Lock-on and Dodge mod.
 - Less staggers for the player.
 - A more permissive Loss Gauge since you'll take much more damages in general.
+- Faster characters movements.
+- Easier weight management (mainly so that you can actually get several pieces of gear without being a snail).
+- Vocations rebalance thanks to the Dullahan mod.
+- Random encounters thanks to the Durnevir mod.
+- And much more!
 
-And much more!
 
 But why “Dogamma”?
 
