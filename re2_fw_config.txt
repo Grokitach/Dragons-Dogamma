@@ -1,7 +1,7 @@
 Camera_DisableVignette=true
 Camera_Enabled=true
 Camera_GlobalFOV=45.734001
-Camera_GlobalFOVEnabled=true
+Camera_GlobalFOVEnabled=false
 Camera_VignetteBrightness=0.000000
 ChainViewer_Enabled=false
 FreeCam_DisableMoveKey_V2=-1
