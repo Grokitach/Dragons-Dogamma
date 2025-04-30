@@ -27,6 +27,7 @@ local _config={
     {name="Bonus Chest Loot",type="bool",default=true, tip="Whether items along with gear also drop from chests."},
     {name="Bonus Chest Loot Chance",type="int",default=25,min=1,max=100, tip="Chance for extra items that aren't gear to drop from chests."},
     {name="Chests Static Gear",type="bool",default=false, tip="Whether normal static gear drop in chests. If unticked, usual gear items in chests are replaced by useful consumables."},
+    {name="Chests Static Gear Replacement Swapped to Random Gear",type="bool",default=true, tip="If 'Chest Static Gear' is unticked while this option is ticked, makes so it that static gear is replaced by random gear (according to chest area danger) rather than useful consumables."},
 --    {name="Bodies Drop Extra Items",type="bool",default=false, tip="Whether items drop from corpses at all"},
 --    {name="Bodies Drop Gear",type="bool",default=true, tip="Whether gear drops from corpses at all"},
 --    {name="Bodies Drop Gear Chance",type="int",default=15,min=1,max=100, tip="Chance for gear to drop from all corpses"},
@@ -103,6 +104,7 @@ local EffectGimmickLoot = config["Effect Gimmick Loot"]
 local BonusChestLoot = config["Bonus Chest Loot"]
 local BonusChestLootChance = config["Bonus Chest Loot Chance"]
 local EnableStaticGear = config["Chests Static Gear"]
+local EnableStaticGearRandomGear = config["Chests Static Gear Replacement Swapped to Random Gear"]
 --local BonusBodyLoot = config["Bodies Drop Gear"]
 --local BonusBodyLootChance = config["Bodies Drop Gear Chance"]
 --local BodiesDropExtraItems = config["Bodies Drop Extra Items"]
@@ -378,6 +380,7 @@ re.on_frame(function()
     BonusChestLoot = config["Bonus Chest Loot"]
     BonusChestLootChance = config["Bonus Chest Loot Chance"]
     EnableStaticGear = config["Chests Static Gear"]
+    EnableStaticGearRandomGear = config["Chests Static Gear Replacement Swapped to Random Gear"]
 --    BonusBodyLoot = config["Bodies Drop Gear"]
 --    BonusBodyLootChance = config["Bodies Drop Gear Chance"]
 --    BodiesDropExtraItems = config["Bodies Drop Extra Items"]
@@ -1125,12 +1128,12 @@ local VanishingBosses = {
 
 local AreaInfo = {
 	[1] = {name = "Vermund", chestTiers = {1,1,1,1,1,2}},
-	[2] = {name = "Battalh", chestTiers = {1,2,2,2,2,2,2,3,3}},
-	[3] = {name = "Volcanic Island", chestTiers = {2,3,3,3,3,3,3,4}},
+	[2] = {name = "Battalh", chestTiers = {2,2,2,2,2,3,3}},
+	[3] = {name = "Volcanic Island", chestTiers = {2,3,3,3,3,3,3,4,4}},
 	[4] = {name = "Vermund to Battalh 1", chestTiers = {1,1,1,2,2}},
 	[5] = {name = "Vermund to Battalh 2", chestTiers = {1,1,1,2,2}},
-	[6] = {name = "Misty Marshes", chestTiers = {1,1,1,1,2}},
-	[7] = {name = "Unmoored World", chestTiers = {3,3,4,4,4,4,4,4,4,4,5,5,5,6}},
+	[6] = {name = "Misty Marshes", chestTiers = {1,1,1,2}},
+	[7] = {name = "Unmoored World", chestTiers = {4,4,4,4,5,5,5,6}},
 }
 
 local bossMaxRank = 6
@@ -1237,10 +1240,6 @@ local function generate_chest_loot(lootTable)
     local maxItemRankAllowed = math.ceil(chestTier / rankScaler)
     local minItemRankAllowed = math.floor((chestTier - 1) / rankScaler) -- Ensures that strong chests don't drop bad items
 
-    if chestTier == 6 then
-        local minItemRankAllowed = math.floor((chestTier - 2) / rankScaler)
-    end
-
     if maxItemRankAllowed < 1 then
         maxItemRankAllowed = 1
     end
@@ -1306,10 +1305,21 @@ function (args)
 
             if itemEventType == 4 then
                 if StaticLootToBan[itemID] then
-                    randomItemID =   UsefulItemsToReplaceBans[ math.random( #UsefulItemsToReplaceBans ) ]
-                    randomItemNum = 1
-                    args[3] = sdk.to_ptr(randomItemID)
-                    args[4] = sdk.to_ptr(randomItemNum)
+                    if EnableStaticGearRandomGear == true then
+                        randomItemID = 0
+                        randomItemNum = 1
+                        args[3] = sdk.to_ptr(randomItemID)
+                        args[4] = sdk.to_ptr(randomItemNum)
+                        
+                        Vocation = pick_a_class()
+                        ChestLootTable = VocationToLoot[Vocation]
+                        generate_chest_loot(ChestLootTable)
+                    else
+                        randomItemID =   UsefulItemsToReplaceBans[ math.random( #UsefulItemsToReplaceBans ) ]
+                        randomItemNum = 1
+                        args[3] = sdk.to_ptr(randomItemID)
+                        args[4] = sdk.to_ptr(randomItemNum)
+                    end
                 end
             end
         end
@@ -1422,6 +1432,9 @@ sdk.hook(
 
             Vocation = pick_a_class()
 
+            if this._CharaId == "3417537573" or this._CharaId == "2475491578" or this._CharaId == "355142415" or this._CharaId == "4243003424" then -- Purgeners only drop Tier 6 items
+                
+            
             BossLootTable = VocationToLoot[Vocation]
 
             if  Wdrop <= bossLootChance then
