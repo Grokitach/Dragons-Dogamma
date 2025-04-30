@@ -1306,14 +1306,14 @@ function (args)
             if itemEventType == 4 then
                 if StaticLootToBan[itemID] then
                     if EnableStaticGearRandomGear == true then
+                        Vocation = pick_a_class()
+                        ChestLootTable = VocationToLoot[Vocation]
+                        generate_chest_loot(ChestLootTable)
+
                         randomItemID = 0
                         randomItemNum = 1
                         args[3] = sdk.to_ptr(randomItemID)
                         args[4] = sdk.to_ptr(randomItemNum)
-                        
-                        Vocation = pick_a_class()
-                        ChestLootTable = VocationToLoot[Vocation]
-                        generate_chest_loot(ChestLootTable)
                     else
                         randomItemID =   UsefulItemsToReplaceBans[ math.random( #UsefulItemsToReplaceBans ) ]
                         randomItemNum = 1
