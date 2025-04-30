@@ -1431,10 +1431,6 @@ sdk.hook(
             end
 
             Vocation = pick_a_class()
-
-            if this._CharaId == "3417537573" or this._CharaId == "2475491578" or this._CharaId == "355142415" or this._CharaId == "4243003424" then -- Purgeners only drop Tier 6 items
-                
-            
             BossLootTable = VocationToLoot[Vocation]
 
             if  Wdrop <= bossLootChance then
