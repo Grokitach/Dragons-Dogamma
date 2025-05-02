@@ -4,10 +4,10 @@
         "presetSchemaVersion": 7
     },
     "baseDifficulty": {
-        "damageTaken": 200,
-        "damageToOthers": 275,
-        "damageToPlayer": 275,
-        "staggerImpact": 175
+        "damageTaken": 260,
+        "damageToOthers": 290,
+        "damageToPlayer": 290,
+        "staggerImpact": 220
     },
     "critDamageModifier": {
         "partyPawn": 1.5,
