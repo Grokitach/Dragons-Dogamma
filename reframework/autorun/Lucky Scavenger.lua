@@ -1280,42 +1280,29 @@ local function generate_chest_loot(lootTable)
     end
 end
 
-sdk.hook(sdk.find_type_definition("app.ItemManager"):get_method("getItem(System.Int32, System.Int32, app.Character, System.Boolean, System.Boolean, System.Boolean, app.ItemManager.GetItemEventType, System.Boolean, System.Boolean)"),
-function (args)
-    if EnableStaticGear == false then
+sdk.hook(
+    sdk.find_type_definition("app.ItemManager"):get_method("getItem(System.Int32, System.Int32, app.Character, System.Boolean, System.Boolean, System.Boolean, app.ItemManager.GetItemEventType, System.Boolean, System.Boolean)"),
+    function (args)
+        if EnableStaticGear == false then
+            ItemManager = sdk.to_managed_object(args[2])
+            itemID = sdk.to_int64(args[3])
+            itemNum = sdk.to_int64(args[4])
+            itemEventType = sdk.to_int64(args[9])
 
-        local player = GetPlayer()
-        local chara = sdk.to_managed_object(args[5])
-        if chara and player then
-            if chara:get_CharaID() == player:get_CharaID() then
-                ItemManager = sdk.to_managed_object(args[2])
-                itemID = sdk.to_int64(args[3])
-                itemNum = sdk.to_int64(args[4])
-                itemEventType = sdk.to_int64(args[9])
-            end
-        else
-            ItemManager = nil
-            itemID = nil
-            itemNum = nil
-            itemEventType = nil
-        end
-
-        if itemID ~= nil then
-            --printlog("Loot to potentially ban: " .. itemID .. " | EventType: " .. itemEventType .. " | Ban it? " .. tostring(StaticLootToBan[itemID]))
-
-            if itemEventType == 4 then
-                if StaticLootToBan[itemID] then
+            if itemID ~= nil and itemEventType ~= nil then
+                --printlog("Loot to potentially ban: " .. itemID .. " | EventType: " .. itemEventType .. " | Ban it? " .. tostring(StaticLootToBan[itemID]))
+                if itemEventType == 4 and StaticLootToBan[itemID] then
                     if EnableStaticGearRandomGear == true then
                         Vocation = pick_a_class()
                         ChestLootTable = VocationToLoot[Vocation]
                         generate_chest_loot(ChestLootTable)
 
-                        randomItemID = 0
+                        randomItemID = math.random(1,12)
                         randomItemNum = 1
                         args[3] = sdk.to_ptr(randomItemID)
                         args[4] = sdk.to_ptr(randomItemNum)
                     else
-                        randomItemID =   UsefulItemsToReplaceBans[ math.random( #UsefulItemsToReplaceBans ) ]
+                        randomItemID = UsefulItemsToReplaceBans[ math.random( #UsefulItemsToReplaceBans ) ]
                         randomItemNum = 1
                         args[3] = sdk.to_ptr(randomItemID)
                         args[4] = sdk.to_ptr(randomItemNum)
@@ -1323,8 +1310,8 @@ function (args)
                 end
             end
         end
-    end
-end, nil)
+    end, nil
+)
 
 sdk.hook(
     sdk.find_type_definition("app.gm80_001"):get_method("getItem"),
