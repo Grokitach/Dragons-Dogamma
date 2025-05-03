@@ -1179,7 +1179,7 @@ local function generate_boss_loot(lootTable, bossTier, TypeNumber)
         maxItemRankAllowed = 1
     end
 
-    bigListRandomizer = (math.random(9,11) / 10)
+    bigListRandomizer = (math.random(10,12) / 10)
     maxItemRankAllowed = math.ceil(maxItemRankAllowed * bigListRandomizer)
     minItemRankAllowed = math.ceil(minItemRankAllowed * bigListRandomizer)
 
