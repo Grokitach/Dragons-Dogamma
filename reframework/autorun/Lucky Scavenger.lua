@@ -1081,7 +1081,7 @@ local StaticLootToBan = {
 -- The names are just for reference, they're not used for anything
 local BossInfo = {
 	[3566561083] = {name = "Lich", lootTier = 3},
-	[186889532] = {name = "Wight", lootTier = 1},
+	[186889532] = {name = "Wight", lootTier = 2},
 	[2629601821] = {name = "Dullahan", lootTier = 5},
     [4200835371] = {name = "Cyclops (all)", lootTier = 1},
 	[797468852] = {name = "Cyclops (with club)", lootTier = 1},
@@ -1092,12 +1092,12 @@ local BossInfo = {
 	[3906583030] = {name = "Cyclops (full armor)", lootTier = 3},
 	[377282979] = {name = "Cyclops (full armor)", lootTier = 3},
 	[884021677] = {name = "Cyclops (full armor)", lootTier = 3},
-	[2138374751] = {name = "Ogre", lootTier = 1},
+	[2138374751] = {name = "Ogre", lootTier = 2},
 	[786298456] = {name = "Grim Ogre", lootTier = 3},
-	[2288155078] = {name = "Golem (2 health bars)", lootTier = 1}, 
+	[2288155078] = {name = "Golem (2 health bars)", lootTier = 2}, 
 	[1156291195] = {name = "Golem (3 health bars)", lootTier = 2}, 
 	[2224608577] = {name = "Golem (4 health bars)", lootTier = 3}, 
-	[812385671] = {name = "Golem (5 health bars)", lootTier = 3}, 
+	[812385671] = {name = "Golem (5 health bars)", lootTier = 4}, 
 	[3547788120] = {name = "Griffin", lootTier = 3},
 	[3369196004] = {name = "Sphinx", lootTier = 5},
 	[4243003424] = {name = "Vermund Purgener", lootTier = 6},
@@ -1127,13 +1127,13 @@ local VanishingBosses = {
 }
 
 local AreaInfo = {
-	[1] = {name = "Vermund", chestTiers = {1,1,1,1,1,2}},
-	[2] = {name = "Battalh", chestTiers = {2,2,2,2,2,3,3}},
-	[3] = {name = "Volcanic Island", chestTiers = {2,3,3,3,3,3,3,4,4}},
-	[4] = {name = "Vermund to Battalh 1", chestTiers = {1,1,1,2,2}},
-	[5] = {name = "Vermund to Battalh 2", chestTiers = {1,1,1,2,2}},
-	[6] = {name = "Misty Marshes", chestTiers = {1,1,1,2}},
-	[7] = {name = "Unmoored World", chestTiers = {4,4,4,4,5,5,5,6}},
+	[1] = {name = "Vermund", chestTiers = {1,1,1,1,1,2,2,2}},
+	[2] = {name = "Battalh", chestTiers = {2,2,3,3,3,3,3,3,3,4}},
+	[3] = {name = "Volcanic Island", chestTiers = {3,3,3,4,4,4,4,4,4,4,5}},
+	[4] = {name = "Vermund to Battalh 1", chestTiers = {1,2,2,2,2,2,3,3}},
+	[5] = {name = "Vermund to Battalh 2", chestTiers = {1,2,2,2,2,2,3,3}},
+	[6] = {name = "Misty Marshes", chestTiers = {2,2,2,2,2,2,2,3}},
+	[7] = {name = "Unmoored World", chestTiers = {4,4,4,5,5,5,5,6}},
 }
 
 local bossMaxRank = 6
