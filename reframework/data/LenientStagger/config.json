@@ -1,8 +1,8 @@
 {
     "break_stagger": true,
     "crawling": true,
-    "finisher_iframes": true,
-    "iframes": true,
+    "finisher_iframes": false,
+    "iframes": false,
     "no_daze": true,
     "no_grabs": true,
     "prevent_wallbangs": true,
