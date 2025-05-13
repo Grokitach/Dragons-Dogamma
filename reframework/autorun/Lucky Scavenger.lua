@@ -1073,7 +1073,7 @@ local StaticLootToBan = {
 
 -- The names are just for reference, they're not used for anything
 local BossInfo = {
-	[3566561083] = {name = "Lich", lootTier = 3},
+	[3566561083] = {name = "Lich", lootTier = 4},
 	[186889532] = {name = "Wight", lootTier = 2},
 	[2629601821] = {name = "Dullahan", lootTier = 5},
     [4200835371] = {name = "Cyclops (all)", lootTier = 1},
@@ -1088,14 +1088,14 @@ local BossInfo = {
 	[2138374751] = {name = "Ogre", lootTier = 2},
 	[786298456] = {name = "Grim Ogre", lootTier = 3},
 	[2288155078] = {name = "Golem (2 health bars)", lootTier = 2}, 
-	[1156291195] = {name = "Golem (3 health bars)", lootTier = 2}, 
-	[2224608577] = {name = "Golem (4 health bars)", lootTier = 3}, 
+	[1156291195] = {name = "Golem (3 health bars)", lootTier = 3}, 
+	[2224608577] = {name = "Golem (4 health bars)", lootTier = 4}, 
 	[812385671] = {name = "Golem (5 health bars)", lootTier = 4}, 
 	[3547788120] = {name = "Griffin", lootTier = 3},
-	[3369196004] = {name = "Sphinx", lootTier = 5},
+	[3369196004] = {name = "Sphinx", lootTier = 6},
 	[4243003424] = {name = "Vermund Purgener", lootTier = 6},
 	[355142415] = {name = "Island Encampent Purgener", lootTier = 6},
-	[3550884773] = {name = "Chimera", lootTier = 2},
+	[3550884773] = {name = "Chimera", lootTier = 3},
 	[3236853785] = {name = "Gorechimera", lootTier = 4},
 	[4170025353] = {name = "Medusa", lootTier = 4},
 	[2475491578] = {name = "Sacred Arbor Purgener", lootTier = 6},
@@ -1356,13 +1356,94 @@ sdk.hook(
 		local bossLootTier = info and info.lootTier
 
         if this._CharaId == "4200835371" then
-            cyclopTier = math.random(1,10)
-            if cyclopTier <= 9 then
+            local cyclopTier = math.random(1,10)
+            if cyclopTier <= 7 then
                 bossLootTier = 1
             else
                 bossLootTier = 2
             end
         end
+
+        if this._CharaId == "3550884773" then
+            local chimeraTier = math.random(1,10)
+            if chimeraTier <= 5 then
+                bossLootTier = 3
+            else
+                bossLootTier = 4
+            end
+        end
+        
+        if this._CharaId == "3236853785" then
+            local gorechimeraTier = math.random(1,10)
+            if gorechimeraTier <= 5 then
+                bossLootTier = 4
+            else
+                bossLootTier = 5
+            end
+        end   
+
+        if this._CharaId == "2138374751" then
+            local ogreTier = math.random(1,10)
+            if ogreTier <= 7 then
+                bossLootTier = 2
+            else
+                bossLootTier = 3
+            end
+        end
+
+        if this._CharaId == "786298456" then
+            local grimeogreTier = math.random(1,10)
+            if grimeogreTier <= 7 then
+                bossLootTier = 3
+            else
+                bossLootTier = 4
+            end
+        end
+
+        if this._CharaId == "3061246416" then
+            local minoTier = math.random(1,10)
+            if minoTier <= 6 then
+                bossLootTier = 2
+            else
+                bossLootTier = 3
+            end
+        end
+
+        if this._CharaId == "1057828479" then
+            local goreminoTier = math.random(1,10)
+            if goreminoTier <= 5 then
+                bossLootTier = 3
+            else
+                bossLootTier = 4
+            end
+        end
+
+        if this._CharaId == "2133916449" then
+            local drakeTier = math.random(1,10)
+            if drakeTier <= 5 then
+                bossLootTier = 4
+            else
+                bossLootTier = 5
+            end
+        end
+
+        if this._CharaId == "2629601821" then
+            local dullahanTier = math.random(1,10)
+            if dullahanTier <= 5 then
+                bossLootTier = 5
+            else
+                bossLootTier = 6
+            end
+        end
+
+        if this._CharaId == "3547788120" then
+            local griffinTier = math.random(1,10)
+            if griffinTier <= 4 then
+                bossLootTier = 3
+            else
+                bossLootTier = 4
+            end
+        end        
 
         if isBoss then
             local bossLootChance = GauranteedBossDrops
@@ -1383,7 +1464,7 @@ sdk.hook(
                 bossLootTier = math.random(3,4)
             end
 
-            if this._CharaId == "3538966457" then  -- Lesser Dragon always drops 4 items
+            if this._CharaId == "3538966457" or this._CharaId == "4243003424" or this._CharaId == "355142415" or this._CharaId == "2475491578" or this._CharaId == "3417537573" then  -- Lesser Dragon always drops 4 items
                 Hdrop = 1
                 Bdrop = 1
                 Ldrop = 1
